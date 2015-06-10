@@ -32,31 +32,17 @@
  * @copyright	Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
  * @link	http://codeigniter.com
- * @since	Version 1.0.0
+ * @since	Version 3.0.0
  * @filesource
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['profiler_database'] 			= 'BANCO DE DADOS';
-$lang['profiler_controller_info'] 	= 'CLASSE/MÉTODO';
-$lang['profiler_benchmarks'] 		= 'BENCHMARKS';
-$lang['profiler_queries'] 			= 'QUERIES';
-$lang['profiler_get_data'] 			= 'DADOS GET';
-$lang['profiler_post_data'] 		= 'DADOS POST';
-$lang['profiler_uri_string'] 		= 'URI STRING';
-$lang['profiler_memory_usage'] 		= 'USO DE MEMÓRIA';
-$lang['profiler_config'] 			= 'VARIÁBEIS DE CONFIGURAÇÃO';
-$lang['profiler_session_data'] 		= 'DADOS DE SESSÃO';
-$lang['profiler_headers'] 			= 'CABEÇALHOS HTTP';
-$lang['profiler_no_db'] 			= 'O driver do banco de dados não está carregado';
-$lang['profiler_no_queries'] 		= 'Não foram executadas queries';
-$lang['profiler_no_post']			= 'Não existem dados no POST';
-$lang['profiler_no_get']			= 'Não existem dados no GET';
-$lang['profiler_no_uri']			= 'Não existem dados URI';
-$lang['profiler_no_memory']			= 'Uso de memória não disponível';
-$lang['profiler_no_profiles']		= 'Sem dados de profiler - Todas as sessões de profile foram desabilitadas.';
-$lang['profiler_section_hide']		= 'Esconder';
-$lang['profiler_section_show']		= 'Exibir';
-$lang['profiler_seconds'] 			= 'segundos';
-
+$lang['migration_none_found'] 			= 'Nenhuma migration encontrada.';
+$lang['migration_not_found'] 			= 'Nenhuma migration foi encontrada com o número da versão: %s.';
+$lang['migration_sequence_gap'] 		= 'Existe uma lacuna no migration na seqüência próximo número da versão: %s.';
+$lang['migration_multiple_version']		= 'Há várias migrations com o mesmo número de versão: %s.';
+$lang['migration_class_doesnt_exist']	= 'A classe de migration "%s não foi encontrada.';
+$lang['migration_missing_up_method']	= 'A classe de migration %s não tem o método "up".';
+$lang['migration_missing_down_method']	= 'A classe de migration %s não tem o método "down".';
+$lang['migration_invalid_filename']		= 'A migration %s tem um nome de arquivo inválido.';
 

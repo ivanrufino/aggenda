@@ -37,26 +37,22 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['profiler_database'] 			= 'BANCO DE DADOS';
-$lang['profiler_controller_info'] 	= 'CLASSE/MÉTODO';
-$lang['profiler_benchmarks'] 		= 'BENCHMARKS';
-$lang['profiler_queries'] 			= 'QUERIES';
-$lang['profiler_get_data'] 			= 'DADOS GET';
-$lang['profiler_post_data'] 		= 'DADOS POST';
-$lang['profiler_uri_string'] 		= 'URI STRING';
-$lang['profiler_memory_usage'] 		= 'USO DE MEMÓRIA';
-$lang['profiler_config'] 			= 'VARIÁBEIS DE CONFIGURAÇÃO';
-$lang['profiler_session_data'] 		= 'DADOS DE SESSÃO';
-$lang['profiler_headers'] 			= 'CABEÇALHOS HTTP';
-$lang['profiler_no_db'] 			= 'O driver do banco de dados não está carregado';
-$lang['profiler_no_queries'] 		= 'Não foram executadas queries';
-$lang['profiler_no_post']			= 'Não existem dados no POST';
-$lang['profiler_no_get']			= 'Não existem dados no GET';
-$lang['profiler_no_uri']			= 'Não existem dados URI';
-$lang['profiler_no_memory']			= 'Uso de memória não disponível';
-$lang['profiler_no_profiles']		= 'Sem dados de profiler - Todas as sessões de profile foram desabilitadas.';
-$lang['profiler_section_hide']		= 'Esconder';
-$lang['profiler_section_show']		= 'Exibir';
-$lang['profiler_seconds'] 			= 'segundos';
-
-
+$lang['ut_test_name'] = 'Nome do teste';
+$lang['ut_test_datatype'] = 'Tipo de dado do teste';
+$lang['ut_res_datatype'] = 'Tipo de dado esperado';
+$lang['ut_result'] = 'Resultado';
+$lang['ut_undefined'] = 'Nome do teste não definido';
+$lang['ut_file'] = 'Nome do arquivo';
+$lang['ut_line'] = 'Número da linha';
+$lang['ut_passed'] = 'Passou';
+$lang['ut_failed'] = 'Falhou';
+$lang['ut_boolean'] = 'Boolean';
+$lang['ut_integer'] = 'Integer';
+$lang['ut_float'] = 'Float';
+$lang['ut_double'] = 'Float'; // can be the same as float
+$lang['ut_string'] = 'String';
+$lang['ut_array'] = 'Array';
+$lang['ut_object'] = 'Object';
+$lang['ut_resource'] = 'Resource';
+$lang['ut_null'] = 'Null';
+$lang['ut_notes'] = 'Notas';
