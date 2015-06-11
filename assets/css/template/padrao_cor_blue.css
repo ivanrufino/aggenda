@@ -1,0 +1,16 @@
+body {
+  color:#828282;
+  background-color:#eee;
+}
+a,a:hover,.highlight {
+    color:#33a7ff;  	
+}
+.highlight-bk,.navbar{
+    background-color:#33a7ff;  
+}
+h3.highlight,.navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
+    border-color: #33a7ff;
+}
+.navbar-nav > li:last-child > a,.navbar-nav > li > a{
+    border-color: #338bee;
+}

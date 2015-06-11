@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>404 Page Not Found</title>
+<title>404 Página não encontrada</title>
 <style type="text/css">
 
 ::selection { background-color: #E13300; color: white; }
@@ -59,6 +59,14 @@ p {
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>
+                <br>
+                <h2>Póssiveis causas</h2>
+                <ul>
+                    <li>A página em questão pode ter sido removida</li>
+                    <li>O link de redirecionamento pode estar errado.</li>
+                    <li>Pode estar sobrando ou faltando alguma letra na url que foi digitado</li>
+                </ul>
+                <a href="<?=  base_url('agenda')?>">Home</a>
 	</div>
 </body>
 </html>

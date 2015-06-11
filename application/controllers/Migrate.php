@@ -15,5 +15,11 @@ class Migrate extends CI_Controller{
 //                        show_error($this->migration->error_string());
 //                }
     }
+    public function erro404() {
+        show_404('asdasd.php');
+    }
+    public function p() {
+        echo "pagina nao encontra, Besta"; 
+    }
 }
 // Migrate.php

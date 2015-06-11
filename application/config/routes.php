@@ -52,3 +52,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+require_once( BASEPATH .'database/DB.php');
+$db =& DB();
+$query = $db->get( 'v_url' );
+$result = $query->result();
+foreach( $result as $row )
+{
+    $route[ $row->URL] = 'Agenda/getEmpresa/'.$row->CODIGO;
+    $route[ $row->URL.'/(:any)'] = "Agenda/getEmpresa/$row->CODIGO/$1"; 
+}
