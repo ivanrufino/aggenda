@@ -80,7 +80,7 @@
                             <div class="col-md-4 col-md-offset-0">
                                 <h3>Crie sua conta free</h3>
                                 <fieldset>
-                                    <form class="first_cadastro" action="home/cadastrar" method="POST">
+                                    <form class="first_cadastro" action="<?=base_url()?>home/cadastrar" method="POST">
                                         <div class="col-xs-12">
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-addon" id="login"><i class="fa fa-user fa-lg"></i></span>

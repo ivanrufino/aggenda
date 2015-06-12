@@ -33,11 +33,9 @@ class Agenda extends CI_Controller {
         if (method_exists($this, $action)) {
             $this->$action();
         } else {
-            log_message(4, 'nada');
             show_404();
-            // echo "nao encontrado";
         }
-        //echo $codigo;
+        
     }
 
     public function _home() {
