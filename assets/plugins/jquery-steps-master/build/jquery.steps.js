@@ -1022,7 +1022,7 @@ function renderBody(wizard, body, index)
 function renderPagination(wizard, options, state)
 {
     if (options.enablePagination)
-    {
+    { 
         var pagination = "<{0} class=\"actions {1}\"><ul role=\"menu\" aria-label=\"{2}\">{3}</ul></{0}>",
             buttonTemplate = "<li><a href=\"#{0}\" role=\"menuitem\">{1}</a></li>",
             buttons = "";
@@ -1942,7 +1942,7 @@ var defaults = $.fn.steps.defaults = {
          * @default "Finish"
          * @for defaults
          **/
-        finish: "Finish",
+        finish: "Finalizar",
 
         /**
          * Label for the next button.
@@ -1952,7 +1952,7 @@ var defaults = $.fn.steps.defaults = {
          * @default "Next"
          * @for defaults
          **/
-        next: "Next",
+        next: "Próximo",
 
         /**
          * Label for the previous button.
@@ -1962,7 +1962,7 @@ var defaults = $.fn.steps.defaults = {
          * @default "Previous"
          * @for defaults
          **/
-        previous: "Previous",
+        previous: "Anterior",
 
         /**
          * Label for the loading animation.
@@ -1994,6 +1994,7 @@ $.fn.extend({
 
     _disableAria: function ()
     {
+          return this.addClass("inactive");
         return this.addClass("disabled")._aria("disabled", "true");
     },
 

@@ -9,13 +9,15 @@ class Home extends CI_Controller {
     private $js = null;
     function __construct() {
         parent::__construct();
-        $this->css = array('../'.PLUGIN.'bootstrap/bootstrap.min', 'font-awesome.min',PASTA.'/main',PASTA.'/theme',PASTA.'/MoneAdmin',PASTA.'/layout2','../'.PLUGIN.'/flot/examples/examples');
+        $this->css = array(PASTA.'/layout2','../'.PLUGIN.'/flot/examples/examples');
         /*Global js*/
-        $js_global =array('../'.PLUGIN.'/jquery-2.0.3.min','jquery', 'bootstrap.min','../'.PLUGIN.'/modernizr-2.6.2-respond-1.1.0.min');
+        $js_global =array('../'.PLUGIN.'/bootstrap/js/bootstrap.min','../'.PLUGIN.'/modernizr-2.6.2-respond-1.1.0.min');
         
         /*local js*/
-        $jsFloat=array('../'.PLUGIN.'/flot/jquery.flot' ,'../'.PLUGIN.'/flot/jquery.flot.resize' ,'../'.PLUGIN.'/flot/jquery.flot.time' ,'../'.PLUGIN.'/flot/jquery.flot.stack');
-        $this->js = array_merge($js_global,$jsFloat, array(PASTA.'/for_index'));
+    //    $jsFloat=array('../'.PLUGIN.'/flot/jquery.flot' ,'../'.PLUGIN.'/flot/jquery.flot.resize' ,'../'.PLUGIN.'/flot/jquery.flot.time' ,'../'.PLUGIN.'/flot/jquery.flot.stack');
+        
+        
+        $this->js = array_merge($js_global);//, array(PASTA.'/for_index'));
         
     }
 
@@ -24,23 +26,26 @@ class Home extends CI_Controller {
     }
 
     public function cadastrar() {
-        $this->form_validation->set_rules('login', 'Login', 'trim|required');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('login', 'Login', 'trim|required|is_unique[associado.LOGIN]',array( 'is_unique'     => 'Este %s já esta sendo uilizado.'));
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[associado.EMAIL]',array( 'is_unique'     => 'Este %s já esta sendo uilizado.'));
         $this->form_validation->set_rules('senha', 'Senha', 'trim|required|min_length[6]');
         if ($this->form_validation->run() == FALSE) {           
             $this->load->view('home/index');
         } else {
-            redirect('home/logado');
+            redirect('admin/login');
             //$this->logado();
         }
     }
-    public function logado() {
-        //die('aqui');
+    public function login() {
+        $this->load->view('associado/login');
+    }
+    public function admin() {
+        
         $data[]=NULL;
-        $tela[] = NULL;
+        $tela['conteudo'] = ('associado/config_inicial');
         $this->parser->adc_css($this->css);
         $this->parser->adc_js($this->js);
-        $this->parser->mostrar('template_associado/index.php', $tela, $data);
+        $this->parser->mostrar('template/template_associado.php', $tela, $data);
     }
 
 }

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Agenda extends CI_Controller {
+class Page extends CI_Controller {
 
     private $cod_associado = null;
     private $css = null;
@@ -14,7 +14,7 @@ class Agenda extends CI_Controller {
         $this->js = array('jquery', 'bootstrap.min', 'template/scripts');
     }
 
-    public function index($cor='red') {
+    public function index($cor='blue') {
         $data['estilo']['cor'] ='#FFC0EB';
         $data['estilo']['borda'] ='#B286A4';
         $data['estilo']['cor_letra'] ='#231A20';

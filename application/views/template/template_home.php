@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>Bootstrap 3 Template / Theme - Flathood</title>
+		<title>Aggenda.com | Home</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
@@ -45,9 +45,9 @@
       </a>
       <div class="nav-collapse collase">
         <ul class="nav navbar-nav">  
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
+          <li><a href="{base_url}">Home</a></li>
+<!--          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>-->
         </ul>
         <ul class="nav navbar-right navbar-nav">
           <li class="dropdown">
@@ -66,10 +66,10 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Profile</a></li>
+              <li><a href="#">Acessar</a></li>
+              <li><a href="#">Configurações</a></li>
               <li class="divider"></li>
-              <li><a href="#">About</a></li>
+              <li><a href="#">Sair</a></li>
              </ul>
           </li>  
         </ul>
@@ -81,8 +81,8 @@
   <div class="container">
     <div class="row">
       <div class="col col-sm-6">
-        <h1><a href="#" title="scroll down for your viewing pleasure">BNW Template</a>
-          <p class="lead">2-column Layout + Theme for Bootstrap 3</p></h1>
+        <h1><a href="#" title="scroll down for your viewing pleasure">Aggenda.com</a>
+          <p class="lead">Sistema de agendamento online</p></h1>
       </div>
       <div class="col col-sm-6">
         <div class="well pull-right">
@@ -98,7 +98,7 @@
         
         <div class="panel">
         <div class="panel-body">
-          You may want to put some news here  <span class="glyphicon glyphicon-heart-empty"></span>
+         Procure serviços e marque horarios de forma rapida e simples  <span class="glyphicon glyphicon-heart-empty"></span>
         </div>
         </div>
         
@@ -113,7 +113,7 @@
   			<div class="col col-sm-3">
               	<div id="sidebar">
       			<ul class="nav nav-stacked">
-                    <li><h3 class="highlight">Channels <i class="glyphicon glyphicon-dashboard pull-right"></i></h3></li>
+                    <li><h3 class="highlight">Serviços <i class="glyphicon glyphicon-dashboard pull-right"></i></h3></li>
                   	<li><a href="#">Link</a></li>
           			<li><a href="#">Link</a></li>
 				</ul>

@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Estrutura da tabela `v_quant_servico_e_agenda_por_associado`
 --
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `aggenda`.`v_quant_servico_e_agenda_por_associado` AS select `A`.`CODIGO` AS `CODIGO`,`A`.`NOME` AS `NOME`,count(`S`.`CODIGO`) AS `QUANT_SERVICOS` from (((`aggenda`.`ASSOCIADO` `A` join `aggenda`.`SERVICO` `S` on((`S`.`COD_ASSOCIADO` = `A`.`CODIGO`))) left join `aggenda`.`FUNC_SERV` `FS` on((`FS`.`COD_SERVICO` = `S`.`CODIGO`))) left join `aggenda`.`FUNCIONARIO` `F` on((`F`.`CODIGO` = `FS`.`COD_FUNCIONARIO`))) group by `A`.`CODIGO`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `aggenda`.`v_quant_servico_e_agenda_por_associado` AS select `A`.`CODIGO` AS `CODIGO`,`A`.`NOME` AS `NOME`,count(`S`.`CODIGO`) AS `QUANT_SERVICOS` from (((`aggenda`.`associado` `A` join `aggenda`.`servico` `S` on((`S`.`COD_ASSOCIADO` = `A`.`CODIGO`))) left join `aggenda`.`func_serv` `FS` on((`FS`.`COD_SERVICO` = `S`.`CODIGO`))) left join `aggenda`.`funcionario` `F` on((`F`.`CODIGO` = `FS`.`COD_FUNCIONARIO`))) group by `A`.`CODIGO`;
 -- em uso (#1356 - View 'aggenda.v_quant_servico_e_agenda_por_associado' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them)
 
 --
@@ -302,3 +302,10 @@ ALTER TABLE `servico`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE OR REPLACE 
+ALGORITHM = UNDEFINED
+VIEW  `v_url` AS 
+SELECT  `CODIGO` ,  `URL` 
+FROM  `associado` 
+WHERE  `STATUS` =  'A'

@@ -547,7 +547,7 @@
         <!--PAGE CONTENT -->
         <div id="content">
 
-            <div class="inner" >
+            <div class="inner" style="min-height:1200px;">
                 <div class="row">
                     <div class="col-lg-12">
 

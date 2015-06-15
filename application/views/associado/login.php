@@ -15,9 +15,9 @@
         <![endif]-->
     <!-- GLOBAL STYLES -->
      <!-- PAGE LEVEL STYLES -->
-     <link rel="stylesheet" href="{base_url}assets/plugins/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="{base_url}assets/css/template_associado/login.css" />
-    <link rel="stylesheet" href="{base_url}assets/plugins/magic/magic.css" />
+     <link rel="stylesheet" href="<?=  base_url()?>assets/plugins/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="<?=  base_url()?>assets/css/template_associado/login.css" />
+    <link rel="stylesheet" href="<?=  base_url()?>assets/plugins/magic/magic.css" />
      <!-- END PAGE LEVEL STYLES -->
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -33,28 +33,28 @@
    <!-- PAGE CONTENT --> 
     <div class="container">
     <div class="text-center">
-        <img src="assets/img/logo.png" id="logoimg" alt=" Logo" />
+        <img src="<?=  base_url()?>assets/images/template_associado/logo.png" id="logoimg" alt=" Logo" />
     </div>
     <div class="tab-content">
         <div id="login" class="tab-pane active">
-            <form action="index.html" class="form-signin">
+            <form action="home/acessar" class="form-signin">
                 <p class="text-muted text-center btn-block btn btn-primary btn-rect">
-                    Enter your username and password
+                   Digite seu E-mail e Senha
                 </p>
-                <input type="text" placeholder="Username" class="form-control" />
-                <input type="password" placeholder="Password" class="form-control" />
-                <button class="btn text-muted text-center btn-danger" type="submit">Sign in</button>
+                <input type="email" placeholder="E-mail ou Login" class="form-control" />
+                <input type="password" placeholder="Senha" class="form-control" />
+                <button class="btn text-muted text-center btn-success" type="submit">Acessar</button>
             </form>
         </div>
         <div id="forgot" class="tab-pane">
-            <form action="index.html" class="form-signin">
-                <p class="text-muted text-center btn-block btn btn-primary btn-rect">Enter your valid e-mail</p>
-                <input type="email"  required="required" placeholder="Your E-mail"  class="form-control" />
+            <form action="home/recupera_senha" class="form-signin">
+                <p class="text-muted text-center btn-block btn btn-primary btn-rect">Digite seu email</p>
+                <input type="email"  required="required" placeholder="E-mail"  class="form-control" />
                 <br />
-                <button class="btn text-muted text-center btn-success" type="submit">Recover Password</button>
+                <button class="btn text-muted text-center btn-danger" type="submit">Recuperar senha</button>
             </form>
         </div>
-        <div id="signup" class="tab-pane">
+<!--        <div id="signup" class="tab-pane">
             <form action="index.html" class="form-signin">
                 <p class="text-muted text-center btn-block btn btn-primary btn-rect">Please Fill Details To Register</p>
                  <input type="text" placeholder="First Name" class="form-control" />
@@ -65,13 +65,13 @@
                 <input type="password" placeholder="Re type password" class="form-control" />
                 <button class="btn text-muted text-center btn-success" type="submit">Register</button>
             </form>
-        </div>
+        </div>-->
     </div>
     <div class="text-center">
         <ul class="list-inline">
             <li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
-            <li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
-            <li><a class="text-muted" href="#signup" data-toggle="tab">Signup</a></li>
+            <li><a class="text-muted" href="#forgot" data-toggle="tab">Esqueci minha senha</a></li>
+            <!--<li><a class="text-muted" href="#signup" data-toggle="tab">Signup</a></li>-->
         </ul>
     </div>
 
@@ -81,9 +81,9 @@
 	  <!--END PAGE CONTENT -->     
 	      
       <!-- PAGE LEVEL SCRIPTS -->
-      <script src="{base_url}assets/plugins/jquery-2.0.3.min.js"></script>
-      <script src="{base_url}assets/plugins/bootstrap/js/bootstrap.js"></script>
-   <script src="{base_url}assets/js/login.js"></script>
+      <script src="<?=  base_url()?>assets/plugins/jquery-2.0.3.min.js"></script>
+      <script src="<?=  base_url()?>assets/plugins/bootstrap/js/bootstrap.js"></script>
+   <script src="<?=  base_url()?>assets/js/template_associado/login.js"></script>
       <!--END PAGE LEVEL SCRIPTS -->
 
 </body>

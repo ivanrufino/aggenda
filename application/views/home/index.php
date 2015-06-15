@@ -53,7 +53,9 @@
                         <li><a href="#feature">Sobre</a></li>
                         <li><a href="#pricing">Planos</a></li>
                         <li><a href="#download">Download</a></li>
-                        <li><a href="#contact">Cadastre-se</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                        <li><a href="<?= base_url()?>page.html" onclick="window.location='<?= base_url()?>page.html'">Serviços</a></li>
+                        <li><a href="admin/login.html" onclick="window.location='<?= base_url()?>admin/login.html'">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -84,12 +86,14 @@
                                         <div class="col-xs-12">
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-addon" id="login"><i class="fa fa-user fa-lg"></i></span>
-                                            <input type="text" class="form-control" name="login" placeholder="Login" aria-describedby="login" required="">
+                                            <input type="text" class="form-control" name="login" placeholder="Login" aria-describedby="login" required="" value="<?php echo set_value('login'); ?>">
+                                            <?php echo form_error('login', '<div class="alert-danger">', '</div>'); ?>
                                         </div>
                                         <br>
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-addon" id="email"><i class="fa fa-envelope-o fa-lg"></i></span>
-                                            <input type="text" class="form-control" name="email" placeholder="email" aria-describedby="email" required="">
+                                            <input type="email" class="form-control" name="email" placeholder="email" aria-describedby="email" required="" value="<?php echo set_value('email'); ?>">
+                                            <?php echo form_error('email', '<div class="alert-danger">', '</div>'); ?>
                                         </div>
                                         </div>
                                         
@@ -98,7 +102,7 @@
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-addon" id="senha"><i class="fa fa-lock fa-lg"></i></span>
                                             <input type="password" class="form-control" name="senha" placeholder="Senha" aria-describedby="senha" required="">
-                                            
+                                            <?php echo form_error('senha', '<div class="alert-danger">', '</div>'); ?>
                                             
                                         </div>
                                         </div>
@@ -107,9 +111,10 @@
                                             <input type="submit" class="btn btn-lg btn-default" value="cadastrar">
                                         </div>
                                     </form>
-                                    outras coisas aqui
-                                    <?=  validation_errors('<div class="alert alert-danger">', '</div>');?>
+                                    <div class="clearfix"><br></div>
+                                   
                                 </fieldset>
+                                 <?php //  validation_errors('<div class="alert alert-danger ">', '</div>');?>
                             </div>
                             <div class="col-md-8">
                                 <img src="<?= base_url() ?>assets/images/software-img.png" class="img-responsive" alt="home img">

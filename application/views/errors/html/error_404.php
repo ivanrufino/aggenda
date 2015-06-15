@@ -66,7 +66,7 @@ p {
                     <li>O link de redirecionamento pode estar errado.</li>
                     <li>Pode estar sobrando ou faltando alguma letra na url que foi digitado</li>
                 </ul>
-                <a href="<?=  base_url('agenda')?>">Home</a>
+                <a href="<?php echo config_item('base_url').'/page';?>">Home</a>
 	</div>
 </body>
 </html>
