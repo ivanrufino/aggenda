@@ -1,0 +1,1 @@
+cor_predominante: #0097a8;

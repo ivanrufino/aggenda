@@ -45,7 +45,10 @@
                         <span class="icon icon-bar"></span>
                         <span class="icon icon-bar"></span>
                     </button>
-                    <a href="#" class="navbar-brand">Aggenda.com</a>
+                    <a href="#" class="navbar-brand" style='color:#000; font-family: puvisa'>
+                        <img src='<?= base_url()?>assets/images/agenda_logo.png' class="" alt="logo" style="height: 50px;display: inline">
+                        A<span style='color:#0097a8'>gg</span>enda.com
+                    </a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right text-uppercase">
