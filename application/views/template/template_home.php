@@ -11,11 +11,19 @@
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 		<!--<link href="css/styles.css" rel="stylesheet">-->
+                <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
                 {css_list}
                 
 	</head>
 	<body>
             <style>
+                a.logo{
+                color: #000;
+                font-family: 'Courgette';
+            }
+            a.logo > span{
+                color:#0097a8 ; 
+            }
                 <?php
                     if (!is_null($estilo)) {
                         echo " body {
@@ -81,7 +89,10 @@
   <div class="container">
     <div class="row">
       <div class="col col-sm-6">
-        <h1><a href="#" title="scroll down for your viewing pleasure">Aggenda.com</a>
+          <h1><a href="#" title="scroll down for your viewing pleasure" class="logo">
+                   <img src='<?= base_url()?>assets/images/agenda_logo.png' class="" alt="logo" style="height: 50px;display: inline">
+                  A<span>gg</span>enda.com
+              </a>
           <p class="lead">Sistema de agendamento online</p></h1>
       </div>
       <div class="col col-sm-6">
@@ -112,11 +123,12 @@
 	<div class="row">
   			<div class="col col-sm-3">
               	<div id="sidebar">
-      			<ul class="nav nav-stacked">
+      			<ul class="nav nav-stacked ">
                     <li><h3 class="highlight">Serviços <i class="glyphicon glyphicon-dashboard pull-right"></i></h3></li>
-                  	<li><a href="#">Link</a></li>
-          			<li><a href="#">Link</a></li>
-				</ul>
+                  	<li><a href="salao_de_beleza" class='loadLink'>Salão de Beleza</a></li>
+                        <li><a href="clinica_medica" class='loadLink'>Clínicas Médica</a></li>
+                        <li><a href="dentista" class='loadLink'>Dentistas</a></li>
+                    </ul>
                 <div class="accordion" id="accordion2">
                     <div class="accordion-group">
                         <div class="accordion-heading">
@@ -249,4 +261,13 @@
 <!--		<script src="js/bootstrap.min.js"></script>
 		<script src="js/scripts.js"></script>-->
                 {js_list}
+                <script>
+                    $("document").ready(function(){
+                        $(".loadLink").click(function(){
+                            var link = $(this).attr('href');
+                            console.log(link);
+                            return false;
+                        })
+                    })
+                </script>
 	</body>

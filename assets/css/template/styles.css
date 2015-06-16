@@ -35,7 +35,7 @@ header {
 
 a,a:hover {
 	/*color:#ff3333;*/
-  	text-decoration:none;
+  	text-decoration:none !important;
 }
 
 .highlight-bk {

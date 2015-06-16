@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="<?= base_url() ?>assets/css/font-awesome.min.css">
         <!-- google font -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
 
         <!-- custom css -->
         <link rel="stylesheet" href="<?= base_url() ?>assets/css/templatemo-style.css">
@@ -45,7 +46,7 @@
                         <span class="icon icon-bar"></span>
                         <span class="icon icon-bar"></span>
                     </button>
-                    <a href="#" class="navbar-brand" style='color:#000; font-family: puvisa'>
+                    <a href="#" class="navbar-brand" style='color:#000; font-family: Courgette'>
                         <img src='<?= base_url()?>assets/images/agenda_logo.png' class="" alt="logo" style="height: 50px;display: inline">
                         A<span style='color:#0097a8'>gg</span>enda.com
                     </a>
