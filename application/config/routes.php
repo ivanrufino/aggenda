@@ -61,6 +61,7 @@ $query = $db->get( 'v_url' );
 $result = $query->result();
 foreach( $result as $row )
 {
-    $route[ $row->URL] = 'Agenda/getEmpresa/'.$row->CODIGO;
-    $route[ $row->URL.'/(:any)'] = "Agenda/getEmpresa/$row->CODIGO/$1"; 
+    
+    $route[ $row->URL] = 'Page/getEmpresa/'.$row->CODIGO;
+    $route[ $row->URL.'/(:any)'] = "Page/getEmpresa/$row->CODIGO/$1"; 
 }

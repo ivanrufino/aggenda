@@ -6,7 +6,7 @@
 <!-- BEGIN HEAD -->
 <head>
      <meta charset="UTF-8" />
-    <title>BCORE Admin Dashboard Template | Login Page</title>
+    <title>Aggenda.com | Login </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -37,12 +37,13 @@
     </div>
     <div class="tab-content">
         <div id="login" class="tab-pane active">
-            <form action="home/acessar" class="form-signin">
+            <form action="<?=  base_url();?>home/acessar" method="POST" class="form-signin">
+                <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
                 <p class="text-muted text-center btn-block btn btn-primary btn-rect">
                    Digite seu E-mail e Senha
                 </p>
-                <input type="email" placeholder="E-mail ou Login" class="form-control" />
-                <input type="password" placeholder="Senha" class="form-control" />
+                <input type="text" placeholder="E-mail ou Login" name="login" class="form-control" />
+                <input type="password" placeholder="Senha" name="senha" class="form-control" />
                 <button class="btn text-muted text-center btn-success" type="submit">Acessar</button>
             </form>
         </div>

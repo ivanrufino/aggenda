@@ -7,19 +7,17 @@ class Migrate extends CI_Controller{
     }
     public function index() {
         $this->load->library('migration');
-        $versaoAtual= 2;
+        $versaoAtual= 3;
        print_r($this->migration->find_migrations()); 
-       //  $this->migration->latest();
-//                if ($this->migration->current() === FALSE)
-//                {
-//                        show_error($this->migration->error_string());
-//                }
+         //$this->migration->version(2);
+                if ($this->migration->current() === FALSE)
+                {
+                        show_error($this->migration->error_string());
+                }
     }
     public function erro404() {
         show_404('asdasd.php');
     }
-    public function p() {
-        echo "pagina nao encontra, Besta"; 
-    }
+    
 }
 // Migrate.php

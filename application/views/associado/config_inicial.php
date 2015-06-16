@@ -16,7 +16,7 @@
             <div class="col-lg-12">
 
 
-                <h2> Wizard Page </h2>
+                <h2> Configuração Inicial </h2>
 
 
 
@@ -31,24 +31,50 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Vertical Wizard
+<!--                        Vertical Wizard-->
                     </div>
                     <div class="panel-body">
                         <div id="wizardV" >
-                            <h2> Personal </h2>
+                            <h2> Empresa </h2>
                             <section>
 
                                 <form role="form">
                                     <div class="form-group">
-                                        <label>First Name</label>
-                                        <input class="form-control" />
+                                        <label>Seu cadastro será de empresa ou pessoa física?</label>
+                                        <select class="form-control">
+                                            <option value="J">Empresa</option>
+                                            <option value="=P">Pessoa Física</option>
+                                        </select>
                                         <p class="help-block">Example block-level help text here.</p>
                                     </div>
-
+                                    
                                     <div class="form-group">
-                                        <label>Last Name</label>
+                                        <div class="col-md-6">
+                                            <label>Seu nome ou Razão social </label>
+                                            <input class="form-control" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>CNPJ/CPF</label>
+                                            <input class="form-control" />
+                                        </div>
+                                        <p class="help-block">Digite sua inscrição de acordo com a opção de pessoa física ou empresa.</p>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                        <label>Qual sua área de atuação</label>
+                                        <select class="form-control">
+                                            <option>Salão de Beleza</option>
+                                            <option>Clinica Médica</option>
+                                            <option>Outros</option>
+                                        </select>
+                                        </div>
+                                        <div class="col-md-6 hide">
+                                         <label>Outros</label>
                                         <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <p class="help-block ">Example block-level help text here.</p>
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>

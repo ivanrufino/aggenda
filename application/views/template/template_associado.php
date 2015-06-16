@@ -302,7 +302,7 @@
 
 
         <!-- MENU SECTION -->
-       <div id="left" >
+        <div id="left" class="hide" >
             <div class="media user-media well-small">
                 <a class="user-link" href="#">
                     <img class="media-object img-thumbnail user-img" alt="User Picture" src="<?= base_url()?>assets/images/template_associado/user.gif" />
@@ -1147,14 +1147,14 @@
         <!--END PAGE CONTENT -->
  */ ?>
          <!-- RIGHT STRIP  SECTION -->
-        <div id="right">
+         <div id="right" class="hide">
 
             
             <div class="well well-small">
                 <ul class="list-unstyled">
-                    <li>Visitor &nbsp; : <span>23,000</span></li>
-                    <li>Users &nbsp; : <span>53,000</span></li>
-                    <li>Registrations &nbsp; : <span>3,000</span></li>
+                    <li>Visitantes &nbsp; : <span>23,000</span></li>
+                    <li>Usuários &nbsp; : <span>53,000</span></li>
+                    <li>Agendamentos &nbsp; : <span>3,000</span></li>
                 </ul>
             </div>
             <div class="well well-small">

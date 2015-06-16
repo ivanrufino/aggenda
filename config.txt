@@ -1,3 +1,6 @@
 cor_predominante: #0097a8;
 font: Courgette
 
+/*carregar arquivos de configuração do usuario na seção
+
+*/
