@@ -31,7 +31,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-<!--                        Vertical Wizard-->
+                        <!--                        Vertical Wizard-->
                     </div>
                     <div class="panel-body">
                         <div id="wizardV" >
@@ -45,62 +45,82 @@
                                             <option value="J">Empresa</option>
                                             <option value="=P">Pessoa Física</option>
                                         </select>
-                                        <p class="help-block">Example block-level help text here.</p>
+                                        <p class="help-block hide">Example block-level help text here.</p>
                                     </div>
-                                    
                                     <div class="form-group">
+                                        <label>Quem será o responsável por manter a agenda</label>
                                         <div class="col-md-6">
-                                            <label>Seu nome ou Razão social </label>
-                                            <input class="form-control" />
+                                            <label>Nome</label>
+                                            <input class="form-control" placeholder="nome"/>
                                         </div>
                                         <div class="col-md-6">
-                                            <label>CNPJ/CPF</label>
-                                            <input class="form-control" />
+                                            <label>Sobrenome</label>
+                                            <input class="form-control" placeholder="Sobrenome" />
                                         </div>
                                         <p class="help-block">Digite sua inscrição de acordo com a opção de pessoa física ou empresa.</p>
                                     </div>
                                     
                                     <div class="form-group">
                                         <div class="col-md-6">
-                                        <label>Qual sua área de atuação</label>
-                                        <select class="form-control">
-                                            <option>Salão de Beleza</option>
-                                            <option>Clinica Médica</option>
-                                            <option>Outros</option>
-                                        </select>
+                                            <label>Seu nome ou Razão social </label>
+                                            <input class="form-control" placeholder="Nome ou Razão Social"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>CNPJ/CPF</label>
+                                            <input class="form-control" placeholder="CNJP ou CPF"/>
+                                        </div>
+                                        <p class="help-block">Digite sua inscrição de acordo com a opção de pessoa física ou empresa.</p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label>Qual sua área de atuação</label>
+                                            <select class="form-control">
+                                                <option>Salão de Beleza</option>
+                                                <option>Clinica Médica</option>
+                                                <option>Outros</option>
+                                            </select>
                                         </div>
                                         <div class="col-md-6 hide">
-                                         <label>Outros</label>
-                                        <input class="form-control" />
+                                            <label>Outros</label>
+                                            <input class="form-control" />
                                         </div>
                                         <div class="clearfix"></div>
-                                        <p class="help-block ">Example block-level help text here.</p>
+                                        <p class="help-block hide">Example block-level help text here.</p>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Retype Email</label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
+                                   
+
 
 
                                 </form>
 
                             </section>
 
-                            <h2> Login </h2>
+                            <h2> Dados do Sistema </h2>
                             <section>
                                 <form role="form">
                                     <div class="form-group">
-                                        <label>Username</label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
+                                        <label> Como será sua URL </label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon  alert-info" >www.aggenda.com/</div>
+                                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="minha_empresa">
+                                            <!--<div class="input-group-addon">.00</div>-->
+                                        </div>
+                                        <p class="help-block">Como seus clientes poderão te encontrar.</p>
                                     </div>
-                                    <div class="form-group">
+                                     <div class="form-group">
+                                        <label>Telefone</label>
+                                        <input class="form-control" />
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
+                                   
+                                        <div class="form-group">
+                                        <label>Logo</label>
+                                        <input type='file' class="form-control" />
+                                        <p class="help-block">Escolha uma imagem *.jpg ou *.png com tamanho de 280px por 100px</p>
+                                    </div>
+                                    
+<!--                                    <div class="form-group">
                                         <label>Password</label>
                                         <input class="form-control" />
                                         <p class="help-block">Example block-level help text here.</p>
@@ -114,41 +134,42 @@
                                         <label> Security Code </label>
                                         <input class="form-control" />
                                         <p class="help-block">Example block-level help text here.</p>
-                                    </div>
+                                    </div>-->
 
                                 </form>
                             </section>
 
-                            <h2>Extras </h2>
+                            <h2>Endereço </h2>
                             <section>
                                 <form role="form">
+                                    
                                     <div class="form-group">
-                                        <label> Occupation </label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
+                                        <label> Endereço </label>
+                                        <input class="form-control" placeholder="rua, avenida, número"/>
+                                        <p class="help-block hide">Example block-level help text here.</p>
                                     </div>
                                     <div class="form-group">
-                                        <label> Qualification </label>
+                                        <label> Cep </label>
                                         <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
+                                        <p class="help-block hide">Example block-level help text here.</p>
                                     </div>
                                     <div class="form-group">
-                                        <label> Age </label>
+                                        <label> Cidade </label>
                                         <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
+                                        <p class="help-block hide">Example block-level help text here.</p>
                                     </div>
                                     <div class="form-group">
-                                        <label> Notes </label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
+                                        <label> Estado </label>
+                                        <input class="form-control " />
+                                        <p class="help-block hide">Example block-level help text here.</p>
                                     </div>
 
                                 </form>
                             </section>
 
-                            <h2>Agreement</h2>
+                            <h2>Finalizar</h2>
                             <section>
-                                <p style="text-align:justify;color:gray;">
+                                <p style="text-align:justify;color:gray;  overflow: auto;height: 100%;">
                                     <b> Agreement & Declaration</b> <br /><br />
                                     Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo condimentum dapibus. Fusce eros justo, 
                                     pellentesque non euismod ac, rutrum sed quam. Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat.
@@ -158,13 +179,25 @@
                                     Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae. 
                                     Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo tortor.
                                     <br />
-
+                                    <b> Agreement & Declaration</b> <br /><br />
+                                    Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo condimentum dapibus. Fusce eros justo, 
+                                    pellentesque non euismod ac, rutrum sed quam. Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat.
+                                    <br />  <br /> 
+                                    Donec diam massa, porta vel dictum sit amet, iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris 
+                                    venenatis. Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam sed sem tortor. 
+                                    Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae. 
+                                    Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo tortor.
+                                    <br />
+                                    
+                                    
+                                    <br>
 
                                 </p>
+                                <input type="checkbox" id='termo'/><label for="termo"> Termos de uso</label>
                             </section>
+                            
                         </div>
-
-                    </div>
+                    </div>                    
                 </div>
 
 
@@ -172,127 +205,127 @@
 
             </div>
         </div>
-<!--        <div class="row">
-            <div class="col-lg-9">
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Horizontal Wizard
-                    </div>
-                    <div class="panel-body">
-                        <div id="wizard" >
-                            <h2> Personal </h2>
-                            <section>
-
-                                <form role="form">
-                                    <div class="form-group">
-                                        <label>First Name</label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Last Name</label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Retype Email</label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-
-
-                                </form>
-
-                            </section>
-
-                            <h2> Login </h2>
-                            <section>
-                                <form role="form">
-                                    <div class="form-group">
-                                        <label>Username</label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Retype Password</label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label> Security Code </label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-
-                                </form>
-                            </section>
-
-                            <h2>Extras </h2>
-                            <section>
-                                <form role="form">
-                                    <div class="form-group">
-                                        <label> Occupation </label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label> Qualification </label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label> Age </label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label> Notes </label>
-                                        <input class="form-control" />
-                                        <p class="help-block">Example block-level help text here.</p>
-                                    </div>
-
-                                </form>
-                            </section>
-
-                            <h2>Agreement</h2>
-                            <section>
-                                <p style="text-align:justify;color:gray;">
-                                    <b> Agreement & Declaration</b> <br /><br />
-                                    Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo condimentum dapibus. Fusce eros justo, 
-                                    pellentesque non euismod ac, rutrum sed quam. Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat.
-                                    <br />  <br /> 
-                                    Donec diam massa, porta vel dictum sit amet, iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris 
-                                    venenatis. Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam sed sem tortor. 
-                                    Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae. 
-                                    Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo tortor.
-                                    <br />
-
-
-                                </p>
-                            </section>
+        <!--        <div class="row">
+                    <div class="col-lg-9">
+        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Horizontal Wizard
+                            </div>
+                            <div class="panel-body">
+                                <div id="wizard" >
+                                    <h2> Personal </h2>
+                                    <section>
+        
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+        
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Retype Email</label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+        
+        
+                                        </form>
+        
+                                    </section>
+        
+                                    <h2> Login </h2>
+                                    <section>
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Retype Password</label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label> Security Code </label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+        
+                                        </form>
+                                    </section>
+        
+                                    <h2>Extras </h2>
+                                    <section>
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label> Occupation </label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label> Qualification </label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label> Age </label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label> Notes </label>
+                                                <input class="form-control" />
+                                                <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+        
+                                        </form>
+                                    </section>
+        
+                                    <h2>Agreement</h2>
+                                    <section>
+                                        <p style="text-align:justify;color:gray;">
+                                            <b> Agreement & Declaration</b> <br /><br />
+                                            Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo condimentum dapibus. Fusce eros justo, 
+                                            pellentesque non euismod ac, rutrum sed quam. Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat.
+                                            <br />  <br /> 
+                                            Donec diam massa, porta vel dictum sit amet, iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris 
+                                            venenatis. Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam sed sem tortor. 
+                                            Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae. 
+                                            Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo tortor.
+                                            <br />
+        
+        
+                                        </p>
+                                    </section>
+                                </div>
+        
+                            </div>
                         </div>
-
+        
+        
+        
+        
                     </div>
-                </div>
-
-
-
-
-            </div>
-
-        </div>-->
+        
+                </div>-->
 
     </div>
 

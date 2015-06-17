@@ -47,6 +47,7 @@ class Home extends CI_Controller {
     public function admin() {
 
         $data[] = NULL;
+        $tela['menu'] = ('associado/menu');
         $tela['conteudo'] = ('associado/config_inicial');
         $this->parser->adc_css($this->css);
         $this->parser->adc_js($this->js);
