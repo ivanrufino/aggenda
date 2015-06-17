@@ -68,3 +68,111 @@ ALTER TABLE  `agendamento` ADD INDEX (  `COD_FUNCIONARIO_SALA` );
 ALTER TABLE  `agendamento` ADD FOREIGN KEY (  `COD_FUNCIONARIO_SALA` ) REFERENCES  `aggenda`.`funcionario` (
 `CODIGO`
 ) ON DELETE RESTRICT ON UPDATE RESTRICT ;
+
+--alterado até aqui
+
+
+ CREATE  TABLE  `aggenda`.`empresa` (  `CODIGO` int( 11  )  NOT  NULL  AUTO_INCREMENT ,
+ `NOME` varchar( 150  )  COLLATE utf8_unicode_ci NOT  NULL  COMMENT  'Nome ou razão social',
+ `TIPO` varchar( 1  )  COLLATE utf8_unicode_ci  DEFAULT NULL  COMMENT  'F= pessoa fisica, J=pessoa Juridica',
+ `CNPJ` varchar( 30  )  COLLATE utf8_unicode_ci NOT  NULL ,
+ `CPF` varchar( 12  )  COLLATE utf8_unicode_ci NOT  NULL ,
+ `SEGMENTO` int( 11  )  DEFAULT NULL ,
+ `LOGIN` varchar( 50  )  COLLATE utf8_unicode_ci NOT  NULL ,
+ `SENHA` varchar( 60  )  COLLATE utf8_unicode_ci NOT  NULL ,
+ `URL` varchar( 20  )  COLLATE utf8_unicode_ci NOT  NULL ,
+ `LOGO` varchar( 30  )  COLLATE utf8_unicode_ci NOT  NULL DEFAULT  'logoPadrao.png',
+ `DATA_CADASTRO` timestamp NOT  NULL  DEFAULT CURRENT_TIMESTAMP ,
+ `ULTIMA_ATIVIDADE` datetime  DEFAULT NULL ,
+ `STATUS` varchar( 1  )  COLLATE utf8_unicode_ci NOT  NULL DEFAULT  'N' COMMENT  'N - inativo, S -ativo',
+ `EMAIL` varchar( 100  )  COLLATE utf8_unicode_ci NOT  NULL ,
+ `NOME_RESPONSAVEL` varchar( 50  )  COLLATE utf8_unicode_ci NOT  NULL ,
+ `SOBRENOME_RESPONSAVEL` varchar( 150  )  COLLATE utf8_unicode_ci NOT  NULL ,
+ `TELEFONE` varchar( 16  )  COLLATE utf8_unicode_ci NOT  NULL ,
+ `COD_ENDERECO` int( 11  )  NOT  NULL ,
+ PRIMARY  KEY (  `CODIGO`  ) ,
+ KEY  `COD_ENDERECO` (  `COD_ENDERECO`  ) ,
+ KEY  `SEGMENTO` (  `SEGMENTO`  )  ) ENGINE  = InnoDB  DEFAULT CHARSET  = utf8 COLLATE  = utf8_unicode_ci;
+
+SET SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
+
+INSERT INTO `aggenda`.`empresa` SELECT * FROM `aggenda`.`associado`;
+
+ALTER TABLE  `associado` DROP FOREIGN KEY  `associado_ibfk_1` ;
+
+ALTER TABLE `associado`
+  DROP `NOME`,
+  DROP `TIPO`,
+  DROP `CNPJ`,
+  DROP `CPF`,
+  DROP `SEGMENTO`,
+  DROP `URL`,
+  DROP `LOGO`,
+  DROP `TELEFONE`,
+  DROP `COD_ENDERECO`;
+
+ALTER TABLE `empresa`
+  DROP `LOGIN`,
+  DROP `SENHA`,
+  DROP `DATA_CADASTRO`,
+  DROP `ULTIMA_ATIVIDADE`,
+  DROP `STATUS`,
+  DROP `EMAIL`,
+  DROP `NOME_RESPONSAVEL`,
+  DROP `SOBRENOME_RESPONSAVEL`;
+/*
+CREATE TABLE `associado_empresa` (
+ `COD_ASSOCIADO` int(11) NOT NULL,
+ `COD_EMPRESA` int(11) NOT NULL,
+ UNIQUE KEY `COD_ASSOCIADO` (`COD_ASSOCIADO`,`COD_EMPRESA`),
+ KEY `COD_EMPRESA` (`COD_EMPRESA`),
+ CONSTRAINT `associado_empresa_ibfk_1` FOREIGN KEY (`COD_ASSOCIADO`) REFERENCES `associado` (`CODIGO`) ON DELETE CASCADE,
+ CONSTRAINT `associado_empresa_ibfk_2` FOREIGN KEY (`COD_EMPRESA`) REFERENCES `empresa` (`CODIGO`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE  `associado_empresa` ADD FOREIGN KEY (  `COD_ASSOCIADO` ) REFERENCES  `aggenda`.`associado` (
+`CODIGO`
+) ON DELETE CASCADE ON UPDATE RESTRICT ;
+
+ALTER TABLE  `associado_empresa` ADD FOREIGN KEY (  `COD_EMPRESA` ) REFERENCES  `aggenda`.`empresa` (
+`CODIGO`
+) ON DELETE CASCADE ON UPDATE RESTRICT ;
+
+INSERT INTO `aggenda`.`associado_empresa` (`COD_ASSOCIADO`, `COD_EMPRESA`) VALUES ('1', '1'), ('2', '2');
+*/
+ALTER TABLE  `associado` ADD  `COD_EMPRESA` INT NOT NULL ,
+ADD INDEX (  `COD_EMPRESA` )
+ALTER TABLE  `associado` CHANGE  `COD_EMPRESA`  `COD_EMPRESA` INT( 11 ) NULL DEFAULT NULL
+
+CREATE TABLE `endereco` (
+ `CODIGO` int(11) NOT NULL AUTO_INCREMENT,
+ `CEP` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+ `BAIRRO` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+ `CIDADE` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+ `ESTADO` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+ `LATITUDE` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+ `LONGITUDE` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+ PRIMARY KEY (`CODIGO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE  `associado` ADD FOREIGN KEY (  `COD_EMPRESA` ) REFERENCES  `aggenda`.`empresa` (
+`CODIGO`
+) ON DELETE CASCADE ON UPDATE RESTRICT ;
+
+INSERT INTO `aggenda`.`endereco` (`CODIGO`, `CEP`, `BAIRRO`, `CIDADE`, `ESTADO`, `LATITUDE`, `LONGITUDE`) VALUES (NULL, '25.565-241', 'Vilar dos teles', 'São João de Meriti', 'RJ', '123123', '1232131');
+
+
+CREATE ALGORITHM = UNDEFINED VIEW  `v_associado_completo` AS SELECT A . * , E.NOME, E.TIPO, E.CNPJ, E.CPF, E.URL, E.LOGO, E.TELEFONE, S.CODIGO AS COD_SEGMENTO, S.NOME AS SEGMENTO, END.CEP, END.BAIRRO, END.CIDADE, END.ESTADO, END.LONGITUDE, END.LATITUDE
+FROM  `associado` A
+LEFT JOIN  `empresa` E ON E.CODIGO = A.COD_EMPRESA
+LEFT JOIN  `segmento` S ON S.CODIGO = E.SEGMENTO
+LEFT JOIN  `endereco` 
+END ON END.CODIGO = E.COD_ENDERECO
+
+CREATE OR REPLACE 
+ALGORITHM = UNDEFINED
+VIEW  `v_url` AS 
+SELECT E.CODIGO, E.URL
+FROM associado A
+JOIN empresa E ON E.CODIGO = A.COD_EMPRESA
+WHERE A.STATUS =  "A"

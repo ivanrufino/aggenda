@@ -5,8 +5,6 @@ define('PASTA', 'template_associado');
 define('PLUGIN', 'plugins');
 
 class Home extends CI_Controller {
-
-    private $cod_associado = null;
     private $css = null;
     private $js = null;
 
@@ -15,11 +13,6 @@ class Home extends CI_Controller {
         $this->css = array(PASTA . '/layout2', '../' . PLUGIN . '/flot/examples/examples');
         /* Global js */
         $js_global = array('../' . PLUGIN . '/bootstrap/js/bootstrap.min', '../' . PLUGIN . '/modernizr-2.6.2-respond-1.1.0.min');
-
-        /* local js */
-        //    $jsFloat=array('../'.PLUGIN.'/flot/jquery.flot' ,'../'.PLUGIN.'/flot/jquery.flot.resize' ,'../'.PLUGIN.'/flot/jquery.flot.time' ,'../'.PLUGIN.'/flot/jquery.flot.stack');
-
-
         $this->js = array_merge($js_global); //, array(PASTA.'/for_index'));
         
     }
@@ -35,24 +28,16 @@ class Home extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('home/index');
         } else {
-            redirect('admin/login');
-            //$this->logado();
+            //colocar cadastro aqui;
+            redirect('login');
+            
         }
     }
 
     public function login() {
         $this->load->view('associado/login');
     }
-
-    public function admin() {
-
-        $data[] = NULL;
-        $tela['menu'] = ('associado/menu');
-        $tela['conteudo'] = ('associado/config_inicial');
-        $this->parser->adc_css($this->css);
-        $this->parser->adc_js($this->js);
-        $this->parser->mostrar('template/template_associado.php', $tela, $data);
-    }
+   
 
     public function acessar() {
         $this->form_validation->set_rules('login', 'Login', 'trim|required|callback_check_status');
@@ -60,7 +45,16 @@ class Home extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('associado/login');
         } else {
+            $login =  $this->input->post('login');
+            $senha =  sha1($this->input->post('senha'));
+            $dados=$this->login->efetuarLogin($login,  $senha);
+            if($dados){
+                $dados['logged']='in';
+                $this->session->set_userdata($dados);
+                
+            }
             redirect('admin');
+            
             //$this->logado();
         }
     }
@@ -79,6 +73,10 @@ class Home extends CI_Controller {
              $this->form_validation->set_message('check_status', 'Este email não foi encontrado em nossa base de dados, realize seu cadastro.');
             return FALSE;
         }
+    }
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect('login');
     }
 
 }
