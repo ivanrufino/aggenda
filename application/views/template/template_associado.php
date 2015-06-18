@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{base_url}assets/css/template_associado/theme.css" />
     <link rel="stylesheet" href="{base_url}assets/css/template_associado/MoneAdmin.css" />
     <link rel="stylesheet" href="{base_url}assets/plugins/Font-Awesome/css/font-awesome.css" />
+    <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
     <script src="{base_url}assets/plugins/jquery-2.0.3.min.js"></script>
     <script src="{base_url}assets/js/jquery.js"></script>
  <!--    END GLOBAL STYLES 
@@ -55,10 +56,10 @@
                 <!-- LOGO SECTION -->
                 <header class="navbar-header">
 
-                    <a href="index.html" class="navbar-brand">
-                    <img src="<?= base_url()?>assets/images/template_associado/logo.png" alt="" />
-                        
-                        </a>
+                    <a href="#" class="navbar-brand" style='color:#000; font-family: Courgette'>
+                        <img src='<?= base_url()?>assets/images/agenda_logo.png' class="" alt="logo" style="height: 50px;display: inline">
+                        A<span style='color:#0097a8'>gg</span>enda.com
+                    </a>
                 </header>
                 <!-- END LOGO SECTION -->
                 <ul class="nav navbar-top-links navbar-right">

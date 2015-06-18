@@ -16,22 +16,22 @@ class Admin extends CI_Controller{
              redirect('login');
          }
          $this->cod_associado = $this->session->userdata('CODIGO');
+         $this->load->model('Admin_model','admin');
     }
     public function index() {
+        $data['associado'] = $this->admin->getAdmin($this->cod_associado);
         $data['titulo'] = 'Aggenda.com | admin' ;
-        //$tela['conteudo'] = ('associado/dashboard');
-        if(is_null($this->session->userdata('COD_EMPRESA'))){
-            $tela['conteudo'] = ('associado/config_inicial');
-            $data['associado'] = $this->associado->getAdmin($this->cod_associado);
-        }
-        echo"<pre>";
-        print_r($this->session->userdata());
-        echo "</pre>";
-        die();
+        $tela['conteudo'] = ('vazio');
         $tela['menu'] = ('associado/menu');
-        if(true){
-        $tela['conteudo'] = ('associado/config_inicial');
+        $tela[]=NULL;
+        if(is_null($data['associado']['COD_EMPRESA'])){          
+            $tela['conteudo'] = ('associado/config_inicial');
+            $tela['menu'] = ('associado/menu_vazio');
         }
+        //$dados['COD_EMPRESA']=$data['associado']['COD_EMPRESA'];
+        //$this->session->set_userdata($dados);
+        
+
         $this->parser->adc_css($this->css);
         $this->parser->adc_js($this->js);
         $this->parser->mostrar('template/template_associado.php', $tela, $data);

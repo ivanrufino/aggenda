@@ -16,7 +16,8 @@
             <div class="col-lg-12">
 
 
-                <h2> Configuração Inicial </h2>
+                <h2> Configurações Iniciais </h2>
+                <p>Estes passos são para os ajustes iniciais de sua empresa, ao término já poderá criar seus agendamentos.</p>
 
 
 
@@ -139,7 +140,7 @@
                                 </form>
                             </section>
 
-                            <h2>Endereço </h2>
+                            <h2>Endereço e Horarios</h2>
                             <section>
                                 <form role="form">
                                     
@@ -166,7 +167,65 @@
 
                                 </form>
                             </section>
+                            <h2>Serviços</h2>
+                            <section>
+                                Exemplo, manicure, pediatra, aluguel de salas.
+                                <form role="form">
+                                    
+                                    <div class="form-group">
+                                        <label> Endereço </label>
+                                        <input class="form-control" placeholder="rua, avenida, número"/>
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Cep </label>
+                                        <input class="form-control" />
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Cidade </label>
+                                        <input class="form-control" />
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Estado </label>
+                                        <input class="form-control " />
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
 
+                                </form>
+                            </section>
+                            <h2>Funcionário/ local </h2>
+                            
+                            
+                            <section>
+                                dica: se o agendamento é para serviços, cadastre seus funcionários<br>
+                            se for para locação de espaços, cadastre esses locais, salas, quartos etc.
+                                <form role="form">
+                                    
+                                    <div class="form-group">
+                                        <label> Endereço </label>
+                                        <input class="form-control" placeholder="rua, avenida, número"/>
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Cep </label>
+                                        <input class="form-control" />
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Cidade </label>
+                                        <input class="form-control" />
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Estado </label>
+                                        <input class="form-control " />
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
+
+                                </form>
+                            </section>
                             <h2>Finalizar</h2>
                             <section>
                                 <p style="text-align:justify;color:gray;  overflow: auto;height: 100%;">
