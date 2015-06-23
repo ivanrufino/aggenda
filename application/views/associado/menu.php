@@ -12,17 +12,71 @@
         </div>
         <br />
     </div>
-
+    <?php  $local_atual = $this->router->method; ?>
     <ul id="menu" class="collapse">                
-        <li class="panel active">
-            <a href="admin.html" >
-                <i class="icon-table"></i> Painel
-            </a>                   
+        <li class=" <?= ativar('painel',$local_atual); ?>"><a href="{base_url}admin/painel.html" ><i class="icon-table"></i> Painel</a></li>
+
+        <li class=" <?= ativar('index',$local_atual); ?>"><a href="{base_url}admin/calendario"><i class="icon-calendar"></i> Calendário</a></li>
+        <li class="<?= ativar('clientes',$local_atual); ?>"><a href="{base_url}admin/clientes"><i class="icon-user"></i> Clientes &nbsp; <span class="label label-default">10</span></a></li>
+        
+        <!--<li class="<?= ativar('servico',$local_atual); ?>"><a href="{base_url}admin/servico"><i class="icon-user"></i> Serviços &nbsp; <span class="label label-default">10</span></a></li>-->
+        <li class="panel <?= ativar('servico',$local_atual); ?>">
+            <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-serv">
+                <i class="icon-pencil"></i> Todos os Serviços
+
+                <span class="pull-right">
+                    <i class="icon-angle-left"></i>
+                </span>
+                &nbsp; <span class="label label-success">5</span>&nbsp;
+            </a>
+            <ul class="collapse" id="form-serv">
+                <li class=""><a href="forms_general.html"><i class="icon-angle-right"></i> General </a></li>
+                <li class=""><a href="forms_advance.html"><i class="icon-angle-right"></i> Advance </a></li>
+                <li class=""><a href="forms_validation.html"><i class="icon-angle-right"></i> Validation </a></li>
+                <li class=""><a href="forms_fileupload.html"><i class="icon-angle-right"></i> FileUpload </a></li>
+                <li class=""><a href="forms_editors.html"><i class="icon-angle-right"></i> WYSIWYG / Editor </a></li>
+            </ul>
         </li>
+        <?php if (true): ?>
+        <li class="panel <?= ativar('funcionario',$local_atual); ?>">
+            <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-func">
+                <i class="icon-pencil"></i> Todos os funcionários
 
-        <li><a href="{base_url}admin/calendario"><i class="icon-calendar"></i> Calendário</a></li>
-        <li><a href="{base_url}admin/clientes"><i class="icon-user"></i> Clientes &nbsp; <span class="label label-default">10</span></a></li>
+                <span class="pull-right">
+                    <i class="icon-angle-left"></i>
+                </span>
+                &nbsp; <span class="label label-success">5</span>&nbsp;
+            </a>
+            <ul class="collapse" id="form-func">
+                <li class=""><a href="forms_general.html"><i class="icon-angle-right"></i> General </a></li>
+                <li class=""><a href="forms_advance.html"><i class="icon-angle-right"></i> Advance </a></li>
+                <li class=""><a href="forms_validation.html"><i class="icon-angle-right"></i> Validation </a></li>
+                <li class=""><a href="forms_fileupload.html"><i class="icon-angle-right"></i> FileUpload </a></li>
+                <li class=""><a href="forms_editors.html"><i class="icon-angle-right"></i> WYSIWYG / Editor </a></li>
+            </ul>
+        </li>
+        
+        <?php else : ?>
+        <li class="panel <?= ativar('funcionario',$local_atual); ?>">
+            <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-loc">
+                <i class="icon-pencil"></i> Todos os Locais
 
+                <span class="pull-right">
+                    <i class="icon-angle-left"></i>
+                </span>
+                &nbsp; <span class="label label-success">5</span>&nbsp;
+            </a>
+            <ul class="collapse" id="form-loc">
+                <li class=""><a href="forms_general.html"><i class="icon-angle-right"></i> General </a></li>
+                <li class=""><a href="forms_advance.html"><i class="icon-angle-right"></i> Advance </a></li>
+                <li class=""><a href="forms_validation.html"><i class="icon-angle-right"></i> Validation </a></li>
+                <li class=""><a href="forms_fileupload.html"><i class="icon-angle-right"></i> FileUpload </a></li>
+                <li class=""><a href="forms_editors.html"><i class="icon-angle-right"></i> WYSIWYG / Editor </a></li>
+            </ul>
+        </li>
+        
+        <?php endif ?>
+<!--  
         <li class="panel ">
             <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
                 <i class="icon-tasks"> </i> UI Elements     
@@ -46,6 +100,7 @@
                 <li class=""><a href="typography.html"><i class="icon-angle-right"></i> Typography </a></li>
             </ul>
         </li>
+      
         <li class="panel ">
             <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
                 <i class="icon-pencil"></i> Forms
@@ -207,7 +262,6 @@
             </ul>
         </li>
 
-
         
         <li><a href="tables.html"><i class="icon-table"></i> Data Tables </a></li>
         <li><a href="maps.html"><i class="icon-map-marker"></i> Maps </a></li>
@@ -229,7 +283,14 @@
             </ul>
         </li>
         <li><a href="login.html"><i class="icon-signin"></i> Login Page </a></li>
-
+        -->
     </ul>
 
 </div>
+<?php
+
+function ativar($local,$local_atual){
+    return  $local_atual==$local? "active":"" ;   
+    
+}
+?>

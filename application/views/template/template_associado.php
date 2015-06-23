@@ -34,7 +34,10 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     {css_list} 
-    
+    <style>
+            a.logo{font-size: 25px}
+            a.logo span{color: #0097a8;}
+        </style>
 </head>
 
     <!-- END HEAD -->
@@ -56,9 +59,9 @@
                 <!-- LOGO SECTION -->
                 <header class="navbar-header">
 
-                    <a href="#" class="navbar-brand" style='color:#000; font-family: Courgette'>
+                    <a href="#" class="navbar-brand logo" style='color:#000; font-family: Courgette'>
                         <img src='<?= base_url()?>assets/images/agenda_logo.png' class="" alt="logo" style="height: 50px;display: inline">
-                        A<span style='color:#0097a8'>gg</span>enda.com
+                        {nome_site}
                     </a>
                 </header>
                 <!-- END LOGO SECTION -->
@@ -306,7 +309,7 @@
      
         {view_menu}
         <!--END MENU SECTION -->
-{view_conteudo}
+        {view_conteudo}
 <?php /* ?>
         <!--PAGE CONTENT -->
         <div id="content">
@@ -907,52 +910,8 @@
         <!--END PAGE CONTENT -->
  */ ?>
          <!-- RIGHT STRIP  SECTION -->
-         <div id="right" class="">
-
-            
-            <div class="well well-small">
-                <ul class="list-unstyled">
-                    <li>Visitantes &nbsp; : <span>23,000</span></li>
-                    <li>Usuários &nbsp; : <span>53,000</span></li>
-                    <li>Agendamentos &nbsp; : <span>3,000</span></li>
-                </ul>
-            </div>
-            <div class="well well-small">
-                <button class="btn btn-block"> Help </button>
-                <button class="btn btn-primary btn-block"> Tickets</button>
-                <button class="btn btn-info btn-block"> New </button>
-                <button class="btn btn-success btn-block"> Users </button>
-                <button class="btn btn-danger btn-block"> Profit </button>
-                <button class="btn btn-warning btn-block"> Sales </button>
-                <button class="btn btn-inverse btn-block"> Stock </button>
-            </div>
-            <div class="well well-small">
-                <span>Profit</span><span class="pull-right"><small>20%</small></span>
-
-                <div class="progress mini">
-                    <div class="progress-bar progress-bar-info" style="width: 20%"></div>
-                </div>
-                <span>Sales</span><span class="pull-right"><small>40%</small></span>
-
-                <div class="progress mini">
-                    <div class="progress-bar progress-bar-success" style="width: 40%"></div>
-                </div>
-                <span>Pending</span><span class="pull-right"><small>60%</small></span>
-
-                <div class="progress mini">
-                    <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
-                </div>
-                <span>Summary</span><span class="pull-right"><small>80%</small></span>
-
-                <div class="progress mini">
-                    <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
-                </div>
-            </div>
-          
-            
+         {view_lateralDireita}
          
-
-        </div>
          <!-- END RIGHT STRIP  SECTION -->
     </div>
 
@@ -960,7 +919,7 @@
 
     <!-- FOOTER -->
     <div id="footer">
-        <p>&copy;  binarytheme &nbsp;2014 &nbsp;</p>
+        <p>&copy;  {nome_site} &nbsp;<?=date('Y') ?>0 &nbsp;</p>
     </div>
     <!--END FOOTER -->
 

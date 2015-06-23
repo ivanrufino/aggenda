@@ -18,12 +18,16 @@
      <link rel="stylesheet" href="<?=  base_url()?>assets/plugins/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="<?=  base_url()?>assets/css/template_associado/login.css" />
     <link rel="stylesheet" href="<?=  base_url()?>assets/plugins/magic/magic.css" />
+    <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
      <!-- END PAGE LEVEL STYLES -->
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <style>
+        a.logo span{color: #0097a8}
+    </style>
 </head>
     <!-- END HEAD -->
 
@@ -33,7 +37,12 @@
    <!-- PAGE CONTENT --> 
     <div class="container">
     <div class="text-center">
-        <img src="<?=  base_url()?>assets/images/template_associado/logo.png" id="logoimg" alt=" Logo" />
+        <!--<img src="<?=  base_url()?>assets/images/template_associado/logo.png" id="logoimg" alt=" Logo" />-->
+        <a href="#" class=" logo" style='color:#000; font-family: Courgette;font-size: 30px'>
+            <img src='<?= base_url()?>assets/images/agenda_logo.png' class="" alt="logo" style="height: 75px;display: inline">
+            <?=$nome_site?>                        
+        </a>
+        
     </div>
     <div class="tab-content">
         <div id="login" class="tab-pane active">

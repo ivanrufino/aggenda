@@ -7,6 +7,7 @@ define('PLUGIN', 'plugins');
 class Home extends CI_Controller {
     private $css = null;
     private $js = null;
+    private $nome_site="A<span>gg</span>endar.com";
 
     function __construct() {
         parent::__construct();
@@ -18,7 +19,8 @@ class Home extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('home/index');
+        $data['nome_site']=  $this->nome_site;
+        $this->load->view('home/index',$data);
     }
 
     public function cadastrar() {
@@ -35,7 +37,8 @@ class Home extends CI_Controller {
     }
 
     public function login() {
-        $this->load->view('associado/login');
+        $data['nome_site']=  $this->nome_site;
+        $this->load->view('associado/login',$data);
     }
    
 

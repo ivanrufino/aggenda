@@ -11,7 +11,7 @@
 <!--PAGE CONTENT -->
 <div id="content">
 
-    <div class="inner" style="min-height:1200px;">
+    <div class="inner" style="min-height:700px;">
         <div class="row">
             <div class="col-lg-12">
 

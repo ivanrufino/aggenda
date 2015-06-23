@@ -91,7 +91,7 @@
       <div class="col col-sm-6">
           <h1><a href="#" title="scroll down for your viewing pleasure" class="logo">
                    <img src='<?= base_url()?>assets/images/agenda_logo.png' class="" alt="logo" style="height: 50px;display: inline">
-                  A<span>gg</span>enda.com
+                  {nome_site}
               </a>
           <p class="lead">Sistema de agendamento online</p></h1>
       </div>

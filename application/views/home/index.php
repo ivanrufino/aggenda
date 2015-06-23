@@ -24,12 +24,17 @@
 
         <!-- custom css -->
         <link rel="stylesheet" href="<?= base_url() ?>assets/css/templatemo-style.css">
+        
         <script src="<?= base_url() ?>assets/js/jquery.js"></script>
         <script>
             $("document").ready(function(){
                
             })
         </script>
+        <style>
+           a.logo{font-size: 25px}
+            a.logo span{color: #0097a8;}
+        </style>
     </head>
     <body>
         <!-- start preloader -->
@@ -46,9 +51,10 @@
                         <span class="icon icon-bar"></span>
                         <span class="icon icon-bar"></span>
                     </button>
-                    <a href="#" class="navbar-brand" style='color:#000; font-family: Courgette'>
+                    <a href="#" class="navbar-brand logo" style='color:#000; font-family: Courgette'>
                         <img src='<?= base_url()?>assets/images/agenda_logo.png' class="" alt="logo" style="height: 50px;display: inline">
-                        A<span style='color:#0097a8'>gg</span>enda.com
+                        <?=$nome_site?>
+                        
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
@@ -59,7 +65,7 @@
                         <li><a href="#download">Download</a></li>
                         <li><a href="#contact">Contato</a></li>
                         <li><a href="<?= base_url()?>page.html" onclick="window.location='<?= base_url()?>page.html'">Serviços</a></li>
-                        <li><a href="admin/login.html" onclick="window.location='<?= base_url()?>admin/login.html'">Login</a></li>
+                        <li><a href="login.html" onclick="window.location='<?= base_url()?>login.html'">Login</a></li>
                     </ul>
                 </div>
             </div>

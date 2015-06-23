@@ -28,10 +28,12 @@ class Admin extends CI_Controller {
         $data['titulo'] = 'Aggenda.com | admin';
         $tela['conteudo'] = ('vazio');
         $tela['menu'] = ('associado/menu');
-        $tela[] = NULL;
-        if (is_null($data['associado']['COD_EMPRESA'])) {
+        $tela['lateralDireita'] = ('associado/lateralDireita');
+        
+        if(is_null($data['associado']['COD_EMPRESA'])){          
             $tela['conteudo'] = ('associado/config_inicial');
             $tela['menu'] = ('associado/menu_vazio');
+            $tela['lateralDireita'] = ('associado/vazio');
         }
         //$dados['COD_EMPRESA']=$data['associado']['COD_EMPRESA'];
         //$this->session->set_userdata($dados);
@@ -62,6 +64,38 @@ class Admin extends CI_Controller {
         echo "importação";
     }
 
+    public function painel() {
+         $data['associado'] = $this->admin->getAdmin($this->cod_associado);
+        $data['titulo'] = 'Aggenda.com | admin' ;
+        $tela['conteudo'] = 'vazio';
+        $tela['menu'] = 'associado/menu';
+        $tela['lateralDireita'] = 'associado/lateralDireita';
+        
+        
+        //$dados['COD_EMPRESA']=$data['associado']['COD_EMPRESA'];
+        //$this->session->set_userdata($dados);
+        
+
+        $this->parser->adc_css($this->css);
+        $this->parser->adc_js($this->js);
+        $this->parser->mostrar('template/template_associado.php', $tela, $data);
+    }
+    public function Clientes() {
+         $data['associado'] = $this->admin->getAdmin($this->cod_associado);
+        $data['titulo'] = 'Aggenda.com | admin' ;
+        $tela['conteudo'] = 'vazio';
+        $tela['menu'] = 'associado/menu';
+        $tela['lateralDireita'] = 'associado/lateralDireita';
+        
+        
+        //$dados['COD_EMPRESA']=$data['associado']['COD_EMPRESA'];
+        //$this->session->set_userdata($dados);
+        
+
+        $this->parser->adc_css($this->css);
+        $this->parser->adc_js($this->js);
+        $this->parser->mostrar('template/template_associado.php', $tela, $data);
+    }
 }
 
 // Admin.php

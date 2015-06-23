@@ -74,13 +74,13 @@ background-repeat: repeat-x;
 }
 
 body.padTop53 {
-  padding-top: 75px;
+  padding-top: 85px;
   overflow: visible;
 }
 
 @media (min-width: 802px) {
   body.padTop53 {
-    padding-top: 51px;
+    padding-top: 61px;
   }
 
 
@@ -135,7 +135,7 @@ body.padTop53 {
     /*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 0 rgba(255, 255, 255, 0.05) inset;*/
   }
   body.padTop53 #left #menu.affix {
-    top: 53px;
+    top: 63px;
   }
   .side-right #left {
     float: right;

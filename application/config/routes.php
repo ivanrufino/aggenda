@@ -53,6 +53,7 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'home/login';
+$route['admin/calendario'] = 'admin/index';
 //$route['admin/login'] = 'home/login';
 
 require_once( BASEPATH .'database/DB.php');
