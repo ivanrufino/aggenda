@@ -46,27 +46,27 @@ class Admin extends CI_Controller {
     }
     public function getEventos($servico = NULL, $funcionario=NULL) {
       //  echo "servico: $servico"; echo $funcionario;
-        
-        $dados=array(
-            array(
-                    'id'=> '01',
-                    'title'=> 'Repeating Event',
-                    'start'=> '2015-06-22T11:45:00',
-                    'end'=> '2015-06-22T12:30:00',
-                    'backgroundColor'=>'beige',
-                    'textColor'=>'black',
-                    'rendering'=>'',
-                    'constraint'=>'businessHours',
-                    'editable' =>false
-                    ),
-            array(
-                    'id'=> '02',
-                    'title'=> 'Repeating Event',
-                    'start'=> '2015-06-22T12:45:00',
-                    'end'=> '2015-06-22T13:30:00',
-                    'backgroundColor'=>'gray',
-                    'textColor'=>'fff'))
-                ;
+        $dados = $this->agenda->getAgenda();
+//        $dados=array(
+//            array(
+//                    'id'=> '01',
+//                    'title'=> 'Repeating Event',
+//                    'start'=> '2015-06-22T11:45:00',
+//                    'end'=> '2015-06-22T12:30:00',
+//                    'backgroundColor'=>'beige',
+//                    'textColor'=>'black',
+//                    'rendering'=>'',
+//                    'constraint'=>'businessHours',
+//                    'editable' =>false
+//                    ),
+//            array(
+//                    'id'=> '02',
+//                    'title'=> 'Repeating Event',
+//                    'start'=> '2015-06-22T12:45:00',
+//                    'end'=> '2015-06-22T13:30:00',
+//                    'backgroundColor'=>'gray',
+//                    'textColor'=>'fff'))
+//                ;
         echo json_encode($dados);
        
     }

@@ -4,8 +4,8 @@ class Agenda_model extends CI_Model{
      
     public function getAgenda($id=null) {
         $this->db->select('*');
-        $this->db->from('v_associado_completo');
-        $this->db->where('CODIGO', $id);
+        $this->db->from('agendamento');
+      //  $this->db->where('CODIGO', $id);
         $query = $this->db->get();        
        // echo $this->db->last_query(); die();
         
