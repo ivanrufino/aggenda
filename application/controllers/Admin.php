@@ -21,12 +21,13 @@ class Admin extends CI_Controller {
         }
         $this->cod_associado = $this->session->userdata('CODIGO');
         $this->load->model('Admin_model', 'admin');
+        $this->load->model('Agenda_model', 'agenda');
     }
 
     public function index() {
         $data['associado'] = $this->admin->getAdmin($this->cod_associado);
         $data['titulo'] = 'Aggenda.com | admin';
-        $tela['conteudo'] = ('vazio');
+        $tela['conteudo'] = ('associado/calendario');
         $tela['menu'] = ('associado/menu');
         $tela['lateralDireita'] = ('associado/lateralDireita');
         
@@ -43,7 +44,32 @@ class Admin extends CI_Controller {
         $this->parser->adc_js($this->js);
         $this->parser->mostrar('template/template_associado.php', $tela, $data);
     }
-
+    public function getEventos($servico = NULL, $funcionario=NULL) {
+      //  echo "servico: $servico"; echo $funcionario;
+        
+        $dados=array(
+            array(
+                    'id'=> '01',
+                    'title'=> 'Repeating Event',
+                    'start'=> '2015-06-22T11:45:00',
+                    'end'=> '2015-06-22T12:30:00',
+                    'backgroundColor'=>'beige',
+                    'textColor'=>'black',
+                    'rendering'=>'',
+                    'constraint'=>'businessHours',
+                    'editable' =>false
+                    ),
+            array(
+                    'id'=> '02',
+                    'title'=> 'Repeating Event',
+                    'start'=> '2015-06-22T12:45:00',
+                    'end'=> '2015-06-22T13:30:00',
+                    'backgroundColor'=>'gray',
+                    'textColor'=>'fff'))
+                ;
+        echo json_encode($dados);
+       
+    }
     public function importacao() {
         $this->load->helper('file');
         $string = read_file('./assets/importacao/usuario.csv');
