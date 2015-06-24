@@ -37,10 +37,14 @@
             selectable: true,
             selectHelper: true,
             select: function (start, end) {
-                var dateStart = start.format("DD/MM/YYYY T HH:mm:ss");
-                var dateEnd = end.format("DD/MM/YYYY T HH:mm:ss");
+                var dateStart = start.format("YYYY-MM-DD");
+                var timeStart = start.format("HH:mm:ss")
+                var dateEnd = start.format("DD/MM/YYYY");
+                var timeEnd = end.format("HH:mm:ss")
                 $('#createEvent').modal().find('#start').val(dateStart);
+                $('#createEvent').modal().find('#timeStart').val(timeStart);
                 $('#createEvent').modal().find('#end').val(dateEnd);
+                $('#createEvent').modal().find('#timeEnd').val(timeEnd);
                 
                 /*
                  var title = prompt('Event Title:');
@@ -158,22 +162,23 @@
         $("#saveEvent").click(function () {
             var modal =$('#createEvent')
             modal.find('#salvar').val('salvar');
-            //$('#createEvent').modal('hide');
+            $('#createEvent').modal('hide');
             
         })
         //createEvent
         $('#createEvent').on('hide.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var modal = $(this)
-            modal.find('#event').val('novo evento');
+            //modal.find('#event').val('novo evento');
             //modal.find('#start').val(recipient)
            // modal.find('#end').val(recipient)
            if(modal.find('#salvar').val()=='salvar'){
-               var d = new Date(modal.find('#start').val())
-               alert(modal.find('#start').val());
+               var eventStart = modal.find('#start').val()+"T"+modal.find('#timeStart').val() ;
+               console.log(eventStart)
+             //  var eventEnd;
            var eventData = {
                  title: modal.find('#event').val(),
-                 start: new Date(modal.find('#start').val()) ,//"2015-06-25T10:00:00",
+                 start: eventStart ,//"2015-06-25T10:00:00",
                  end: "2015-06-25T10:30:00"
                  };
                  $('#calendar').fullCalendar('renderEvent', eventData, true);
@@ -217,10 +222,11 @@
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
             <div class="modal-body">
+                {view_agendamento}
                 <input type="hidden" id="salvar" readonly="" disabled="">
-                Evento<input type="text" id="event"><br>
-                Inicio<input type="text" id="start" value='2015-06-25T10:30:00'><br>
-                Fim<input type="text" id="end">
+               Evento<input type="text" id="event"><br>
+  <!--               Inicio<input type="text" id="start" value='2015-06-25T10:30:00'><br>
+                Fim<input type="text" id="end">-->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

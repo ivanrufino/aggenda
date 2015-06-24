@@ -27,6 +27,7 @@ class Admin extends CI_Controller {
     public function index() {
         $data['associado'] = $this->admin->getAdmin($this->cod_associado);
         $data['titulo'] = 'Aggenda.com | admin';
+        $tela['agendamento'] = ('modal/agendamento');
         $tela['conteudo'] = ('associado/calendario');
         $tela['menu'] = ('associado/menu');
         $tela['lateralDireita'] = ('associado/lateralDireita');

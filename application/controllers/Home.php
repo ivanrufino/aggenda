@@ -81,7 +81,10 @@ class Home extends CI_Controller {
         $this->session->sess_destroy();
         redirect('login');
     }
-
+    public function tela($pasta,$tela) {
+        //echo 'aqui';
+        $this->load->view("template_associado/".$tela);
+    }
 }
 
 // home.php

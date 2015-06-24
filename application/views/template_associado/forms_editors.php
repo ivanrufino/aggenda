@@ -15,20 +15,22 @@
         <![endif]-->
     <!-- GLOBAL STYLES -->
     <!-- GLOBAL STYLES -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/theme.css" />
-    <link rel="stylesheet" href="assets/css/MoneAdmin.css" />
-    <link rel="stylesheet" href="assets/plugins/Font-Awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/plugins/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/template_associado/main.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/template_associado/theme.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/template_associado/MoneAdmin.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/plugins/Font-Awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/plugins/wysihtml5/lib/css/wysiwyg-color.css" />
+    
     <!--END GLOBAL STYLES -->
 
     <!-- PAGE LEVEL STYLES -->
-    <link rel="stylesheet" href="assets/plugins/Font-Awesome/css/font-awesome.css" />
-     <link rel="stylesheet" href="assets/plugins/wysihtml5/dist/bootstrap-wysihtml5-0.0.2.css" />
-    <link rel="stylesheet" href="assets/css/Markdown.Editor.hack.css" />
-    <link rel="stylesheet" href="assets/plugins/CLEditor1_4_3/jquery.cleditor.css" />
-    <link rel="stylesheet" href="assets/css/jquery.cleditor-hack.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-wysihtml5-hack.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/plugins/Font-Awesome/css/font-awesome.css" />
+     <link rel="stylesheet" href="<?=base_url()?>assets/plugins/wysihtml5/dist/bootstrap-wysihtml5-0.0.2.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/template_associado/Markdown.Editor.hack.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/plugins/CLEditor1_4_3/jquery.cleditor.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/template_associado/jquery.cleditor-hack.css" />
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/template_associado/bootstrap-wysihtml5-hack.css" />
      <style>
                         ul.wysihtml5-toolbar > li {
                             position: relative;
@@ -691,19 +693,19 @@
 
 
      <!-- GLOBAL SCRIPTS -->
-    <script src="assets/plugins/jquery-2.0.3.min.js"></script>
-     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="<?=base_url()?>assets/plugins/jquery-2.0.3.min.js"></script>
+     <script src="<?=base_url()?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?=base_url()?>assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <!-- END GLOBAL SCRIPTS -->
 
          <!-- PAGE LEVEL SCRIPTS -->
-     <script src="assets/plugins/wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
-    <script src="assets/plugins/bootstrap-wysihtml5-hack.js"></script>
-    <script src="assets/plugins/CLEditor1_4_3/jquery.cleditor.min.js"></script>
-    <script src="assets/plugins/pagedown/Markdown.Converter.js"></script>
-    <script src="assets/plugins/pagedown/Markdown.Sanitizer.js"></script>
-    <script src="assets/plugins/Markdown.Editor-hack.js"></script>
-    <script src="assets/js/editorInit.js"></script>
+     <script src="<?=base_url()?>assets/plugins/wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
+    <script src="<?=base_url()?>assets/plugins/bootstrap-wysihtml5-hack.js"></script>
+    <script src="<?=base_url()?>assets/plugins/CLEditor1_4_3/jquery.cleditor.min.js"></script>
+    <script src="<?=base_url()?>assets/plugins/pagedown/Markdown.Converter.js"></script>
+    <script src="<?=base_url()?>assets/plugins/pagedown/Markdown.Sanitizer.js"></script>
+    <script src="<?=base_url()?>assets/plugins/Markdown.Editor-hack.js"></script>
+    <script src="<?=base_url()?>assets/js/template_associado/editorInit.js"></script>
     <script>
         $(function () { formWysiwyg(); });
         </script>
