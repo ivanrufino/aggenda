@@ -47,6 +47,11 @@ class Admin extends CI_Controller {
     public function getEventos($servico = NULL, $funcionario=NULL) {
       //  echo "servico: $servico"; echo $funcionario;
         $dados = $this->agenda->getAgenda();
+        foreach ($dados as $key =>  $value) {
+            $extra = unserialize($value['EXTRA']);
+            $dados[$key]= array_merge($dados[$key],$extra)  ;
+            unset($dados[$key]['EXTRA']);
+        }
 //        $dados=array(
 //            array(
 //                    'id'=> '01',

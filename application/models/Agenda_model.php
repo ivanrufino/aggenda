@@ -4,13 +4,13 @@ class Agenda_model extends CI_Model{
      
     public function getAgenda($id=null) {
         $this->db->select('*');
-        $this->db->from('agendamento');
+        $this->db->from('v_agendamento');
       //  $this->db->where('CODIGO', $id);
         $query = $this->db->get();        
        // echo $this->db->last_query(); die();
         
         if($query->num_rows() > 0){
-            return $query->row_array();
+            return $query->result_array();
         }else{ 
             return FALSE;
         } 

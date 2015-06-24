@@ -180,3 +180,15 @@ ALTER TABLE  `agendamento` ADD FOREIGN KEY (  `COD_CLIENTE` ) REFERENCES  `aggen
 `ID`
 ) ON DELETE CASCADE ON UPDATE RESTRICT ;
 ALTER TABLE  `agendamento` ADD  `EXTRA` TEXT NOT NULL AFTER  `CONFIRMADO`;
+
+--AQUI
+-- TEM QUE TIRAR A RELAÇÃO DA TABELA AGENDAMENTOS ANTES
+ALTER TABLE  `usuario` CHANGE  `ID`  `CODIGO` INT( 11 ) NOT NULL AUTO_INCREMENT ;
+ALTER TABLE  `agendamento` ADD FOREIGN KEY (  `COD_CLIENTE` ) REFERENCES  `aggenda`.`usuario` (
+`CODIGO`
+) ON DELETE CASCADE ON UPDATE RESTRICT ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_agendamento` AS select `A`.`CODIGO` AS `CODIGO`,`A`.`COD_CLIENTE` AS `COD_CLIENTE`,replace(`A`.`START`,' ','T') AS `start`,replace(`A`.`END`,' ','T') AS `end`,`A`.`COD_FUNCIONARIO_SALA` AS `COD_FUNCIONARIO_SALA`,`A`.`CONFIRMADO` AS `CONFIRMADO`,`A`.`EXTRA` AS `EXTRA`,`A`.`DATA_CADASTRO` AS `DATA_CADASTRO`,concat(`U`.`NOME`,'\n',`F`.`NOME`,'\n',`S`.`NOME`) AS `title` from (((`agendamento` `A` join `usuario` `U` on((`U`.`CODIGO` = `A`.`COD_CLIENTE`))) join `funcionario` `F` on((`F`.`CODIGO` = `A`.`COD_FUNCIONARIO_SALA`))) join `servico` `S` on((`S`.`CODIGO` = `F`.`COD_SERVICO`)));
+
+INSERT INTO `agendamento` (`CODIGO`, `COD_CLIENTE`, `START`, `END`, `COD_FUNCIONARIO_SALA`, `CONFIRMADO`, `EXTRA`, `DATA_CADASTRO`) VALUES
+(1, 1, '2015-06-24 10:00:00', '2015-06-24 11:00:00', 1, 1, 'a:3:{s:5:"color";s:4:"blue";s:15:"backgroundColor";s:3:"fff";s:8:"editable";b:0;}', '2015-06-24 00:05:20'),
+(2, 2, '2015-06-24 12:00:00', '2015-06-24 14:45:00', 2, 1, 'a:2:{s:5:"color";s:4:"blue";s:15:"backgroundColor";s:3:"fff";}', '2015-06-24 00:05:20');
