@@ -919,7 +919,7 @@
 
     <!-- FOOTER -->
     <div id="footer">
-        <p>&copy;  {nome_site} &nbsp;<?=date('Y') ?>0 &nbsp;</p>
+        <p>&copy;  {nome_site} &nbsp;<?=date('Y') ?> &nbsp;|&nbsp; developer by: <a href="mailto:ivan.rufino.m@gmail?Subject=send_by_aggendar" >Ivan Rufino</a>  </p>
     </div>
     <!--END FOOTER -->
 

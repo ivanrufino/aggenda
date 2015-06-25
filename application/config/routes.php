@@ -54,7 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'home/login';
 $route['admin/calendario'] = 'admin/index';
-$route['tela/(:any)/(:any)'] = 'home/tela/$1/$2';
+$route['tela/(:any)'] = 'home/tela/$1';
 //$route['admin/login'] = 'home/login';
 
 require_once( BASEPATH .'database/DB.php');

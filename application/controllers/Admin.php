@@ -27,6 +27,7 @@ class Admin extends CI_Controller {
     public function index() {
         $data['associado'] = $this->admin->getAdmin($this->cod_associado);
         $data['titulo'] = 'Aggenda.com | admin';
+        $data['servicos'] = $this->agenda->getServicos($this->cod_associado);
         $tela['agendamento'] = ('modal/agendamento');
         $tela['conteudo'] = ('associado/calendario');
         $tela['menu'] = ('associado/menu');
@@ -47,12 +48,13 @@ class Admin extends CI_Controller {
     }
     public function getEventos($servico = NULL, $funcionario=NULL) {
       //  echo "servico: $servico"; echo $funcionario;
-        $dados = $this->agenda->getAgenda();
-        foreach ($dados as $key =>  $value) {
-            $extra = unserialize($value['EXTRA']);
-            $dados[$key]= array_merge($dados[$key],$extra)  ;
-            unset($dados[$key]['EXTRA']);
-        }
+        $dados = $this->agenda->getAgenda($this->cod_associado);
+//        foreach ($dados as $key =>  $value) {
+//            $extra = unserialize($value['EXTRA']);
+//            $dados[$key]= array_merge($dados[$key],$extra)  ;
+//            unset($dados[$key]['EXTRA']);
+//        }
+        
 //        $dados=array(
 //            array(
 //                    'id'=> '01',

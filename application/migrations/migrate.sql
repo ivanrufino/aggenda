@@ -192,3 +192,17 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 INSERT INTO `agendamento` (`CODIGO`, `COD_CLIENTE`, `START`, `END`, `COD_FUNCIONARIO_SALA`, `CONFIRMADO`, `EXTRA`, `DATA_CADASTRO`) VALUES
 (1, 1, '2015-06-24 10:00:00', '2015-06-24 11:00:00', 1, 1, 'a:3:{s:5:"color";s:4:"blue";s:15:"backgroundColor";s:3:"fff";s:8:"editable";b:0;}', '2015-06-24 00:05:20'),
 (2, 2, '2015-06-24 12:00:00', '2015-06-24 14:45:00', 2, 1, 'a:2:{s:5:"color";s:4:"blue";s:15:"backgroundColor";s:3:"fff";}', '2015-06-24 00:05:20');
+
+-- a partir daui
+ALTER TABLE  `servico` ADD  `BACKGROUNDCOLOR` VARCHAR( 55 ) NULL ,
+ADD  `TEXTCOLOR` VARCHAR( 55 ) NULL ,
+ADD  `BORDERCOLOR` VARCHAR( 55 ) NULL ;
+
+ALTER ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_agendamento` AS select `A`.`CODIGO` AS `CODIGO`,`A`.`COD_CLIENTE` AS `COD_CLIENTE`,replace(`A`.`START`,' ','T') AS `start`,replace(`A`.`END`,' ','T') AS `end`,`A`.`COD_FUNCIONARIO_SALA` AS `COD_FUNCIONARIO_SALA`,`A`.`CONFIRMADO` AS `CONFIRMADO`,`A`.`DATA_CADASTRO` AS `DATA_CADASTRO`,concat(`U`.`NOME`,'\n',`F`.`NOME`,'\n',`S`.`NOME`) AS `title`,`S`.`COD_ASSOCIADO` AS `COD_ASSOCIADO`
+,`S`.`BACKGROUNDCOLOR` AS `backgroundColor`
+,`S`.`TEXTCOLOR` AS `textColor`
+,`S`.`BORDERCOLOR` AS `borderColor`
+,`A`.`EDITABLE` AS `editable`
+from (((`agendamento` `A` join `usuario` `U` on((`U`.`CODIGO` = `A`.`COD_CLIENTE`))) join `funcionario` `F` on((`F`.`CODIGO` = `A`.`COD_FUNCIONARIO_SALA`))) join `servico` `S` on((`S`.`CODIGO` = `F`.`COD_SERVICO`)))
+
+ALTER TABLE  `agendamento` ADD  `EDITABLE` BOOLEAN NOT NULL DEFAULT TRUE ;

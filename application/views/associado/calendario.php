@@ -38,9 +38,9 @@
             selectHelper: true,
             select: function (start, end) {
                 var dateStart = start.format("YYYY-MM-DD");
-                var timeStart = start.format("HH:mm:ss")
+                var timeStart = start.format("HH:mm")
                 var dateEnd = start.format("DD/MM/YYYY");
-                var timeEnd = end.format("HH:mm:ss")
+                var timeEnd = end.format("HH:mm")
                 $('#createEvent').modal().find('#start').val(dateStart);
                 $('#createEvent').modal().find('#timeStart').val(timeStart);
                 $('#createEvent').modal().find('#end').val(dateEnd);
@@ -174,12 +174,14 @@
            // modal.find('#end').val(recipient)
            if(modal.find('#salvar').val()=='salvar'){
                var eventStart = modal.find('#start').val()+"T"+modal.find('#timeStart').val() ;
-               console.log(eventStart)
+               var eventEnd = modal.find('#start').val()+"T"+modal.find('#timeEnd').val() ;
              //  var eventEnd;
            var eventData = {
                  title: modal.find('#event').val(),
                  start: eventStart ,//"2015-06-25T10:00:00",
-                 end: "2015-06-25T10:30:00"
+                 end: eventEnd,
+                 backgroundColor:'yellow',
+                textColor    : '#000'
                  };
                  $('#calendar').fullCalendar('renderEvent', eventData, true);
              }
@@ -219,12 +221,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">Criar um agendamento</h4>
             </div>
             <div class="modal-body">
                 {view_agendamento}
                 <input type="hidden" id="salvar" readonly="" disabled="">
-               Evento<input type="text" id="event"><br>
+               
   <!--               Inicio<input type="text" id="start" value='2015-06-25T10:30:00'><br>
                 Fim<input type="text" id="end">-->
             </div>
