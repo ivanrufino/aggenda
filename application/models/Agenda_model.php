@@ -28,7 +28,20 @@ class Agenda_model extends CI_Model{
             return FALSE;
         } 
     }
-    
+     public function getFuncSala($cod_associado) {
+        $this->db->select('*');
+        $this->db->from('funcionario');
+        $this->db->where('COD_SERVICO', $cod_associado);
+        $this->db->where('STATUS', 1);
+        $query = $this->db->get();        
+       // echo $this->db->last_query(); die();
+        
+        if($query->num_rows() > 0){
+            return $query->result_array();
+        }else{ 
+            return FALSE;
+        } 
+    }
     public function novoAgenda($dados) {
 
 

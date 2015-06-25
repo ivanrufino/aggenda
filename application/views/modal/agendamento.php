@@ -14,7 +14,19 @@
         showSeconds: false,
         showMeridian: false
     });
-
+    
+        carregaFunc_sala($("#servico option:selected" ).val());
+        $("#servico").change(function(){
+            carregaFunc_sala($(this).val()); //alert($(this).val())
+        })
+        function carregaFunc_sala(cod_servico){
+            $(".loading").show();
+            $("#func_sala").load("<?=base_url()?>evento/getFuncSalas/"+cod_servico,
+            function(){
+                $(".loading").hide(500);
+            }
+                    ) //html("<option>algo selecionado"+cod_servico+"</option>")
+        }
     })
 </script>
 <div class="col-md-12">
@@ -26,7 +38,7 @@
             <select class="form-control"  id="servico">
                 <?php 
                 foreach ($servicos as $servico) {
-                    echo "<option value='{$servico['CODIGO']}'>{$servico['NOME']}</option>";
+                    echo "<option value='{$servico['CODIGO']}' data-textColor='{$servico['TEXTCOLOR']}' data-borderColor='{$servico['BORDERCOLOR']}' data-backgroundColor='{$servico['BACKGROUNDCOLOR']}' >{$servico['NOME']}</option>";
                 }
                 ?>
                 <??>
@@ -44,10 +56,26 @@
     <div class='col-md-10 '>
         <div class="input-group input-prepend" >
             <span class="input-group-addon add-on">Agenda de:</span>
-            <select class="form-control"  id="servico">
+            <select class="form-control"  id="func_sala" name="cod_funcionario_sala">
                 <option value="0">
                     Selecione um serviço
                 </option>
+            </select>
+            <!--<input class="form-control" type="text" value=""  id="servico"/>-->
+            
+
+        </div>
+    </div>
+    </div>
+    <br>
+     <div class='row'>
+    <div class='col-md-10 '>
+        <div class="input-group input-prepend" >
+            <span class="input-group-addon add-on">Agendar para:</span>
+            <select class="form-control"  id="func_sala" name="cliente">
+                <option value="1">Ivan</option>
+                <option value="1">Tiago</option>
+                
             </select>
             <!--<input class="form-control" type="text" value=""  id="servico"/>-->
             
@@ -60,7 +88,7 @@
     <div class="col-md-4">
         <div class="input-group input-append  dataAgendamento" id="dataStart" data-date="2015-06-27"
              data-date-format="yyyy-mm-dd">
-            <input class="form-control" type="text" value="2015-06-27"  id="start"/>
+            <input class="form-control" type="text" value="2015-06-27"  name="dataStart" id="start"/>
             <span class="input-group-addon "><i class="icon-calendar"></i></span>
 
         </div>
@@ -72,7 +100,7 @@
     <div class='row'>
     <div class="col-md-6">
         <div class="input-group bootstrap-timepicker">
-            <input class="timepicker-24 form-control" type="text"  id="timeStart"/>
+            <input class="timepicker-24 form-control" type="text"  name="timeStart" id="timeStart"/>
             <span class="input-group-addon add-on"><i class="icon-time"></i></span>
         </div>
     </div>
@@ -87,11 +115,12 @@
     </div>-->
     <div class="col-md-6">
         <div class="input-group bootstrap-timepicker">
-            <input class="timepicker-24 form-control" type="text"  id="timeEnd"/>
+            <input class="timepicker-24 form-control" type="text"  name="timeEnd" id="timeEnd"/>
             <span class="input-group-addon add-on"><i class="icon-time"></i></span>
         </div>
     </div>
 </div>
     
 </div>
-<div class='clearfix'></div>
+<div class='clearfix'> <span class="loading">Carregando...</span></div>
+<div class="alert msg">ivan</div>

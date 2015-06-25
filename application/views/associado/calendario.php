@@ -45,7 +45,7 @@
                 $('#createEvent').modal().find('#timeStart').val(timeStart);
                 $('#createEvent').modal().find('#end').val(dateEnd);
                 $('#createEvent').modal().find('#timeEnd').val(timeEnd);
-                
+
                 /*
                  var title = prompt('Event Title:');
                  var eventData;
@@ -134,7 +134,7 @@
             eventSources: [
                 // your event source
                 {
-                    url: '{base_url}admin/getEventos/serv/func.html', // use the `url` property
+                    url: '{base_url}evento/getEventos/serv/func.html', // use the `url` property
                     type: 'POST',
                     data: {
                         custom_param1: 'something',
@@ -160,32 +160,52 @@
         });
 
         $("#saveEvent").click(function () {
-            var modal =$('#createEvent')
+            var modal = $('#createEvent')
             modal.find('#salvar').val('salvar');
-            $('#createEvent').modal('hide');
+          //  $('#createEvent').modal('hide');
             
+            var options = { 
+                target:        '.msg',   // target element(s) to be updated with server response 
+              //  beforeSubmit:  showRequest,  // pre-submit callback 
+             //   success:       showResponse  // post-submit callback 
+
+                // other available options: 
+                //url:       url         // override for form's 'action' attribute 
+                //type:      type        // 'get' or 'post', override for form's 'method' attribute 
+                //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
+                //clearForm: true        // clear all form fields after successful submit 
+                //resetForm: true        // reset the form after successful submit 
+
+                // $.ajax options can be used here too, for example: 
+                //timeout:   3000 
+            }; 
+
+            // bind form using 'ajaxForm' 
+            $('#formAgendamento').ajaxSubmit(options); 
+
         })
         //createEvent
         $('#createEvent').on('hide.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var modal = $(this)
-            //modal.find('#event').val('novo evento');
-            //modal.find('#start').val(recipient)
-           // modal.find('#end').val(recipient)
-           if(modal.find('#salvar').val()=='salvar'){
-               var eventStart = modal.find('#start').val()+"T"+modal.find('#timeStart').val() ;
-               var eventEnd = modal.find('#start').val()+"T"+modal.find('#timeEnd').val() ;
-             //  var eventEnd;
-           var eventData = {
-                 title: modal.find('#event').val(),
-                 start: eventStart ,//"2015-06-25T10:00:00",
-                 end: eventEnd,
-                 backgroundColor:'yellow',
-                textColor    : '#000'
-                 };
-                 $('#calendar').fullCalendar('renderEvent', eventData, true);
-             }
+            criarEvento();
         })
+        function criarEvento() {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var modal = $('#createEvent')
+            if (modal.find('#salvar').val() == 'salvar') {
+                var eventStart = modal.find('#start').val() + "T" + modal.find('#timeStart').val();
+                var eventEnd = modal.find('#start').val() + "T" + modal.find('#timeEnd').val();
+                var eventTitle = modal.find('#start').val()
+
+                var eventData = {
+                    title: modal.find('#event').val(),
+                    start: eventStart, //"2015-06-25T10:00:00",
+                    end: eventEnd,
+                    backgroundColor: 'yellow',
+                    textColor: '#000'
+                };
+                $('#calendar').fullCalendar('renderEvent', eventData, true);
+            }
+        }
     });
 
 </script>
@@ -224,11 +244,12 @@
                 <h4 class="modal-title" id="myModalLabel">Criar um agendamento</h4>
             </div>
             <div class="modal-body">
+                <form id="formAgendamento" method="POST" action="{base_url}evento/criarEvento">
                 {view_agendamento}
                 <input type="hidden" id="salvar" readonly="" disabled="">
-               
-  <!--               Inicio<input type="text" id="start" value='2015-06-25T10:30:00'><br>
-                Fim<input type="text" id="end">-->
+                </form>
+<!--               Inicio<input type="text" id="start" value='2015-06-25T10:30:00'><br>
+ Fim<input type="text" id="end">-->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

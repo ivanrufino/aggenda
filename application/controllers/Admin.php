@@ -14,7 +14,7 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->css = array(PASTA . '/layout2', '../' . PLUGIN . '/flot/examples/examples');
         /* Global js */
-        $js_global = array('../' . PLUGIN . '/bootstrap/js/bootstrap.min', '../' . PLUGIN . '/modernizr-2.6.2-respond-1.1.0.min');
+        $js_global = array('../' . PLUGIN . '/bootstrap/js/bootstrap.min', '../' . PLUGIN . '/modernizr-2.6.2-respond-1.1.0.min','jquery.form');
         $this->js = array_merge($js_global); //, array(PASTA.'/for_index'));
         if (!$this->session->has_userdata('logged') || $this->session->userdata('logged') != 'in') {
             //redirect('login');
@@ -46,38 +46,8 @@ class Admin extends CI_Controller {
         $this->parser->adc_js($this->js);
         $this->parser->mostrar('template/template_associado.php', $tela, $data);
     }
-    public function getEventos($servico = NULL, $funcionario=NULL) {
-      //  echo "servico: $servico"; echo $funcionario;
-        $dados = $this->agenda->getAgenda($this->cod_associado);
-//        foreach ($dados as $key =>  $value) {
-//            $extra = unserialize($value['EXTRA']);
-//            $dados[$key]= array_merge($dados[$key],$extra)  ;
-//            unset($dados[$key]['EXTRA']);
-//        }
-        
-//        $dados=array(
-//            array(
-//                    'id'=> '01',
-//                    'title'=> 'Repeating Event',
-//                    'start'=> '2015-06-22T11:45:00',
-//                    'end'=> '2015-06-22T12:30:00',
-//                    'backgroundColor'=>'beige',
-//                    'textColor'=>'black',
-//                    'rendering'=>'',
-//                    'constraint'=>'businessHours',
-//                    'editable' =>false
-//                    ),
-//            array(
-//                    'id'=> '02',
-//                    'title'=> 'Repeating Event',
-//                    'start'=> '2015-06-22T12:45:00',
-//                    'end'=> '2015-06-22T13:30:00',
-//                    'backgroundColor'=>'gray',
-//                    'textColor'=>'fff'))
-//                ;
-        echo json_encode($dados);
-       
-    }
+    
+    
     public function importacao() {
         $this->load->helper('file');
         $string = read_file('./assets/importacao/usuario.csv');
