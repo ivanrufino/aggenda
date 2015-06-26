@@ -167,12 +167,12 @@
             var options = { 
                 target:        '.msg',   // target element(s) to be updated with server response 
               //  beforeSubmit:  showRequest,  // pre-submit callback 
-             //   success:       showResponse  // post-submit callback 
+                success:       verificaRetorno,  // post-submit callback 
 
                 // other available options: 
                 //url:       url         // override for form's 'action' attribute 
                 //type:      type        // 'get' or 'post', override for form's 'method' attribute 
-                //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
+                dataType:  'json'       // 'xml', 'script', or 'json' (expected server response type) 
                 //clearForm: true        // clear all form fields after successful submit 
                 //resetForm: true        // reset the form after successful submit 
 
@@ -185,9 +185,21 @@
 
         })
         //createEvent
-        $('#createEvent').on('hide.bs.modal', function (event) {
-            criarEvento();
+        $('#createEvent').on('show.bs.modal', function (event) {
+            $(this).find("#saveEvent").removeAttr('disabled');
+            $(this).find(".msg").html('');
         })
+        function verificaRetorno(data){
+             if(data.success){
+                 $(".msg").html(data.msg)
+                 criarEvento();
+                 $('#createEvent').find("#saveEvent").attr('disabled','disabled');
+                 
+             }else{
+                 $(".msg").html(data.erros)
+             }
+             
+        }
         function criarEvento() {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var modal = $('#createEvent')
@@ -195,12 +207,12 @@
                 var eventStart = modal.find('#start').val() + "T" + modal.find('#timeStart').val();
                 var eventEnd = modal.find('#start').val() + "T" + modal.find('#timeEnd').val();
                 var eventTitle = modal.find('#start').val()
-
+                var backgroundColor = modal.find('#servico option:selected').data('backgroundColor');
                 var eventData = {
-                    title: modal.find('#event').val(),
+                    title: eventTitle,
                     start: eventStart, //"2015-06-25T10:00:00",
                     end: eventEnd,
-                    backgroundColor: 'yellow',
+                    backgroundColor: backgroundColor,
                     textColor: '#000'
                 };
                 $('#calendar').fullCalendar('renderEvent', eventData, true);
