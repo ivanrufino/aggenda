@@ -31,7 +31,7 @@ class Admin extends CI_Controller {
         $tela['agendamento'] = ('modal/agendamento');
         $tela['conteudo'] = ('associado/calendario');
         $tela['menu'] = ('associado/menu');
-        $tela['lateralDireita'] = ('associado/lateralDireita');
+        $tela['lateralDireita'] = ('associado/vazio');
         
         if(is_null($data['associado']['COD_EMPRESA'])){          
             $tela['conteudo'] = ('associado/config_inicial');

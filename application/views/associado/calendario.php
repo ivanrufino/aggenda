@@ -28,6 +28,7 @@
                 // days of week. an array of zero-based day of week integers (0=Sunday)
                 // (Monday-Thursday in this example)
             },
+            hiddenDays: [3, 5, 0],
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -38,23 +39,23 @@
             selectable: true,
             selectHelper: true,
             select: function (start, end) {
-                var dias=calculateDays(start,end);
-                
-                if(dias>= 1){                    
+                var dias = calculateDays(start, end);
+
+                if (dias >= 1) {
                     $('#createEvent').modal().find('#timeStart').parent().hide();
                     $('#createEvent').modal().find('#timeEnd').parent().hide();
                     $('#createEvent').modal().find('#allday').parent().show();
                     $('#createEvent').modal().find('#allday').val('Dia_Todo');
-                }else{
+                } else {
                     $('#createEvent').modal().find('#timeStart').parent().show();
                     $('#createEvent').modal().find('#timeEnd').parent().show();
                     $('#createEvent').modal().find('#allday').parent().hide();
                     $('#createEvent').modal().find('#allday').val(' ');
-                    
+
                 }
-                if(dias >= 2){                    
+                if (dias >= 2) {
                     $('#createEvent').modal().find('#end').parent().show();
-                }else{
+                } else {
                     $('#createEvent').modal().find('#end').parent().hide();
                 }
                 var dateStart = start.format("YYYY-MM-DD");
@@ -82,84 +83,13 @@
             },
             editable: true,
             eventLimit: true, // allow "more" link when too many events
-            /*
-             //            eventClick: function (calEvent, jsEvent, view) {
-             //
-             //            alert('Event: ' + calEvent.title);
-             //                    alert('start' + calEvent.start);
-             //                    console.log(calEvent);
-             //                    // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-             //                    alert('View: ' + view.name);
-             //                    // change the border color just for fun
-             //                    $(this).css('border-color', 'red');
-             //            },
-             //            events: [
-             //                {
-             //                    title: 'All Day Event',
-             //                    start: '2015-02-01'
-             //                },
-             //                {
-             //                    title: 'feriado',
-             //                    start: '2015-06-07',
-             //                    end: '2015-06-10',
-             //                    rendering: 'background'
-             //                },
-             //                {
-             //                    id: 999,
-             //                    title: 'Repeating Event',
-             //                    start: '2015-06-16T16:00:00',
-             //                    end: '2015-06-16T16:45:00'
-             //                },
-             //                {
-             //                    id: 999,
-             //                    title: 'Repeating Event',
-             //                    start: '2015-06-17T16:45:00',
-             //                    end: '2015-06-17T17:30:00'
-             //                },
-             //                {
-             //                    title: 'Conference',
-             //                    start: '2015-02-11',
-             //                    end: '2015-02-13'
-             //                },
-             //                {
-             //                    title: 'Meeting',
-             //                    start: '2015-02-12T10:30:00',
-             //                    end: '2015-02-12T12:30:00'
-             //                },
-             //                {
-             //                    title: 'Lunch',
-             //                    start: '2015-02-12T12:00:00'
-             //                },
-             //                {
-             //                    title: 'Meeting',
-             //                    start: '2015-02-12T14:30:00'
-             //                },
-             //                {
-             //                    title: 'Happy Hour',
-             //                    start: '2015-02-12T17:30:00'
-             //                },
-             //                {
-             //                    title: 'Dinner',
-             //                    start: '2015-02-12T20:00:00'
-             //                },
-             //                {
-             //                    title: 'Birthday Party',
-             //                    start: '2015-02-13T07:00:00'
-             //                },
-             //                {
-             //                    title: 'Click for Google',
-             //                    url: 'http://google.com/',
-             //                    start: '2015-02-28'
-             //                },
-             //            ], */
+
             eventSources: [
                 // your event source
                 {
                     url: '{base_url}evento/getEventos/serv/func.html', // use the `url` property
                     type: 'POST',
                     data: {
-                        custom_param1: 'something',
-                        custom_param2: 'somethingelse'
                     },
                     error: function () {
                         alert('Não há eventos registrados!');
@@ -171,50 +101,62 @@
                 // any other sources...
 
             ],
+            eventClick: function (calEvent, jsEvent, view) {
+                console.log(calEvent)
+                $('#calendar').fullCalendar('removeEvents', calEvent._id)
+
+            },
             eventRender: function (event, element) {
-                element.click(function () {
-                    //showModal();
-                    $('#myModal').modal();
-                })
+                /*element.click(function () {
+                 //                    alert(event.CODIGO)
+                 //                    event.title = "CLICKED!";
+                 event.id= event.CODIGO;
+                 console.log(event.id);
+                 //editar ou    
+                 //$('#calendar').fullCalendar('updateEvent', event);
+                 //remover
+                 $('#calendar').fullCalendar('removeEvents', event.id);
+                 //$('#myModal').modal();
+                 //logo apos renderizar novamento
+                 //  $('#calendar').fullCalendar( 'render' )
+                 
+                 })*/
+            },
+            eventDrop: function (event, delta, revertFunc) {
+                //console.log(delta);
+//                alert(event.title + " was dropped on " + event.start.format());
+                if (!confirm("Are you sure about this change?")) {
+                    revertFunc();
+                }
+            },
+            eventResize: function (event, delta, revertFunc) {
+                console.log(delta);
+                alert(event.title + " end is now " + event.end.format());
+                if (!confirm("is this okay?")) {
+                    revertFunc();
+                }
             }
 
         });
 
-        $("#saveEvent").click(function () {
+        $("#saveEvent").click(function () { //iniciar o salvamento de um evento
             var modal = $('#createEvent')
             modal.find('#salvar').val('salvar');
-            //  $('#createEvent').modal('hide');
-
             var options = {
-               // target: '.msg', // target element(s) to be updated with server response 
-                //  beforeSubmit:  showRequest,  // pre-submit callback 
                 success: verificaRetorno, // post-submit callback 
-
-                // other available options: 
-                //url:       url         // override for form's 'action' attribute 
-                //type:      type        // 'get' or 'post', override for form's 'method' attribute 
                 dataType: 'json'       // 'xml', 'script', or 'json' (expected server response type) 
-                        //clearForm: true        // clear all form fields after successful submit 
-                        //resetForm: true        // reset the form after successful submit 
-
-                        // $.ajax options can be used here too, for example: 
-                        //timeout:   3000 
             };
-
-            // bind form using 'ajaxForm' 
             $('#formAgendamento').ajaxSubmit(options);
-
         })
-        //createEvent
-        $('#createEvent').on('show.bs.modal', function (event) {
+        $('#createEvent').on('show.bs.modal', function (event) { //ativado quando o modal é fechado
             $(this).find("#saveEvent").removeAttr('disabled');
             $(this).find(".msg").html('');
         })
-        function verificaRetorno(data) {
+
+        function verificaRetorno(data) { //verifica retorno do submit do salvar
             if (data.success) {
-               criarEvento(data.evento);
-                 $(".msg").html(data.msg)
-                 console.log(data.evento)
+                criarEvento(data.evento);
+                $(".msg").html(data.msg)
                 $('#createEvent').find("#saveEvent").attr('disabled', 'disabled');
 
             } else {
@@ -222,40 +164,40 @@
             }
 
         }
-        function criarEvento(evento) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
+        function criarEvento(evento) { // criar um evento no calendario
+            var button = $(event.relatedTarget)
             var modal = $('#createEvent')
-            //if (modal.find('#salvar').val() == 'salvar') {
-//                var eventStart = modal.find('#start').val();// + "T" + modal.find('#timeStart').val();
-//                var eventEnd = modal.find('#end').val() ;//+ "T" + modal.find('#timeEnd').val();
-//                var eventTitle = modal.find('#start').val()
-                var allday = $('#createEvent').modal().find('#allday').val();
-                var backgroundColor = modal.find('#servico option:selected').data('backgroundColor');
-                
-                var eventData = {
-                    title: evento.title,
-                    start: evento.start, //"2015-06-25",
-                    end: evento.end,
-                    allday:evento.allday,
-                    backgroundColor: backgroundColor,
-                    textColor: '#000'
-                };
-                $('#calendar').fullCalendar('renderEvent', eventData, true);
+            var allday = $('#createEvent').modal().find('#allday').val();
+            var backgroundColor = modal.find('#servico option:selected').data('backgroundColor');
+
+            var eventData = {
+                id: evento.CODIGO,
+                title: evento.title,
+                start: evento.start, //"2015-06-25",
+                end: evento.end,
+                allday: evento.allday,
+                backgroundColor: backgroundColor,
+                textColor: '#000'
+            };
+            $('#calendar').fullCalendar('renderEvent', eventData, true);
             //}
         }
-        function calculateDays(start,end) {
+        function calculateDays(start, end) {
             var dateStart = new Date(start);
             var dateEnd = new Date(end);
-            var days =  dateEnd -dateStart;
-            console.log(days/86400000)
-            return days/86400000;
+            var days = dateEnd - dateStart;
+            console.log(days / 86400000);
+            return days / 86400000;
         }
-        ;
+        
+        function updateEvento(){
+            
+        }
     });
 
 </script>
 
-<div id="content">
+<div id="content" style="width: calc(100% - 222px)">
     <div class="inner" style="min-height:650px;padding-top: 20px" id='calendar'></div>
 </div>
 

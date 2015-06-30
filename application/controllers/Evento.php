@@ -19,6 +19,7 @@ class Evento extends CI_Controller {
     public function getEventos($servico = NULL, $funcionario = NULL) {
         //  echo "servico: $servico"; echo $funcionario;
         $dados = $this->agenda->getAgenda($this->cod_associado);
+        
         echo json_encode($dados);
     }
 

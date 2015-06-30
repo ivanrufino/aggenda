@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!--[if !IE]><!--> <html lang="pt-br"> <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="UTF-8" />
@@ -919,28 +919,19 @@
 
     <!-- FOOTER -->
     <div id="footer">
-        <p>&copy;  {nome_site} &nbsp;<?=date('Y') ?> &nbsp;|&nbsp; developer by: <a href="mailto:ivan.rufino.m@gmail?Subject=send_by_aggendar" >Ivan Rufino</a>  </p>
+        <p>&copy;  {nome_site} &nbsp;<?=date('Y') ?> &nbsp;|&nbsp; developer by: <a href="mailto:ivan.rufino.m@gmail?Subject=send_by_aggendar" >Ivan Rufino</a>&nbsp;|&nbsp;Versão Alfa  </p>
     </div>
     <!--END FOOTER -->
-
-
-    <!-- GLOBAL SCRIPTS -->
-<!--    <script src="assets/plugins/jquery-2.0.3.min.js"></script>
-     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
-    <!-- END GLOBAL SCRIPTS -->
-
-    <!-- PAGE LEVEL SCRIPTS -->
-<!--    <script src="assets/plugins/flot/jquery.flot.js"></script>
-    <script src="assets/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="assets/plugins/flot/jquery.flot.time.js"></script>
-     <script  src="assets/plugins/flot/jquery.flot.stack.js"></script>
-    <script src="assets/js/for_index.js"></script>-->
-   
-    <!-- END PAGE LEVEL SCRIPTS -->
 
 {js_list}
 </body>
 
     <!-- END BODY -->
 </html>
+<!--
+Só uma revisão:
+3.2.1
+3 = versão completa
+2 = pequenas adições
+1 = correções de segurança
+-->
