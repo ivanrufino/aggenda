@@ -27,7 +27,7 @@ class PagSeguroNotificationService
     /**
      *
      */
-    const SERVICE_NAME = 'notificationService';
+    const SERVICE_NAME = 'transactionSearchService';
 
     /**
      * @param PagSeguroConnectionData $connectionData
@@ -55,22 +55,23 @@ class PagSeguroNotificationService
 
         LogPagSeguro::info("PagSeguroNotificationService.CheckTransaction(notificationCode=$notificationCode) - begin");
         $connectionData = new PagSeguroConnectionData($credentials, self::SERVICE_NAME);
-
+        
         try {
-
+           
             $connection = new PagSeguroHttpConnection();
             $connection->get(
                 self::buildTransactionNotificationUrl($connectionData, $notificationCode),
                 $connectionData->getServiceTimeout(),
                 $connectionData->getCharset()
             );
-
+           
             $httpStatus = new PagSeguroHttpStatus($connection->getStatus());
-
+           //echo $httpStatus->getType();
             switch ($httpStatus->getType()) {
 
                 case 'OK':
                     // parses the transaction
+                    
                     $transaction = PagSeguroTransactionParser::readTransaction($connection->getResponse());
                     LogPagSeguro::info(
                         "PagSeguroNotificationService.CheckTransaction(notificationCode=$notificationCode) - end " .
@@ -98,7 +99,7 @@ class PagSeguroNotificationService
                     break;
 
             }
-
+            
             return isset($transaction) ? $transaction : null;
 
         } catch (PagSeguroServiceException $e) {

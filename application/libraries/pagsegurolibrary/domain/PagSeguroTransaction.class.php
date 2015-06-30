@@ -22,6 +22,7 @@
  * Class PagSeguroTransaction
  * Represents a PagSeguro transaction
  *
+ * @property    PagSeguroSender $sender
  *
  */
 class PagSeguroTransaction
@@ -429,6 +430,7 @@ class PagSeguroTransaction
         $transaction['reference'] = $this->reference;
         $transaction['status'] = $this->status ? $this->status->getValue() : "null";
         $transaction['itemsCount'] = is_array($this->items) ? count($this->items) : "null";
+        $transaction['items'] = $this->items;
 
         $transaction = "Transaction: " . var_export($transaction, true);
 

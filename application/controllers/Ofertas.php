@@ -1,291 +1,306 @@
-<?php if (! defined ( 'BASEPATH' )) exit ( 'No direct script access allowed' );
+<?php
 
-class Ofertas extends CI_Controller { 
-	/**
-	 * Construtor da classe
-	 */
-	public function __construct() {
-		parent::__construct ();
-		$this->load->config('pagseguro');
-		$this->load->library('PagSeguroLibrary');
-	}
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
-	/**
-	 * Pagseguro
-	 *
-	 * @access public
-	 * @param int(11) idVenda
-	 */
-	public function pagseguro($idVenda) {
-		if($this->session->userdata('logged_in') == true && $this->session->userdata('userData')->idTipoUsuario == 4) {
+class Ofertas extends CI_Controller {
 
-			$this->data['hasError'] = false;
-			$this->data['errorList'] = array();
+    /**
+     * Construtor da classe
+     */
+    public function __construct() {
+        parent::__construct();
+        $this->load->config('pagseguro');
+        $this->load->library('pagsegurolibrary/PagSeguroLibrary');
+    }
 
-			$venda = array_shift($this->Vendas_model->getVenda(array('idVenda' => $idVenda)));
-			// validações
+    /**
+     * Pagseguro
+     *
+     * @access public
+     * @param int(11) idVenda
+     */
+    public function index() {
+        // Instantiate a new payment request
+        $paymentRequest = new PagSeguroPaymentRequest ();
+        // Sets the currency
+        $paymentRequest->setCurrency("BRL");
 
-			if(!is_object($venda)) {
-				$this->data['hasError'] = true;
-				$this->data['errorList'][] = array('message' => 'Não foi possível localizar sua compra.');
-			}
+        // Sets a reference code for this payment request, it is useful to
+        // identify this payment in future notifications.
+        $paymentRequest->setReference('001');
+         $paymentRequest->addItem('0001', 'Plano 1' , 1, number_format(1000.30, 2, '.', ''));
+    }
 
-			if(!$this->data['hasError']) {
-				$userObj = $this->session->userdata ( 'userData' );
-				$promocao = $this->Promocoes_model->getPromocaoById($venda->idPromocao);
+    public function pagseguro($idVenda) {
+        if ($this->session->userdata('logged_in') == true && $this->session->userdata('userData')->idTipoUsuario == 4) {
 
-				// Pega o estado do usuário
-				$estadoObj = null;
-				if($userObj->idEstado) {
-					$filter = array ('idEstado' =>  $userObj->idEstado);
-					$estadoObj = array_shift ( $this->Estados_model->getEstado ( $filter ) );
-				}
+            $this->data['hasError'] = false;
+            $this->data['errorList'] = array();
 
-				// Instantiate a new payment request
-				$paymentRequest = new PagSeguroPaymentRequest ();
+            $venda = array_shift($this->Vendas_model->getVenda(array('idVenda' => $idVenda)));
+            // validações
 
-				// Sets the currency
-				$paymentRequest->setCurrency ( "BRL" );
+            if (!is_object($venda)) {
+                $this->data['hasError'] = true;
+                $this->data['errorList'][] = array('message' => 'Não foi possível localizar sua compra.');
+            }
 
-				// Sets a reference code for this payment request, it is useful to
-				// identify this payment in future notifications.
-				$paymentRequest->setReference ( $venda->idVenda );
+            if (!$this->data['hasError']) {
+                $userObj = $this->session->userdata('userData');
+                $promocao = $this->Promocoes_model->getPromocaoById($venda->idPromocao);
 
-				// Add an item for this payment request
-				$paymentRequest->addItem ( '0001', substr($promocao->nome, 0, 80), 1, number_format ( $venda->valorDevido, 2, '.', '' ) );
+                // Pega o estado do usuário
+                $estadoObj = null;
+                if ($userObj->idEstado) {
+                    $filter = array('idEstado' => $userObj->idEstado);
+                    $estadoObj = array_shift($this->Estados_model->getEstado($filter));
+                }
 
-				$paymentRequest->setShippingType ( 3 );
-				$paymentRequest->setShippingAddress ( str_replace ( '-', '', str_replace ( '.', '', $userObj->CEP ) )
-						, $userObj->endereco
-						, $userObj->numero
-						, $userObj->complemento
-						, $userObj->bairro
-						, $userObj->cidade
-						, (($estadoObj->sigla)? $estadoObj->sigla : ''), 'BRA' );
+                // Instantiate a new payment request
+                $paymentRequest = new PagSeguroPaymentRequest ();
 
-				// Sets your customer information.
-				$paymentRequest->setSenderName(substr($userObj->nome,0,40));
-				$paymentRequest->setSenderEmail($userObj->email);
-				$paymentRequest->setSenderPhone($userObj->telefone1);
+                // Sets the currency
+                $paymentRequest->setCurrency("BRL");
 
-				$paymentRequest->setRedirectUrl ( base_url('ofertas/retornoPagamento') );
-				$paymentRequest->setMaxAge(86400 * 3);
+                // Sets a reference code for this payment request, it is useful to
+                // identify this payment in future notifications.
+                $paymentRequest->setReference($venda->idVenda);
 
-				try {
-					$credentials = new PagSeguroAccountCredentials ( $this->config->item ( 'pagseguroAccount' ), $this->config->item ( 'pagseguroToken' ) );
-					$url = $paymentRequest->register ( $credentials );
+                // Add an item for this payment request
+                $paymentRequest->addItem('0001', substr($promocao->nome, 0, 80), 1, number_format($venda->valorDevido, 2, '.', ''));
 
-					$dados = array(
-							'meioPagamento' => 2
-							,'statusPagamento' => 1
-							,'dataAtualizacao' => date('Y-m-d H:i:s')
-					);
+                $paymentRequest->setShippingType(3);
+                $paymentRequest->setShippingAddress(str_replace('-', '', str_replace('.', '', $userObj->CEP))
+                        , $userObj->endereco
+                        , $userObj->numero
+                        , $userObj->complemento
+                        , $userObj->bairro
+                        , $userObj->cidade
+                        , (($estadoObj->sigla) ? $estadoObj->sigla : ''), 'BRA');
 
-					$this->Vendas_model->update($dados, $venda->idVenda);
-					redirect ( $url );
+                // Sets your customer information.
+                $paymentRequest->setSenderName(substr($userObj->nome, 0, 40));
+                $paymentRequest->setSenderEmail($userObj->email);
+                $paymentRequest->setSenderPhone($userObj->telefone1);
 
-				} catch ( PagSeguroServiceException $e ) {
-					$this->data['hasError'] = true;
-					$this->data['errorList'][] = array('message' => 'Ocorreu um erro ao comunicar com o Pagseguro.' .$e->getCode() . ' - ' .  $e->getMessage());
-				}
+                $paymentRequest->setRedirectUrl(base_url('ofertas/retornoPagamento'));
+                $paymentRequest->setMaxAge(86400 * 3);
 
-				var_dump($this->data['errorList']);
-			}
-		} else {
-			redirect(base_url('login'));
-		}
-	}
+                try {
+                    $credentials = new PagSeguroAccountCredentials($this->config->item('pagseguroAccount'), $this->config->item('pagseguroToken'));
+                    $url = $paymentRequest->register($credentials);
 
-	/**
-	 * retornoPagamentoPagseguro
-	 *
-	 * Recebe o retorno de pagamento da promoção via pagseguro
-	 * @access public
-	 * @return void
-	 */
-	public function retornoPagamento() {
-		$transaction = false;
+                    $dados = array(
+                        'meioPagamento' => 2
+                        , 'statusPagamento' => 1
+                        , 'dataAtualizacao' => date('Y-m-d H:i:s')
+                    );
 
-		// Verifica se existe a transação
-		if ($this->input->get ( 'idTransacao' )) {
-			$transaction = self::TransactionNotification ( $this->input->get ( 'idTransacao' ) );
-		}
+                    $this->Vendas_model->update($dados, $venda->idVenda);
+                    redirect($url);
+                } catch (PagSeguroServiceException $e) {
+                    $this->data['hasError'] = true;
+                    $this->data['errorList'][] = array('message' => 'Ocorreu um erro ao comunicar com o Pagseguro.' . $e->getCode() . ' - ' . $e->getMessage());
+                }
 
-		// Se a transação for um objeto
-		if (is_object ( $transaction )) {
-			self::setTransacaoPagseguro($transaction);
-		}
+                var_dump($this->data['errorList']);
+            }
+        } else {
+            redirect(base_url('login'));
+        }
+    }
 
-		redirect ( base_url('minha-conta') );
-	}
+    /**
+     * retornoPagamentoPagseguro
+     *
+     * Recebe o retorno de pagamento da promoção via pagseguro
+     * @access public
+     * @return void
+     */
+    public function retornoPagamento() {
+        $transaction = false;
 
-	/**
-	 * setTransacaoPagseguro
-	 *
-	 * Seta os status da transação vindas do Pagseguro
-	 *
-	 * @param array $transaction
-	 * @return void
-	 */
-	private function setTransacaoPagseguro($transaction = null) {
-		// Pegamos o objeto da transação
-		$transactionObj = self::getTransaction ( $transaction );
+        // Verifica se existe a transação
+        if ($this->input->get('idTransacao')) {
+            $transaction = self::TransactionNotification($this->input->get('idTransacao'));
+        }
 
-		// Buscamos a venda
-		$filter = array ('idVenda' => $transactionObj ['reference']);
-		$vendaList = $this->Vendas_model->getVenda ( $filter );
+        // Se a transação for um objeto
+        if (is_object($transaction)) {
+            self::setTransacaoPagseguro($transaction);
+        }
 
-		// existindo a venda
-		if (is_array ( $vendaList ) && sizeof ( $vendaList ) > 0) {
-			$venda = array_shift($vendaList);
+        redirect(base_url('minha-conta'));
+    }
 
-			// Aguardando pagamento
-			if ($transactionObj ['status'] == 1) {
+    /**
+     * setTransacaoPagseguro
+     *
+     * Seta os status da transação vindas do Pagseguro
+     *
+     * @param array $transaction
+     * @return void
+     */
+    private function setTransacaoPagseguro($transaction = null) {
+        // Pegamos o objeto da transação
+        $transactionObj = self::getTransaction($transaction);
 
-				$dados = array(
-						'meioPagamento' => 2
-						,'statusPagamento' => 1
-						,'idTransacao' => $transaction->getCode()
-						,'dataAtualizacao' => date('Y-m-d H:i:s')
-				);
+        // Buscamos a venda
+        $filter = array('idVenda' => $transactionObj ['reference']);
+        $vendaList = $this->Vendas_model->getVenda($filter);
 
-				$this->Vendas_model->update($dados, $venda->idVenda);
-			}
+        // existindo a venda
+        if (is_array($vendaList) && sizeof($vendaList) > 0) {
+            $venda = array_shift($vendaList);
+
+            // Aguardando pagamento
+            if ($transactionObj ['status'] == 1) {
+
+                $dados = array(
+                    'meioPagamento' => 2
+                    , 'statusPagamento' => 1
+                    , 'idTransacao' => $transaction->getCode()
+                    , 'dataAtualizacao' => date('Y-m-d H:i:s')
+                );
+
+                $this->Vendas_model->update($dados, $venda->idVenda);
+            }
 
 
-			// Aguardando aprovação
-			if ($transactionObj ['status'] == 2) {
-				$dados = array(
-						'meioPagamento' => 2
-						,'statusPagamento' => 2
-						,'idTransacao' => $transaction->getCode()
-						,'dataAtualizacao' => date('Y-m-d H:i:s')
-				);
+            // Aguardando aprovação
+            if ($transactionObj ['status'] == 2) {
+                $dados = array(
+                    'meioPagamento' => 2
+                    , 'statusPagamento' => 2
+                    , 'idTransacao' => $transaction->getCode()
+                    , 'dataAtualizacao' => date('Y-m-d H:i:s')
+                );
 
-				$this->Vendas_model->update($dados, $venda->idVenda);
-			}
+                $this->Vendas_model->update($dados, $venda->idVenda);
+            }
 
-			// Transação paga
-			if ($transactionObj ['status'] == 3) {
+            // Transação paga
+            if ($transactionObj ['status'] == 3) {
 
-				$lastEvent = strtotime($transaction->getLastEventDate());
+                $lastEvent = strtotime($transaction->getLastEventDate());
 
-				$dados = array(
-						'statusPagamento' => 3
-						,'valorPago' =>  $transaction->getGrossAmount()
-						,'taxas' => $transaction->getFeeAmount()
-						,'idTransacao' => $transaction->getCode()
-						,'dataAtualizacao' => date('Y-m-d H:i:s')
-						,'dataCredito' => date('Y-m-d H:i:s', $lastEvent)
-				);
+                $dados = array(
+                    'statusPagamento' => 3
+                    , 'valorPago' => $transaction->getGrossAmount()
+                    , 'taxas' => $transaction->getFeeAmount()
+                    , 'idTransacao' => $transaction->getCode()
+                    , 'dataAtualizacao' => date('Y-m-d H:i:s')
+                    , 'dataCredito' => date('Y-m-d H:i:s', $lastEvent)
+                );
 
-				$this->Vendas_model->update($dados, $venda->idVenda);
-			}
+                $this->Vendas_model->update($dados, $venda->idVenda);
+            }
 
-			// Pagamento cancelado
-			if ($transactionObj ['status'] == 7 && $venda->statusPagamento != 3) {
-				$dados = array(
-						'meioPagamento' => 2
-						,'statusPagamento' => 7
-						,'taxas' => $transaction->getFeeAmount()
-						,'idTransacao' => $transaction->getCode()
-						,'dataAtualizacao' => date('Y-m-d H:i:s')
-				);
+            // Pagamento cancelado
+            if ($transactionObj ['status'] == 7 && $venda->statusPagamento != 3) {
+                $dados = array(
+                    'meioPagamento' => 2
+                    , 'statusPagamento' => 7
+                    , 'taxas' => $transaction->getFeeAmount()
+                    , 'idTransacao' => $transaction->getCode()
+                    , 'dataAtualizacao' => date('Y-m-d H:i:s')
+                );
 
-				$this->Vendas_model->update($dados, $venda->idVenda);
-			}
-		}
-	}
+                $this->Vendas_model->update($dados, $venda->idVenda);
+            }
+        }
+    }
 
-	/**
-	 * getTransaction
-	 *
-	 * Método para buscar a transação no pag reguto
-	 * @access public
-	 * @param PagSeguroTransaction $transaction
-	 * @return array
-	 */
-	public static function getTransaction(PagSeguroTransaction $transaction) {
-		return array ('reference' => $transaction->getReference (), 'status' => $transaction->getStatus ()->getValue () );
-	}
+    /**
+     * getTransaction
+     *
+     * Método para buscar a transação no pag reguto
+     * @access public
+     * @param PagSeguroTransaction $transaction
+     * @return array
+     */
+    public static function getTransaction(PagSeguroTransaction $transaction) {
+        return array('reference' => $transaction->getReference(), 'status' => $transaction->getStatus()->getValue());
+    }
 
-	/**
-	 * NotificationListener
-	 *
-	 * Recebe as notificações do pagseguro sobre atualização de pagamento.
-	 * @access public
-	 * @return bool
-	 */
-	public function NotificationListener() {
+    /**
+     * NotificationListener
+     *
+     * Recebe as notificações do pagseguro sobre atualização de pagamento.
+     * @access public
+     * @return bool
+     */
+    public function NotificationListener() {
 
-		$code = (isset ( $_POST ['notificationCode'] ) && trim ( $_POST ['notificationCode'] ) !== "" ? trim ( $_POST ['notificationCode'] ) : null);
-		$type = (isset ( $_POST ['notificationType'] ) && trim ( $_POST ['notificationType'] ) !== "" ? trim ( $_POST ['notificationType'] ) : null);
-		$transaction = false;
+        $code = (isset($_POST ['notificationCode']) && trim($_POST ['notificationCode']) !== "" ? trim($_POST ['notificationCode']) : null);
+        $type = (isset($_POST ['notificationType']) && trim($_POST ['notificationType']) !== "" ? trim($_POST ['notificationType']) : null);
+        $transaction = false;
 
-		if ($code && $type) {
+        if ($code && $type) {
 
-			$notificationType = new PagSeguroNotificationType ( $type );
-			$strType = $notificationType->getTypeFromValue ();
+            $notificationType = new PagSeguroNotificationType($type);
+            $strType = $notificationType->getTypeFromValue();
 
-			switch ($strType) {
+            switch ($strType) {
 
-				case 'TRANSACTION' :
-					$transaction = self::TransactionNotification ( $code );
-					break;
+                case 'TRANSACTION' :
+                    $transaction = self::TransactionNotification($code);
+                    break;
 
-				default :
-					LogPagSeguro::error ( "Unknown notification type [" . $notificationType->getValue () . "]" );
+                default :
+                    LogPagSeguro::error("Unknown notification type [" . $notificationType->getValue() . "]");
+            }
+        } else {
 
-			}
-		} else {
+            LogPagSeguro::error("Invalid notification parameters.");
+            self::printLog();
+        }
 
-			LogPagSeguro::error ( "Invalid notification parameters." );
-			self::printLog ();
-		}
+        if (is_object($transaction)) {
+            self::setTransacaoPagseguro($transaction);
+        }
 
-		if (is_object ( $transaction )) {
-			self::setTransacaoPagseguro($transaction);
-		}
+        return TRUE;
+    }
 
-		return TRUE;
-	}
+    /**
+     * TransactionNotification
+     *
+     * Recupera a transação através de uma notificação
+     * @access private
+     * @param unknown_type $notificationCode
+     * @return Ambigous <a, NULL, PagSeguroTransaction>
+     */
+    private static function TransactionNotification($notificationCode) {
+        $CI = & get_instance();
+        $credentials = new PagSeguroAccountCredentials($CI->config->item('pagseguroAccount'), $CI->config->item('pagseguroToken'));
 
-	/**
-	 * TransactionNotification
-	 *
-	 * Recupera a transação através de uma notificação
-	 * @access private
-	 * @param unknown_type $notificationCode
-	 * @return Ambigous <a, NULL, PagSeguroTransaction>
-	 */
+        try {
+            $transaction = PagSeguroNotificationService::checkTransaction($credentials, $notificationCode);
+        } catch (PagSeguroServiceException $e) {
+            die($e->getMessage());
+        }
 
-	private static function TransactionNotification($notificationCode) {
-		$CI = & get_instance ();
-		$credentials = new PagSeguroAccountCredentials ( $CI->config->item ( 'pagseguroAccount' ), $CI->config->item ( 'pagseguroToken' ) );
+        return $transaction;
+    }
 
-		try {
-			$transaction = PagSeguroNotificationService::checkTransaction ( $credentials, $notificationCode );
-		} catch ( PagSeguroServiceException $e ) {
-			die ( $e->getMessage () );
-		}
+    /**
+     * Método que registra logs do pagseguro
+     * @access private
+     * @param String $strType
+     */
+    private static function printLog($strType = null) {
+        $count = 30;
+        echo "<h2>Receive notifications</h2>";
+        if ($strType) {
+            echo "<h4>notifcationType: $strType</h4>";
+        }
+        echo "<p>Last <strong>$count</strong> items in <strong>log file:</strong></p><hr>";
+        echo LogPagSeguro::getHtml($count);
+    }
 
-		return $transaction;
-	}
-
-	/**
-	 * Método que registra logs do pagseguro
-	 * @access private
-	 * @param String $strType
-	 */
-	private static function printLog($strType = null) {
-		$count = 30;
-		echo "<h2>Receive notifications</h2>";
-		if ($strType) {
-			echo "<h4>notifcationType: $strType</h4>";
-		}
-		echo "<p>Last <strong>$count</strong> items in <strong>log file:</strong></p><hr>";
-		echo LogPagSeguro::getHtml ( $count );
-	}
 }
+
 /* End of file exemplo.php */
 /* Location: ./application/controllers/exemplo.php */

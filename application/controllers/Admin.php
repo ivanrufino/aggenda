@@ -27,7 +27,7 @@ class Admin extends CI_Controller {
     public function index() {
         $data['associado'] = $this->admin->getAdmin($this->cod_associado);
         $data['titulo'] = 'Aggenda.com | admin';
-        $data['servicos'] = $this->agenda->getServicos($this->cod_associado);
+       
         $tela['agendamento'] = ('modal/agendamento');
         $tela['conteudo'] = ('associado/calendario');
         $tela['menu'] = ('associado/menu');
@@ -37,7 +37,10 @@ class Admin extends CI_Controller {
             $tela['conteudo'] = ('associado/config_inicial');
             $tela['menu'] = ('associado/menu_vazio');
             $tela['lateralDireita'] = ('associado/vazio');
-        }
+        }else{ 
+            $data['servicos'] = $this->agenda->getServicos($this->cod_associado);
+            $data['horario'] = $this->agenda->getHorario($this->cod_associado);
+            }
         //$dados['COD_EMPRESA']=$data['associado']['COD_EMPRESA'];
         //$this->session->set_userdata($dados);
 

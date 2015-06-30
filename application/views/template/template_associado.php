@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
@@ -290,7 +290,7 @@
                             <li><a href="#"><i class="icon-gear"></i> Settings </a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="home/logout.html"><i class="icon-signout"></i> Logout </a>
+                            <li><a href="{base_url}home/logout.html"><i class="icon-signout"></i> Sair </a>
                             </li>
                         </ul>
 

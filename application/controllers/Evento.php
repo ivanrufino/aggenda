@@ -35,10 +35,11 @@ class Evento extends CI_Controller {
         echo $ret;
     }
 
-    public function criarEvento() {
+    public function criarEvento($admin=true) {
         $this->form_validation->set_rules('cod_funcionario_sala', '<strong>Agenda de</strong>', 'required');
         $this->form_validation->set_rules('cliente', 'Cliente', 'required');
         $this->form_validation->set_rules('dataStart', '<strong>Data</strong>', 'required|callback_date_invalid');
+        $this->form_validation->set_rules('dataEnd', '<strong>Data</strong>', 'required');
         $this->form_validation->set_rules('timeStart', '<strong>Tempo Inicial</strong>', 'required|callback_time_invalid');
         $this->form_validation->set_rules('timeEnd', '<strong>Tempo Final</strong>', 'required');
 
@@ -48,8 +49,45 @@ class Evento extends CI_Controller {
             $data=array('success'=>FALSE,'erros'=>$erros);
              echo json_encode($data);
         } else {
-            //colocar cadastro aqui;
-            $data=array('success'=>true,'msg'=>"<br><span class='alert alert-success'>Evento criado com sucesso</span>");
+            $confirmado=$admin? '1':'0';
+            $ALLDAY= $this->input->post('allday')=="Dia_Todo"? TRUE:FALSE;
+                
+            $dados=array(
+                'COD_CLIENTE'=>  $this->input->post('cliente'),
+                'START'=>$this->input->post('dataStart')." ".$this->input->post('timeStart'),
+                'END'=>$this->input->post('dataEnd')." ".$this->input->post('timeEnd'),
+                'COD_FUNCIONARIO_SALA'=>$this->input->post('cod_funcionario_sala'),
+                'ALLDAY'=>$ALLDAY,
+                'CONFIRMADO'=>$confirmado,
+            );
+               $id =  $this->agenda->novoAgendamento($dados);
+               
+            if ($id){
+                $data=array('success'=>true,'msg'=>"<br><span class='alert alert-success'>Evento criado com sucesso</span>");
+//                $evento = "Novo agendamento";
+//                
+//                
+//                if ( $this->input->post('allday')=="Dia_Todo"){
+//                    $start=$this->input->post('dataStart');
+//                    $end=$this->input->post('dataEnd');
+//                    $allday=" ";
+//                }else{
+//                    $start=$this->input->post('dataStart')."T".$this->input->post('timeStart');
+//                    $end=$this->input->post('dataEnd')."T".$this->input->post('timeEnd');
+//                    
+//                    $allday=false;
+//                }
+                $data['evento'] = $this->agenda->getAgenda($this->cod_associado,$id)[0];
+                
+//                $data['evento']=array(
+//                    'start'=>$start,
+//                    'end'=>$end,
+//                    'allday'=>$allday,
+//                    'evento'=>$evento);
+            }else{
+                $data=array('success'=>FALSE,'erros'=>'Não foi possivel criar este agendamento');
+            }
+            die(json_encode($data));
             echo json_encode($data);
             //echo "<br><span class='alert alert-success'>Arquivo gravado com sucesso</span>";
         }

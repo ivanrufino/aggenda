@@ -94,7 +94,15 @@
         </div>
         
     </div>
+<div class="col-md-4">
+        <div class="input-group input-append  " id="dataEnd" data-date="2015-06-27"
+             data-date-format="yyyy-mm-dd">
+            <input class="form-control" type="text" value="2015-06-27"  name="dataEnd" id="end" />
+            <span class="input-group-addon "><i class="icon-calendar"></i></span>
 
+        </div>
+        
+    </div>  
     </div>
     <br>
     <div class='row'>
@@ -117,6 +125,12 @@
         <div class="input-group bootstrap-timepicker">
             <input class="timepicker-24 form-control" type="text"  name="timeEnd" id="timeEnd"/>
             <span class="input-group-addon add-on"><i class="icon-time"></i>&nbsp; Fim</span>
+        </div>
+    </div>
+    <div class="col-md-6 ">
+        <div class="input-group ">
+            <input class="form-control" type="text"  value='' name="allday" id="allday"  readonly=""/>
+            <span class="input-group-addon add-on"><i class="icon-time"></i>&nbsp;</span>
         </div>
     </div>
 </div>
