@@ -31,6 +31,13 @@ class Agenda_model extends CI_Model{
             return FALSE;
         } 
     }
+    public function getNumServicos($cod_associado) {
+        $this->db->select('*');
+        $this->db->from('servico');
+        $this->db->where('COD_ASSOCIADO', $cod_associado);
+        return $this->db->count_all_results();
+    }
+    
     public function getHorario($cod_associado) {
         $this->db->select('*');
         $this->db->from('horario');

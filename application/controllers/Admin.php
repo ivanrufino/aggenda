@@ -25,6 +25,7 @@ class Admin extends CI_Controller {
     }
 
     public function index() {
+        $data['num_servico']=$this->agenda->getNumServicos($this->cod_associado);
         $data['associado'] = $this->admin->getAdmin($this->cod_associado);
         $data['titulo'] = 'Aggenda.com | admin';
        

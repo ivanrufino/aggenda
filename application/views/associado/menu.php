@@ -27,7 +27,7 @@
                 <span class="pull-right">
                     <i class="icon-angle-left"></i>
                 </span>
-                &nbsp; <span class="label label-success">5</span>&nbsp;
+                &nbsp; <span class="label label-success"><?=$num_servico?></span>&nbsp;
             </a>
             <ul class="collapse" id="form-serv">
                 <li class=""><a href="forms_general.html"><i class="icon-angle-right"></i> General </a></li>

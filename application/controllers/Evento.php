@@ -88,7 +88,7 @@ class Evento extends CI_Controller {
             }else{
                 $data=array('success'=>FALSE,'erros'=>'Não foi possivel criar este agendamento');
             }
-            die(json_encode($data));
+           // die(json_encode($data));
             echo json_encode($data);
             //echo "<br><span class='alert alert-success'>Arquivo gravado com sucesso</span>";
         }
