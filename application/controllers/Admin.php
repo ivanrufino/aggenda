@@ -19,7 +19,7 @@ class Admin extends CI_Controller {
         $js_global = array('../' . PLUGIN . '/bootstrap/js/bootstrap.min', '../' . PLUGIN . '/modernizr-2.6.2-respond-1.1.0.min', 'jquery.form');
         $this->js = array_merge($js_global); //, array(PASTA.'/for_index'));
         if (!$this->session->has_userdata('logged') || $this->session->userdata('logged') != 'in') {
-            //redirect('login');
+            redirect('login');
         }
         $this->cod_associado = $this->session->userdata('CODIGO');
         $this->load->model('Admin_model', 'admin');

@@ -7,7 +7,8 @@ define('PLUGIN', 'plugins');
 class Home extends CI_Controller {
     private $css = null;
     private $js = null;
-    private $nome_site="A<span>gg</span>endar.com";
+    private $data = null;
+   // private $nome_site="A<span>gg</span>endar.com";
 
     function __construct() {
         parent::__construct();
@@ -15,7 +16,7 @@ class Home extends CI_Controller {
         /* Global js */
         $js_global = array('../' . PLUGIN . '/bootstrap/js/bootstrap.min', '../' . PLUGIN . '/modernizr-2.6.2-respond-1.1.0.min');
         $this->js = array_merge($js_global); //, array(PASTA.'/for_index'));
-        
+        $this->data['nome_site']="A<span>gg</span>endar.com";
     }
 
     public function index() {
@@ -37,8 +38,7 @@ class Home extends CI_Controller {
     }
 
     public function login() {
-        $data['nome_site']=  $this->nome_site;
-        $this->load->view('associado/login',$data);
+       $this->load->view('associado/login',  $this->data);
     }
    
 
@@ -46,7 +46,7 @@ class Home extends CI_Controller {
         $this->form_validation->set_rules('login', 'Login', 'trim|required|callback_check_status');
         $this->form_validation->set_rules('senha', 'Senha', 'trim|required');
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('associado/login');
+            $this->load->view('associado/login',  $this->data);
         } else {
             $login =  $this->input->post('login');
             $senha =  sha1($this->input->post('senha'));
@@ -84,6 +84,10 @@ class Home extends CI_Controller {
     public function tela($tela) {
         //echo 'aqui';
         $this->load->view("template_associado/".$tela);
+    }
+    public function recupera_senha() {
+        var_dump($this->input->post());
+        die();
     }
 }
 
