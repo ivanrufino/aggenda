@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <!-- 
         Boxer Template
         http://www.templatemo.com/preview/templatemo_446_boxer
         -->
         <meta charset="utf-8">
-        <title>Aggenda.com - serviço de agendamento online</title>
+        <title>Aggendar.com - serviço de agendamento online</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--<link rel="icon" type="image/png" href="<?=  base_url()?>assets/agenda_logo.ico" />-->
+        <link rel="shortcut icon" href="<?=  base_url()?>assets/favicon.ico" type="image/x-icon" />
         <meta name="keywords" content="">
         <meta name="description" content="">
 

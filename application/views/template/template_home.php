@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-
+<html lang="pt-br">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>Aggenda.com | Home</title>
+		<title>Aggendar.com | Home</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+                <link rel="icon" type="image/png" href="{local}/agenda_logo.ico" />
 		<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -271,3 +272,4 @@
                     })
                 </script>
 	</body>
+</html>
