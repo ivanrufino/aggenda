@@ -207,7 +207,6 @@ from (((`agendamento` `A` join `usuario` `U` on((`U`.`CODIGO` = `A`.`COD_CLIENTE
 
 ALTER TABLE  `agendamento` ADD  `EDITABLE` BOOLEAN NOT NULL DEFAULT TRUE ;
 
-/*casa*/
 CREATE TABLE `horario` (
  `COD_ASSOCIADO` int(11) NOT NULL,
  `HORA_INICIO` time NOT NULL,
@@ -244,3 +243,75 @@ INSERT INTO `aggenda`.`versao` (`CODIGO`, `MAJOR`, `MINOR`, `PATCH`, `ESTAGIO`, 
 CREATE ALGORITHM = UNDEFINED VIEW  `v_versao` AS SELECT  `CODIGO` , CONCAT_WS(  '.',  `MAJOR` ,  `MINOR` ,  `PATCH` ,  `ESTAGIO` ) AS VERSAO_ATUAL, `DATA_LIBERACAO` 
 FROM  `versao` 
 ORDER BY CODIGO DESC;
+
+/*casa*/
+ALTER ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_agendamento` AS select `A`.`CODIGO` AS `CODIGO`,`A`.`COD_CLIENTE` AS `COD_CLIENTE`,if((`A`.`ALLDAY` = 0),replace(`A`.`START`,' ','T'),date_format(`A`.`START`,'%Y-%m-%d')) AS `start`,if((`A`.`ALLDAY` = 0),replace(`A`.`END`,' ','T'),date_format(`A`.`END`,'%Y-%m-%d')) AS `end`,if((`A`.`ALLDAY` = 0),NULL,`A`.`ALLDAY`) AS `allday`,`A`.`COD_FUNCIONARIO_SALA` AS `COD_FUNCIONARIO_SALA`,`A`.`CONFIRMADO` AS `CONFIRMADO`,`A`.`DATA_CADASTRO` AS `DATA_CADASTRO`,concat(`U`.`NOME`,'\n',`S`.`NOME`) AS `title`,`S`.`COD_ASSOCIADO` AS `COD_ASSOCIADO`,
+
+IF(`A`.`BACKGROUNDCOLOR` IS NULL,`S`.`BACKGROUNDCOLOR`,`A`.`BACKGROUNDCOLOR`) AS `backgroundColor`,
+IF(`A`.`TEXTCOLOR` IS NULL, `S`.`TEXTCOLOR`,`A`.`TEXTCOLOR`) AS `textColor`,
+IF(`A`.`BORDERCOLOR` IS NULL,`S`.`BORDERCOLOR`,`A`.`BORDERCOLOR`) AS `borderColor`
+
+,`A`.`EDITABLE` AS `editable` from (((`agendamento` `A` join `usuario` `U` on((`U`.`CODIGO` = `A`.`COD_CLIENTE`))) join `funcionario` `F` on((`F`.`CODIGO` = `A`.`COD_FUNCIONARIO_SALA`))) join `servico` `S` on((`S`.`CODIGO` = `F`.`COD_SERVICO`)));
+
+ALTER ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_associado_completo` AS select `A`.`CODIGO` AS `CODIGO`,`A`.`LOGIN` AS `LOGIN`,`A`.`SENHA` AS `SENHA`,`A`.`DATA_CADASTRO` AS `DATA_CADASTRO`,`A`.`ULTIMA_ATIVIDADE` AS `ULTIMA_ATIVIDADE`,`A`.`STATUS` AS `STATUS`,`A`.`EMAIL` AS `EMAIL`,`A`.`NOME_RESPONSAVEL` AS `NOME_RESPONSAVEL`,`A`.`SOBRENOME_RESPONSAVEL` AS `SOBRENOME_RESPONSAVEL`,`A`.`COD_EMPRESA` AS `COD_EMPRESA`,`E`.`NOME` AS `NOME`,`E`.`TIPO` AS `TIPO`,`E`.`CNPJ` AS `CNPJ`,`E`.`CPF` AS `CPF`,`E`.`URL` AS `URL`,`E`.`LOGO` AS `LOGO`,`E`.`TELEFONE` AS `TELEFONE`,`S`.`CODIGO` AS `COD_SEGMENTO`,`S`.`NOME` AS `SEGMENTO`,`S`.`TIPO` AS `TIPO_SEGMENTO` ,`END`.`CEP` AS `CEP`,`END`.`BAIRRO` AS `BAIRRO`,`END`.`CIDADE` AS `CIDADE`,`END`.`ESTADO` AS `ESTADO`,`END`.`LONGITUDE` AS `LONGITUDE`,`END`.`LATITUDE` AS `LATITUDE` from (((`associado` `A` left join `empresa` `E` on((`E`.`CODIGO` = `A`.`COD_EMPRESA`))) left join `segmento` `S` on((`S`.`CODIGO` = `E`.`SEGMENTO`))) left join `endereco` `END` on((`END`.`COD_ASSOCIADO` = `A`.`CODIGO`)))
+
+CREATE TABLE `mensagem` (
+ `CODIGO` int(11) NOT NULL AUTO_INCREMENT,
+ `DE` int(11) DEFAULT NULL,
+ `NOME_DE` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `PARA` int(11) NOT NULL,
+ `MENSAGEM` text COLLATE utf8_unicode_ci NOT NULL,
+ `GRAU` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '1' COMMENT '1=Baixa Importancia, 2- Media Importancia, 3- Alta Importancia',
+ `DATA_CADASTRO` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (`CODIGO`),
+ KEY `DE` (`DE`,`PARA`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+ALTER TABLE  `mensagem` ADD INDEX (  `PARA` ) ;
+ALTER TABLE  `mensagem` ADD  `EMAIL_DE` VARCHAR( 100 ) NOT NULL AFTER  `NOME_DE` ;
+
+
+ALTER TABLE  `mensagem` ADD FOREIGN KEY (  `DE` ) REFERENCES  `aggenda`.`usuario` (
+`CODIGO`
+) ON DELETE SET NULL ON UPDATE RESTRICT ;
+
+ALTER TABLE  `mensagem` ADD FOREIGN KEY (  `PARA` ) REFERENCES  `aggenda`.`associado` (
+`CODIGO`
+) ON DELETE CASCADE ON UPDATE RESTRICT ;
+
+INSERT INTO `aggenda`.`mensagem` (`CODIGO`, `DE`, `NOME_DE`, `PARA`, `MENSAGEM`, `GRAU`, `DATA_CADASTRO`) VALUES (NULL, NULL, 'Fulana alberto de tal queiroz', '1', 'Não sei o q escrever nesta merda de mensagem', '1', CURRENT_TIMESTAMP);
+
+CREATE ALGORITHM = UNDEFINED VIEW  `v_mensagens` AS SELECT CODIGO, PARA AS COD_ASSOCIADO, NOME_DE, MENSAGEM, GRAU, 
+CASE 
+WHEN GRAU =1
+THEN  'Baixa Importancia'
+WHEN GRAU =1
+THEN  'Média Importancia'
+WHEN GRAU =1
+THEN  'Alta Importancia'
+END AS GRAU_DESC, 
+CASE 
+WHEN DATEDIFF( NOW( ) ,  `DATA_CADASTRO` ) =0
+THEN  'Hoje'
+WHEN DATEDIFF( NOW( ) ,  `DATA_CADASTRO` ) =1
+THEN  'Ontem'
+ELSE DATA_CADASTRO
+END AS DATA
+FROM  `mensagem`;
+
+ALTER ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_mensagens` AS select `mensagem`.`CODIGO` AS `CODIGO`,`mensagem`.`PARA` AS `COD_ASSOCIADO`,`mensagem`.`NOME_DE` AS `NOME_DE`,
+`mensagem`.`MENSAGEM` AS `MENSAGEM`,
+SUBSTRING(`mensagem`.`MENSAGEM`,1,30) AS `MENSAGEM_CURTA`,
+`mensagem`.`GRAU` AS `GRAU`,
+(case 
+ when (`mensagem`.`GRAU` = 1) then 'Baixa Importancia' 
+ when (`mensagem`.`GRAU` = 2) then 'Média Importancia' 
+ when (`mensagem`.`GRAU` = 3) then 'Alta Importancia' end) 
+AS `GRAU_DESC`,
+(case 
+ when (`mensagem`.`GRAU` = 1) then 'danger' 
+ when (`mensagem`.`GRAU` = 2) then 'success' 
+ when (`mensagem`.`GRAU` = 3) then 'primary' end) AS `CLASSE`,
+(case 
+ when ((to_days(now()) - to_days(`mensagem`.`DATA_CADASTRO`)) = 0) then 'Hoje'                                                                when ((to_days(now()) - to_days(`mensagem`.`DATA_CADASTRO`)) = 1) then 'Ontem'                                                                else DATE_FORMAT(`mensagem`.`DATA_CADASTRO`, '%d-%m-%Y' )  end) 
+AS `DATA` from `mensagem`
+--a fazer

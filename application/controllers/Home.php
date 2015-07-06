@@ -20,8 +20,8 @@ class Home extends CI_Controller {
     }
 
     public function index() {
-        $data['nome_site']=  $this->nome_site;
-        $this->load->view('home/index',$data);
+        //$data['nome_site']=  $this->nome_site;
+        $this->load->view('home/index',  $this->data);
     }
 
     public function cadastrar() {

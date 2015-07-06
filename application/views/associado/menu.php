@@ -1,11 +1,16 @@
+<style>
+    .inicial{font-size: 30px;color: #0097A8;text-decoration: none                                                                                                                                                                                           }
+    .link_inicial{background-color: #0097A8;text-decoration: none !important;}
+</style>
 <div id="left" class="" >
     <div class="media user-media well-small">
-        <a class="user-link" href="#">
-            <img class="media-object img-thumbnail user-img" alt="User Picture" src="<?= base_url() ?>assets/images/template_associado/user.gif" />
+        <a class="user-link link_inicial " href="{base_url}/admin/config">
+            <span class='inicial media-object img-thumbnail user-img'> <?=$iniciais;?></span>
+            <!--<img class="media-object img-thumbnail user-img" alt="User Picture" src="<?= base_url() ?>assets/images/template_associado/user.gif" />-->
         </a>
         <br />
         <div class="media-body">
-            <h5 class="media-heading"> <?= $associado['NOME_RESPONSAVEL'] ?> </h5>
+            <h3 class="media-heading"> <?= $associado['NOME_RESPONSAVEL'] ?> </h3>
             <!--                    <ul class="list-unstyled user-info">                        
                                     <li> <a class="btn btn-success btn-xs btn-circle" style="width: 10px;height: 12px;"></a> Online </li>                       
                                 </ul>-->
@@ -17,7 +22,7 @@
         <li class=" <?= ativar('painel',$local_atual); ?>"><a href="{base_url}admin/painel.html" ><i class="icon-table"></i> Painel</a></li>
 
         <li class=" <?= ativar('index',$local_atual); ?>"><a href="{base_url}admin/calendario"><i class="icon-calendar"></i> Calendário</a></li>
-        <li class="<?= ativar('clientes',$local_atual); ?>"><a href="{base_url}admin/clientes"><i class="icon-user"></i> Clientes &nbsp; <span class="label label-default">10</span></a></li>
+        <li class="<?= ativar('clientes',$local_atual); ?>"><a href="{base_url}admin/clientes"><i class="icon-user"></i> Clientes &nbsp; <span class="label label-default">{num_cliente}</span></a></li>
         
         <!--<li class="<?= ativar('servico',$local_atual); ?>"><a href="{base_url}admin/servico"><i class="icon-user"></i> Serviços &nbsp; <span class="label label-default">10</span></a></li>-->
         <li class="panel <?= ativar('servico',$local_atual); ?>">
@@ -27,17 +32,21 @@
                 <span class="pull-right">
                     <i class="icon-angle-left"></i>
                 </span>
-                &nbsp; <span class="label label-success"><?=$num_servico?></span>&nbsp;
+                &nbsp; <span class="label label-success">{num_servico}</span>&nbsp;
             </a>
             <ul class="collapse" id="form-serv">
-                <li class=""><a href="forms_general.html"><i class="icon-angle-right"></i> General </a></li>
+                <?php foreach ($servicos as $servico) { ?>
+                    <li class=""><a href="{base_url}admin/servico/<?=$servico['CODIGO']?>"><i class="icon-angle-right"></i> <?=$servico['NOME'] ?></a></li>
+                <?php } ?>
+                
+<!--                <li class=""><a href="forms_general.html"><i class="icon-angle-right"></i> General </a></li>
                 <li class=""><a href="forms_advance.html"><i class="icon-angle-right"></i> Advance </a></li>
                 <li class=""><a href="forms_validation.html"><i class="icon-angle-right"></i> Validation </a></li>
                 <li class=""><a href="forms_fileupload.html"><i class="icon-angle-right"></i> FileUpload </a></li>
-                <li class=""><a href="forms_editors.html"><i class="icon-angle-right"></i> WYSIWYG / Editor </a></li>
+                <li class=""><a href="forms_editors.html"><i class="icon-angle-right"></i> WYSIWYG / Editor </a></li>-->
             </ul>
         </li>
-        <?php if (true): ?>
+        <?php if ($associado['TIPO_SEGMENTO']=='1'): ?>
         <li class="panel <?= ativar('funcionario',$local_atual); ?>">
             <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-func">
                 <i class="icon-pencil"></i> Todos os funcionários
@@ -45,14 +54,20 @@
                 <span class="pull-right">
                     <i class="icon-angle-left"></i>
                 </span>
-                &nbsp; <span class="label label-success">5</span>&nbsp;
+                &nbsp; <span class="label label-success">{num_func_sala}</span>&nbsp;
             </a>
             <ul class="collapse" id="form-func">
-                <li class=""><a href="forms_general.html"><i class="icon-angle-right"></i> General </a></li>
+                <?php foreach ($func_salas as $func_sala) { 
+                   // die(print_r($associado));
+                   
+                    ?>
+                    <li class=""><a href="{base_url}admin/funcionario/<?=$func_sala['CODIGO']?>"><i class="icon-angle-right"></i> <?=$func_sala['NOME'] ?></a></li>
+                <?php } ?>
+<!--                <li class=""><a href="forms_general.html"><i class="icon-angle-right"></i> General </a></li>
                 <li class=""><a href="forms_advance.html"><i class="icon-angle-right"></i> Advance </a></li>
                 <li class=""><a href="forms_validation.html"><i class="icon-angle-right"></i> Validation </a></li>
                 <li class=""><a href="forms_fileupload.html"><i class="icon-angle-right"></i> FileUpload </a></li>
-                <li class=""><a href="forms_editors.html"><i class="icon-angle-right"></i> WYSIWYG / Editor </a></li>
+                <li class=""><a href="forms_editors.html"><i class="icon-angle-right"></i> WYSIWYG / Editor </a></li>-->
             </ul>
         </li>
         
@@ -64,14 +79,20 @@
                 <span class="pull-right">
                     <i class="icon-angle-left"></i>
                 </span>
-                &nbsp; <span class="label label-success">5</span>&nbsp;
+                &nbsp; <span class="label label-success">{num_func_sala}</span>&nbsp;
             </a>
             <ul class="collapse" id="form-loc">
-                <li class=""><a href="forms_general.html"><i class="icon-angle-right"></i> General </a></li>
+                <?php foreach ($func_salas as $func_sala) { 
+                   // die(print_r($associado));
+                   
+                    ?>
+                    <li class=""><a href="{base_url}admin/local/<?=$func_sala['CODIGO']?>"><i class="icon-angle-right"></i> <?=$func_sala['NOME'] ?></a></li>
+                <?php } ?>
+<!--                <li class=""><a href="forms_general.html"><i class="icon-angle-right"></i> General </a></li>
                 <li class=""><a href="forms_advance.html"><i class="icon-angle-right"></i> Advance </a></li>
                 <li class=""><a href="forms_validation.html"><i class="icon-angle-right"></i> Validation </a></li>
                 <li class=""><a href="forms_fileupload.html"><i class="icon-angle-right"></i> FileUpload </a></li>
-                <li class=""><a href="forms_editors.html"><i class="icon-angle-right"></i> WYSIWYG / Editor </a></li>
+                <li class=""><a href="forms_editors.html"><i class="icon-angle-right"></i> WYSIWYG / Editor </a></li>-->
             </ul>
         </li>
         

@@ -71,10 +71,29 @@
                         <!-- MESSAGES SECTION -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <span class="label label-success">2</span>    <i class="icon-envelope-alt"></i>&nbsp; <i class="icon-chevron-down"></i>
+                                <span class="label label-success">{num_mensagem_hoje}</span>    <i class="icon-envelope-alt"></i>&nbsp; <i class="icon-chevron-down"></i>
                             </a>
 
                             <ul class="dropdown-menu dropdown-messages">
+                                {mensagens}
+                                   <li>
+                                        <a href="#">
+                                            <div>
+                                                <strong>{NOME_DE}</strong>
+                                                <span class="pull-right text-muted">
+                                                    <em>{DATA}</em>
+                                                </span>
+                                            </div>
+                                            <div>{MENSAGEM_CURTA}
+                                                <br />
+                                                <span class="label label-{CLASSE}">{GRAU_DESC}</span> 
+
+                                            </div>
+                                        </a>
+                                    </li> 
+                                    <li class="divider"></li>
+                                {/mensagens}
+                                <!--
                                 <li>
                                     <a href="#">
                                         <div>
@@ -121,9 +140,10 @@
                                     </a>
                                 </li>
                                 <li class="divider"></li>
+                                -->
                                 <li>
                                     <a class="text-center" href="#">
-                                        <strong>Read All Messages</strong>
+                                        <strong>Leia todas as mensagens</strong>
                                         <i class="icon-angle-right"></i>
                                     </a>
                                 </li>
@@ -133,7 +153,7 @@
                         <!--END MESSAGES SECTION -->
 
                         <!--TASK SECTION -->
-                        <li class="dropdown">
+                       <!-- <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                 <span class="label label-danger">5</span>   <i class="icon-tasks"></i>&nbsp; <i class="icon-chevron-down"></i>
                             </a>
@@ -211,7 +231,7 @@
                                 </li>
                             </ul>
 
-                        </li>
+                        </li> -->
                         <!--END TASK SECTION -->
 
                         <!--ALERTS SECTION -->

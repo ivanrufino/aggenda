@@ -23,7 +23,6 @@ class Agenda_model extends CI_Model{
         $this->db->from('servico');
         $this->db->where('COD_ASSOCIADO', $cod_associado);
         $query = $this->db->get();        
-       // echo $this->db->last_query(); die();
         
         if($query->num_rows() > 0){
             return $query->result_array();
@@ -52,14 +51,29 @@ class Agenda_model extends CI_Model{
         } 
     }
     
-     public function getFuncSala($cod_associado) {
-        $this->db->select('*');
-        $this->db->from('funcionario');
-        $this->db->where('COD_SERVICO', $cod_associado);
-        $this->db->where('STATUS', 1);
+     public function getFuncSala($cod_servico) {
+        $this->db->select('F.*');
+        $this->db->from('funcionario F');
+        $this->db->join('func_serv FS', 'FS.COD_FUNCIONARIO = F.CODIGO');
+        $this->db->where('FS.COD_SERVICO', $cod_servico);
+        $this->db->where('F.STATUS', 1);
         $query = $this->db->get();        
        // echo $this->db->last_query(); die();
         
+        if($query->num_rows() > 0){
+            return $query->result_array();
+        }else{ 
+            return FALSE;
+        } 
+    }
+    public function getAllFuncSala($cod_associado) {
+        $this->db->select('F.*');
+        $this->db->from('funcionario F');
+        $this->db->join('func_serv FS', 'FS.COD_FUNCIONARIO = F.CODIGO');
+        $this->db->join('servico S', 'S.CODIGO = FS.COD_SERVICO');
+        $this->db->where('S.COD_ASSOCIADO', $cod_associado);
+        $query = $this->db->get();        
+        //echo $this->db->last_query(); die();
         if($query->num_rows() > 0){
             return $query->result_array();
         }else{ 

@@ -24,6 +24,7 @@ class Admin extends CI_Controller {
         $this->cod_associado = $this->session->userdata('CODIGO');
         $this->load->model('Admin_model', 'admin');
         $this->load->model('Agenda_model', 'agenda');
+        $this->load->model('Mensagem_model', 'mensagem');
         if (is_null($this->data['associado'])) {
             $this->data['associado'] = $this->admin->getAdmin($this->cod_associado);
         }
@@ -39,7 +40,7 @@ class Admin extends CI_Controller {
             $this->tela['menu'] = ('associado/menu_vazio');
         } else {
             $this->tela['conteudo'] = ('associado/calendario');
-            $this->data['servicos'] = $this->agenda->getServicos($this->cod_associado);
+            //$this->data['servicos'] = $this->agenda->getServicos($this->cod_associado);
             $this->data['horario'] = $this->agenda->getHorario($this->cod_associado);
         }
 
@@ -89,10 +90,32 @@ class Admin extends CI_Controller {
     public function dadosComuns() {
         $this->parser->adc_css($this->css);
         $this->parser->adc_js($this->js);
-        $this->data['num_servico'] = $this->agenda->getNumServicos($this->cod_associado);
-        $this->tela['menu'] = 'associado/menu';
+        $this->data['iniciais']= $this->Iniciais( $this->data['associado']['NOME'],FALSE);
+        $this->data['servicos'] = $this->agenda->getServicos($this->cod_associado);
+        $this->data['func_salas'] = $this->agenda->getAllFuncSala($this->cod_associado);
+        $this->data['agenda'] = $this->agenda->getAgenda($this->cod_associado);
+        $this->data['mensagens'] = $this->mensagem->getMensagem($this->cod_associado,'3');
         
+        $this->data['num_servico'] = count($this->data['servicos']); //$this->agenda->getNumServicos($this->cod_associado);
+        $this->data['num_func_sala'] = count($this->data['func_salas']);
+        $this->data['num_mensagem_hoje']=  $this->mensagem->getNumMensagemHoje($this->cod_associado);
+        $limite_agendamento=50; // temporario
+        $this->data['num_agendamento'] = count($this->data['agenda'])." de ".$limite_agendamento;
+        $this->data['num_agendamento_percent'] =$this->data['num_agendamento']/ $limite_agendamento*100;
+        
+        $this->data['num_cliente'] = 12;
+        $this->tela['menu'] = 'associado/menu';
+       
     }
+    public function Iniciais($nome,$minusculas = true){
+	preg_match_all('/\s?([A-Z])/',$nome,$matches);
+	$ret = implode('',$matches[1]);
+	return $minusculas?
+		strtolower($ret) :
+		$ret;
+}
+
+
 
 }
 
