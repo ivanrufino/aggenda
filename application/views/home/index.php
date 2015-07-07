@@ -39,6 +39,7 @@
         </style>
     </head>
     <body>
+        <?php if(isset( )) quando vier um erro de email ou banco de dados fazer aparecer um modal mostrando o erro ?>
         <!-- start preloader -->
         <div class="preloader">
             <div class="sk-spinner sk-spinner-rotating-plane"></div>

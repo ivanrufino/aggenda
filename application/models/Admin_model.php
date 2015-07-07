@@ -16,8 +16,13 @@ class Admin_model extends CI_Model{
         } 
     }
     public function novoAdmin($dados) {
-
-
+        //unset($dados['senha_curta']);
+        $dados['NOME_RESPONSAVEL']=$dados['SOBRENOME_RESPONSAVEL']="";
+       if ($this->db->insert('associado', $dados)){
+          return $this->db->insert_id();
+        }else{
+            return false;
+        }
     }
     public function alteraAdmin($id, $dados) {
 

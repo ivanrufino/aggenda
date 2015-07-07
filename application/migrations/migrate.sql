@@ -167,13 +167,13 @@ ALTER TABLE  `endereco` ADD FOREIGN KEY (  `COD_ASSOCIADO` ) REFERENCES  `aggend
 `CODIGO`
 ) ON DELETE CASCADE ON UPDATE RESTRICT ;
 
---alterado até aqui
+
 ALTER TABLE  `usuario` ADD  `DATA_ANIVERSARIO` DATE NOT NULL ,
 ADD  `PROFISSAO` VARCHAR( 100 ) NULL 
 ADD  `EMAIL` VARCHAR( 100 ) NOT NULL ,
 ADD  `CPF` VARCHAR( 15 ) NOT NULL ; 
 ALTER TABLE  `usuario` CHANGE  `ULTIMA_ATIVIDADE`  `ULTIMA_ATIVIDADE` DATETIME NULL DEFAULT NULL ;
---Ate aqui
+
 ALTER TABLE  `segmento` ADD  `TIPO` VARCHAR( 2 ) NOT NULL DEFAULT  '1' COMMENT  '1-Serviços, 2 Locação'
 
 ALTER TABLE  `agendamento` ADD FOREIGN KEY (  `COD_CLIENTE` ) REFERENCES  `aggenda`.`usuario` (
@@ -181,8 +181,7 @@ ALTER TABLE  `agendamento` ADD FOREIGN KEY (  `COD_CLIENTE` ) REFERENCES  `aggen
 ) ON DELETE CASCADE ON UPDATE RESTRICT ;
 ALTER TABLE  `agendamento` ADD  `EXTRA` TEXT NOT NULL AFTER  `CONFIRMADO`;
 
---AQUI
--- TEM QUE TIRAR A RELAÇÃO DA TABELA AGENDAMENTOS ANTES
+NTES
 ALTER TABLE  `usuario` CHANGE  `ID`  `CODIGO` INT( 11 ) NOT NULL AUTO_INCREMENT ;
 ALTER TABLE  `agendamento` ADD FOREIGN KEY (  `COD_CLIENTE` ) REFERENCES  `aggenda`.`usuario` (
 `CODIGO`
@@ -193,7 +192,6 @@ INSERT INTO `agendamento` (`CODIGO`, `COD_CLIENTE`, `START`, `END`, `COD_FUNCION
 (1, 1, '2015-06-24 10:00:00', '2015-06-24 11:00:00', 1, 1, 'a:3:{s:5:"color";s:4:"blue";s:15:"backgroundColor";s:3:"fff";s:8:"editable";b:0;}', '2015-06-24 00:05:20'),
 (2, 2, '2015-06-24 12:00:00', '2015-06-24 14:45:00', 2, 1, 'a:2:{s:5:"color";s:4:"blue";s:15:"backgroundColor";s:3:"fff";}', '2015-06-24 00:05:20');
 
--- a partir daui
 ALTER TABLE  `servico` ADD  `BACKGROUNDCOLOR` VARCHAR( 55 ) NULL ,
 ADD  `TEXTCOLOR` VARCHAR( 55 ) NULL ,
 ADD  `BORDERCOLOR` VARCHAR( 55 ) NULL ;
@@ -224,10 +222,9 @@ ALTER TABLE  `agendamento` ADD  `ALLDAY` BOOLEAN NOT NULL DEFAULT FALSE AFTER  `
 
 ALTER TABLE  `agendamento` ADD  `BACKGROUNDCOLOR` VARCHAR( 50 ) NULL DEFAULT NULL AFTER  `CONFIRMADO` ,
 ADD  `TEXTCOLOR` VARCHAR( 50 ) NULL DEFAULT NULL AFTER  `BACKGROUNDCOLOR` ,
-ADD  `BORDERCOLOR` VARCHAR( 50 ) NULL DEFAULT NULL AFTER  `TEXTCOLOR` ;
---a fazer
 
-/*escritorio*/
+
+
 CREATE TABLE `versao` (
  `CODIGO` int(11) NOT NULL AUTO_INCREMENT,
  `MAJOR` int(11) NOT NULL,
@@ -244,7 +241,6 @@ CREATE ALGORITHM = UNDEFINED VIEW  `v_versao` AS SELECT  `CODIGO` , CONCAT_WS(  
 FROM  `versao` 
 ORDER BY CODIGO DESC;
 
-/*casa*/
 ALTER ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_agendamento` AS select `A`.`CODIGO` AS `CODIGO`,`A`.`COD_CLIENTE` AS `COD_CLIENTE`,if((`A`.`ALLDAY` = 0),replace(`A`.`START`,' ','T'),date_format(`A`.`START`,'%Y-%m-%d')) AS `start`,if((`A`.`ALLDAY` = 0),replace(`A`.`END`,' ','T'),date_format(`A`.`END`,'%Y-%m-%d')) AS `end`,if((`A`.`ALLDAY` = 0),NULL,`A`.`ALLDAY`) AS `allday`,`A`.`COD_FUNCIONARIO_SALA` AS `COD_FUNCIONARIO_SALA`,`A`.`CONFIRMADO` AS `CONFIRMADO`,`A`.`DATA_CADASTRO` AS `DATA_CADASTRO`,concat(`U`.`NOME`,'\n',`S`.`NOME`) AS `title`,`S`.`COD_ASSOCIADO` AS `COD_ASSOCIADO`,
 
 IF(`A`.`BACKGROUNDCOLOR` IS NULL,`S`.`BACKGROUNDCOLOR`,`A`.`BACKGROUNDCOLOR`) AS `backgroundColor`,
@@ -314,4 +310,6 @@ AS `GRAU_DESC`,
 (case 
  when ((to_days(now()) - to_days(`mensagem`.`DATA_CADASTRO`)) = 0) then 'Hoje'                                                                when ((to_days(now()) - to_days(`mensagem`.`DATA_CADASTRO`)) = 1) then 'Ontem'                                                                else DATE_FORMAT(`mensagem`.`DATA_CADASTRO`, '%d-%m-%Y' )  end) 
 AS `DATA` from `mensagem`
---a fazer
+
+--2015-07-07
+ALTER TABLE  `associado` CHANGE  `STATUS`  `STATUS` VARCHAR( 1 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT  'I' COMMENT  'I - inativo, A -ativo'
