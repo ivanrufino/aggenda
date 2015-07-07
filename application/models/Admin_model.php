@@ -36,7 +36,12 @@ class Admin_model extends CI_Model{
         
     }
     public function alteraAdmin($id, $dados) {
-
+        $this->db->where('CODIGO', $id);
+        $this->db->update('associado', $dados);
+        if($this->db->affected_rows()>0){
+            return true;
+        }
+        return false;
     }
     public function excluirAdmin($id) {
 

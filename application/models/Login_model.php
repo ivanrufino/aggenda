@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login_model extends CI_Model{
      
     public function efetuarLogin($login, $senha) {
-        $this->db->select('CODIGO,COD_EMPRESA');
+        $this->db->select('CODIGO,COD_EMPRESA,ULTIMA_ATIVIDADE');
         $this->db->from('associado');
         $this->db->where('EMAIL', $login);
         $this->db->or_where('LOGIN', $login);

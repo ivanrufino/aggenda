@@ -78,6 +78,7 @@ class Home extends CI_Controller {
             if ($dados) {
                 $dados['logged'] = 'in';
                 $this->session->set_userdata($dados);
+                $this->admin->alteraAdmin($dados['CODIGO'],array('ULTIMA_ATIVIDADE'=>date('Y-m-d H:i:s' )));
             }
             redirect('admin');
 

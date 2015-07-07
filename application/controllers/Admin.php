@@ -32,6 +32,7 @@ class Admin extends CI_Controller {
 
     public function index() {
         $this->dadosComuns();
+        die($this->session->userdata('ULTIMA_ATIVIDADE'));
         $this->data['titulo'] = 'Aggenda.com | admin > Calendário';
         $this->tela['agendamento'] = ('modal/agendamento');
         $this->tela['lateralDireita'] = ('associado/vazio');
