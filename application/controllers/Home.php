@@ -38,25 +38,27 @@ class Home extends CI_Controller {
                 'LOGIN' => $this->input->post('login'),
                 'EMAIL' => $this->input->post('email'),
                 'SENHA' => sha1($this->input->post('senha')),
+                'emailLoginHash' =>  sha1($this->input->post('email').$this->input->post('login')),
                 'senha_curta' => substr($this->input->post('senha'), 0,3)
             );
             $this->db->trans_begin();
             $id_associado = $this->admin->novoAdmin($dados);
-            $email_enviado = $this->sendEmail('ativacao_conta', $dados);
-         
+            $email_enviado=FALSE;
+            if($id_associado){
+                $email_enviado = $this->sendEmail('ativacao_conta', $dados);
+            }
             if ($this->db->trans_status() === FALSE || $email_enviado === FALSE) {
                 $this->db->trans_rollback();
-                $error_email ="Não foi possível enviar o email de confirmação. <br> Por favor tente novamente.<br> se o erro persistir entre em contato";
-                $erro_database= "Não foi possível realizar o cadastro. <br> Por favor tente novamente.";
+                $error_email ="Não foi possível enviar o email de confirmação.<br> ";
+                $erro_database= "Não foi possível realizar o cadastro com os dados informados. <br> Por favor tente novamente.";
                 $this->data['error']['error_email']= $email_enviado ===FALSE ? $error_email:NULL;
                 $this->data['error']['erro_database']= $this->db->trans_status() ===FALSE ? $erro_database:NULL;
                 $this->load->view('home/index',$this->data);
             } else {
                 $this->db->trans_commit();
             }
-            var_dump( $this->db->trans_status() );
-            var_dump($email_enviado);
-           //redirect('login');
+
+           redirect('login');
         }
     }
 
@@ -88,7 +90,7 @@ class Home extends CI_Controller {
 
         if ($status) {
             if ($status == "I") {
-                $this->form_validation->set_message('check_status', 'Seu cadastro ainda não foi ativada<br> Verifique o email enviado para sua conta.');
+                $this->form_validation->set_message('check_status', 'Seu cadastro ainda não foi ativado<br> Verifique o email enviado para sua conta.');
                 return FALSE;
             } else {
                 return true;
@@ -103,7 +105,19 @@ class Home extends CI_Controller {
         $this->session->sess_destroy();
         redirect('login');
     }
-
+    public function ativacao_conta($email_mais_login_hash) {
+        if($this->admin->ativar($email_mais_login_hash)){
+            echo "Ativação realizada"; 
+        }else{
+            echo "Houve uma falha na ativação.<br>"
+            . "Possiveis causas"
+                    . "<ul><li>Cadastro já foi ativado anteriormente</li>"
+                    . "<li>Servidor fora do ar</li></ul>"
+                    . "Por favor, tente novamente, se o problema persistir entre em contato";
+        }
+        
+       
+    }
     public function tela($tela) { //função para ver as telas do modelo que ainda nao utilizo no sistema | apagar depois do sistema pronto
         //echo 'aqui';
         $this->load->view("template_associado/" . $tela);
@@ -120,11 +134,11 @@ class Home extends CI_Controller {
         $this->email->message($mensagem);
 
 
-//        if ($this->email->send()) {
-//            return true;
-//        } else {
+        if ($this->email->send()) {
+            return true;
+        } else {
             return false;
-//        }
+        }
     }
 
     public function view_email($email) { // função para visualizar as telas dos email enviados | apagar depois do sismte pronto

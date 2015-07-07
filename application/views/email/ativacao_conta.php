@@ -17,8 +17,8 @@
 			Agora você pode organizar o agendamento de seus serviços, salas de reuniões entre outros.<br>
 			Seus clientes podem reservar online em sua página personalizada:
 			<fieldset style="width:60%; margin: 0 auto;"><legend>Dados Cadastrais</legend>
-				Login: <?=$login; ?> <br>
-				Email: <?= $email; ?> <br>
+				Login: <?=$LOGIN; ?> <br>
+				Email: <?= $EMAIL; ?> <br>
 				Senha: <?=$senha_curta?>****** <br><small>Caso não lembre da senha, entre na página de login e clique em 'esqueci minha senha'</small>
 			</fieldset>
 			<br>
@@ -26,7 +26,7 @@
 			<p style="padding-left:20%">
 			Alguns passos devem ser tomados para a utilização do sistema:
 			<ol style="padding-left:30%">
-			<li>Ative seu cadastro <a href="<?=base_url() ?>home/ativacao_conta">clicando aqui</a></li>
+			<li>Ative seu cadastro <a href="<?=base_url() ?>home/ativacao_conta/<?=$emailLoginHash?>">clicando aqui</a></li>
 			<li>Após a ativação realize o <a href="<?=base_url() ?>home/login"> login </a> e preencha as informações referentes a sua empresa e/ou serviços oferecidos</li>
 			<li>Adcione os funcionários ou salas de disponiveis e a agenda correspondente</li>
 			<li>Divulgue para seus clientes</li>

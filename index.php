@@ -54,7 +54,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 switch($_SERVER["HTTP_HOST"]){
- case "localhost":
+ case "localhosts":
     define('ENVIRONMENT', 'development');
  break;
  default:

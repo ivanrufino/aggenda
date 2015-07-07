@@ -16,13 +16,24 @@ class Admin_model extends CI_Model{
         } 
     }
     public function novoAdmin($dados) {
-        //unset($dados['senha_curta']);
+        unset($dados['senha_curta']);
+        unset($dados['emailLoginHash']);
         $dados['NOME_RESPONSAVEL']=$dados['SOBRENOME_RESPONSAVEL']="";
        if ($this->db->insert('associado', $dados)){
           return $this->db->insert_id();
         }else{
             return false;
         }
+    }
+    public function ativar($emailLogin) {
+        $dados['STATUS']='A';
+        $this->db->where('sha1(concat(EMAIL,LOGIN))', $emailLogin);
+        $this->db->update('associado', $dados);
+        if($this->db->affected_rows()>0){
+            return true;
+        }
+        return false;
+        
     }
     public function alteraAdmin($id, $dados) {
 
