@@ -46,4 +46,17 @@ class Admin_model extends CI_Model{
     public function excluirAdmin($id) {
 
     }
+    public function getVersao() {
+        $this->db->select('*');
+        $this->db->from('v_versao');
+        $this->db->limit('1');
+        $query = $this->db->get();        
+       // echo $this->db->last_query(); die();
+        
+        if($query->num_rows() > 0){
+            return $query->row_array();
+        }else{ 
+            return FALSE;
+        } 
+    }
 }

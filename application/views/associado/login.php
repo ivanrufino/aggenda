@@ -6,7 +6,7 @@
     <!-- BEGIN HEAD -->
     <head>
         <meta charset="UTF-8" />
-        <title>Aggendar.com | Login </title>
+        <title>Aggendar | Login </title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <link rel="icon" type="image/png" href="<?=  base_url()?>assets/agenda_logo.ico" />
         <meta content="sistema de agendamento online login" name="description" />

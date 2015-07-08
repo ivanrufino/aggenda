@@ -311,5 +311,5 @@ AS `GRAU_DESC`,
  when ((to_days(now()) - to_days(`mensagem`.`DATA_CADASTRO`)) = 0) then 'Hoje'                                                                when ((to_days(now()) - to_days(`mensagem`.`DATA_CADASTRO`)) = 1) then 'Ontem'                                                                else DATE_FORMAT(`mensagem`.`DATA_CADASTRO`, '%d-%m-%Y' )  end) 
 AS `DATA` from `mensagem`
 
---2015-07-07
-ALTER TABLE  `associado` CHANGE  `STATUS`  `STATUS` VARCHAR( 1 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT  'I' COMMENT  'I - inativo, A -ativo'
+
+

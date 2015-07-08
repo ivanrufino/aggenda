@@ -32,7 +32,7 @@ class Admin extends CI_Controller {
 
     public function index() {
         $this->dadosComuns();
-        die($this->session->userdata('ULTIMA_ATIVIDADE'));
+        //die($this->session->userdata('ULTIMA_ATIVIDADE'));
         $this->data['titulo'] = 'Aggenda.com | admin > Calendário';
         $this->tela['agendamento'] = ('modal/agendamento');
         $this->tela['lateralDireita'] = ('associado/vazio');
@@ -87,7 +87,9 @@ class Admin extends CI_Controller {
 
         $this->parser->mostrar('template/template_associado.php', $this->tela, $this->data);
     }
-
+    public function updateConfigInicial($param) {
+        print_r($this->input->post());
+    }
     public function dadosComuns() {
         $this->parser->adc_css($this->css);
         $this->parser->adc_js($this->js);
@@ -96,6 +98,7 @@ class Admin extends CI_Controller {
         $this->data['func_salas'] = $this->agenda->getAllFuncSala($this->cod_associado);
         $this->data['agenda'] = $this->agenda->getAgenda($this->cod_associado);
         $this->data['mensagens'] = $this->mensagem->getMensagem($this->cod_associado,'3');
+        $this->data['versao'] = $this->admin->getVersao();
         
         $this->data['num_servico'] = count($this->data['servicos']); //$this->agenda->getNumServicos($this->cod_associado);
         $this->data['num_func_sala'] = count($this->data['func_salas']);

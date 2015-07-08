@@ -10,7 +10,7 @@ class Home extends CI_Controller {
     private $js = null;
     private $data = null;
 
-    // private $nome_site="A<span>gg</span>endar.com";
+    // private $nome_site="A<span>gg</span>endar";
 
     function __construct() {
         parent::__construct();
@@ -18,7 +18,7 @@ class Home extends CI_Controller {
         /* Global js */
         $js_global = array('../' . PLUGIN . '/bootstrap/js/bootstrap.min', '../' . PLUGIN . '/modernizr-2.6.2-respond-1.1.0.min');
         $this->js = array_merge($js_global); //, array(PASTA.'/for_index'));
-        $this->data['nome_site'] = "A<span>gg</span>endar.com";
+        $this->data['nome_site'] = "A<span>gg</span>endar";
         $this->load->model('Admin_model', 'admin');
     }
 

@@ -217,6 +217,7 @@ function finishStep(wizard, state)
     {
         currentStep.addClass("done").removeClass("error");
         wizard.triggerHandler("finished", [state.currentIndex]);
+        
     }
     else
     {
