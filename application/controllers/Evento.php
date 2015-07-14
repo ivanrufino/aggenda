@@ -17,12 +17,14 @@ class Evento extends CI_Controller {
     }
 
     public function getEventos($servico = NULL, $funcionario = NULL) {
-        //  echo "servico: $servico"; echo $funcionario;
+        header('Access-Control-Allow-Origin: *');
+       // echo "100";
+               $this->cod_associado =1;
         $dados = $this->agenda->getAgenda($this->cod_associado);
         if ($this->input->is_ajax_request()){
             echo json_encode($dados);
         }else{
-            echo "Only ajax request.";
+            echo json_encode($dados);
         }
         
     }
