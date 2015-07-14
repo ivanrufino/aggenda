@@ -37,6 +37,7 @@ class Admin extends CI_Controller {
         $this->tela['agendamento'] = ('modal/agendamento');
         $this->tela['lateralDireita'] = ('associado/vazio');
         if (is_null($this->data['associado']['COD_EMPRESA'])) {
+            $this->data['segmentos']= $this->admin->getSegmentos();
             $this->tela['conteudo'] = ('associado/config_inicial');
             $this->tela['menu'] = ('associado/menu_vazio');
         } else {

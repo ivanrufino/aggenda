@@ -44,30 +44,33 @@
                                     <div class="form-group">
                                         <div class="col-md-8">
                                             <label>Seu cadastro será de empresa ou pessoa física?</label>
-                                            <select class="form-control" name="TIPO">
+                                            <select class="form-control" name="TIPO" id="tipo">
                                                 <option value="J">Empresa</option>
-                                                <option value="=F">Pessoa Física</option>
+                                                <option value="F">Pessoa Física</option>
                                             </select>
                                             <p class="help-block hide">Example block-level help text here.</p>
                                         </div>
                                     </div>
                                     <br><br>    <br><br>    
-                                     <div class="form-group">
+                                    <div class="form-group">
                                         <div class="col-md-6">
                                             <label>Área de atuação</label>
                                             <select class="form-control">
-                                                <option value="1">Salão de Beleza</option>
-                                                <option value="1">Clinica Médica</option>
-                                                <option value="1">Outros</option>
+                                                <?php foreach ($segmentos as $segmento) { ?>
+                                                    <option value="<?= $segmento['CODIGO'] ?>"><?= $segmento['NOME'] ?></option>
+                                                <?php } ?>
+
+
+
                                             </select>
                                             <p class="help-block hide">Example block-level help text here.</p>
                                         </div>
-                                         <div class="col-md-6 outros" >
+                                        <div class="col-md-6 outros" style="display: none" >
                                             <label>Segmento</label>
-                                            <select class="form-control">
+                                            <select class="form-control" >
                                                 <option value="1">Serviços</option>
-                                                <option value="1">Locação de salas / quartos </option>
-                                                
+                                                <option value="2">Locação de salas, Quartos, etc </option>
+
                                             </select>
                                             <p class="help-block hide">Example block-level help text here.</p>
                                         </div>
@@ -79,23 +82,23 @@
                                         <div class="col-md-6">
 
                                             <label>Nome</label>
-                                            <input class="form-control" placeholder="nome"/>
+                                            <input class="form-control" id='nome_responsavel' name='nome_responsavel' placeholder="nome"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label>Sobrenome</label>
-                                            <input class="form-control" placeholder="Sobrenome" />
+                                            <input class="form-control" id='sobrenome_responsavel' name='sobrenome_responsavel' placeholder="Sobrenome" />
                                         </div>
-                                        <p class="help-block small">Digite sua inscrição de acordo com a opção de pessoa física ou empresa.</p>
+                                        <p class="help-block small ">&nbsp;</p>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="col-md-6">
-                                            <label>Seu nome ou Razão social </label>
-                                            <input class="form-control" placeholder="Nome ou Razão Social"/>
+                                            <label id="lbl_nome">Seu nome ou Razão social </label>
+                                            <input class="form-control" name='NOME' id='nome' placeholder="Razão Social"/>
                                         </div>
                                         <div class="col-md-6">
-                                            <label>CNPJ/CPF</label>
-                                            <input class="form-control" placeholder="CNJP ou CPF"/>
+                                            <label id='lbl_cpf_cnpj'>CNPJ/CPF</label>
+                                            <input class="form-control" nome='cpf_cnpj' id='cpf_cnpj' placeholder="CNJP ou CPF"/>
                                         </div>
                                         <p class="help-block small">Digite sua inscrição de acordo com a opção de pessoa física ou empresa.</p>
                                     </div>
@@ -131,40 +134,24 @@
                                     <label> Como será sua URL </label>
                                     <div class="input-group">
                                         <div class="input-group-addon  alert-info" >www.aggenda.com/</div>
-                                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="minha_empresa">
+                                        <input type="text" class="form-control" id="url" name='url' placeholder="minha_empresa">
                                         <!--<div class="input-group-addon">.00</div>-->
                                     </div>
                                     <p class="help-block">Como seus clientes poderão te encontrar.</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Telefone</label>
-                                    <input class="form-control" />
+                                    <input class="form-control" name='telefone'/>
                                     <p class="help-block hide">Example block-level help text here.</p>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Logo</label>
-                                    <input type='file' class="form-control" />
+                                    <input type='file' class="form-control" name='logo' />
                                     <p class="help-block">Escolha uma imagem *.jpg ou *.png com tamanho de 280px por 100px</p>
                                 </div>
 
-                                <!--                                    <div class="form-group">
-                                                                        <label>Password</label>
-                                                                        <input class="form-control" />
-                                                                        <p class="help-block">Example block-level help text here.</p>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Retype Password</label>
-                                                                        <input class="form-control" />
-                                                                        <p class="help-block">Example block-level help text here.</p>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label> Security Code </label>
-                                                                        <input class="form-control" />
-                                                                        <p class="help-block">Example block-level help text here.</p>
-                                                                    </div>-->
 
-                                <!--</form>-->
                             </section>
 
                             <h2>Endereço e Horarios</h2>
@@ -172,55 +159,92 @@
                                 <!--                                <form role="form">-->
 
                                 <div class="form-group">
-                                    <label> Endereço </label>
-                                    <input class="form-control" placeholder="rua, avenida, número"/>
-                                    <p class="help-block hide">Example block-level help text here.</p>
+                                    <div class="col-md-4">
+                                        <label> Cep </label>
+                                        <input class="form-control" />
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label> Endereço </label>
+                                        <input class="form-control" placeholder="rua, avenida, número"/>
+                                        <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
+                                    
                                 </div>
+                                <br><br><br>
                                 <div class="form-group">
-                                    <label> Cep </label>
-                                    <input class="form-control" />
-                                    <p class="help-block hide">Example block-level help text here.</p>
-                                </div>
-                                <div class="form-group">
+                                    <div class="col-md-8">
                                     <label> Cidade </label>
                                     <input class="form-control" />
                                     <p class="help-block hide">Example block-level help text here.</p>
                                 </div>
-                                <div class="form-group">
+                                    <div class="col-md-4">
                                     <label> Estado </label>
                                     <input class="form-control " />
                                     <p class="help-block hide">Example block-level help text here.</p>
+                                    </div>
                                 </div>
-
+                                <br><br><br>
+                                <div class="col-md-5">
+                                <label>Dia/Horário de Funcionamento</label><br>
+                                
+                                <select id='DIA' multiple="multiple" class="form-control">
+                                    <option value="0">Todos&nbsp;os&nbsp;Dias</option>
+                                    <option value="1">Domingo</option>
+                                    <option value="2">Segunda-feira</option>
+                                    <option value="3">Terça-feira</option>
+                                    <option value="4">Quarta-feira</option>
+                                    <option value="5">Quinta-feira</option>
+                                    <option value="6">Sexta-feira</option>
+                                    <option value="7">Sábado</option>
+                                    
+                                </select>
+                                </div>
+                                <div class="col-md-3">
+                                <label>De</label><br>
+                                <input type="time" name='hora_inicio'  id='hora_inicio'  value="08:00" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                <label>Até</label><br>
+                                <input type="time" name='hora_fim'  id='hora_fim'  value='18:00' class="form-control">
+                                </div>
+                                <div class="col-md-1">
+                                <br>
+                                <a href="#" class='btn btn-default add'> Adcionar </a>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-12" id='horarios' style="overflow: scroll;height: 194px;"></div>
                                 <!--</form>-->
                             </section>
                             <h2>Serviços</h2>
                             <section>
-                                Exemplo, manicure, pediatra, aluguel de salas.
+                                <div class="servdiv col-md-12" >
+                                    Exemplo, manicure, pediatra, aluguel de salas.<br>
+                                OBS: Máximo de 5 serviços para conta free.
                                 <!--                                <form role="form">-->
-
-                                <div class="form-group">
-                                    <label> Endereço </label>
-                                    <input class="form-control" placeholder="rua, avenida, número"/>
-                                    <p class="help-block hide">Example block-level help text here.</p>
+                                
+                                <div class="form-group " style="width: 94%">
+                                    <div class="col-md-3">
+                                    <label> Serviço </label>
+                                    <input class="form-control" placeholder="" name='servico[]'/>
+                                    
                                 </div>
-                                <div class="form-group">
-                                    <label> Cep </label>
-                                    <input class="form-control" />
-                                    <p class="help-block hide">Example block-level help text here.</p>
+                                <div class="col-md-3">
+                                    <label> Valor </label>
+                                    <input class="form-control" name='valor[]'/>
+                                   
                                 </div>
-                                <div class="form-group">
-                                    <label> Cidade </label>
-                                    <input class="form-control" />
-                                    <p class="help-block hide">Example block-level help text here.</p>
+                                <div class="col-md-5">
+                                    <label> OBS </label>
+                                    <textarea class="form-control" name="obs[]"></textarea>
+                                    
                                 </div>
-                                <div class="form-group">
-                                    <label> Estado </label>
-                                    <input class="form-control " />
-                                    <p class="help-block hide">Example block-level help text here.</p>
+                                    <div class="col-md-1 actionServ"><label>&nbsp;</label>
+                                        <a href='' class='addServ btn btn-default'>Adcionar</a>
+                                    </div>
                                 </div>
-
-                                <!--</form>-->
+                                <br id='fim'>
+                                </div>
                             </section>
                             <h2>Funcionário/ local </h2>
 
@@ -424,6 +448,68 @@
 <script src="{base_url}assets/js/template_associado/WizardInit.js"></script>
 <script>
     $(document).ready(function () {
+        $(".add").click(function(){ 
+            var val="" ;
+            var texto="" ;
+            var hora_in=$("#hora_inicio").val();
+            var hora_fim=$("#hora_fim").val();
+            $('#DIA :selected').each(function(i, selected){ 
+                texto =  $(selected).text()+'&nbsp;-----&nbsp;de&nbsp;'+hora_in+"&nbsp;até&nbsp;"+hora_fim;               
+                val =  $(selected).val(); 
+               $('<div class="input-group"><div class="input-group-addon  alert-info" ><a class="remove">X</a></div> <input type="text" name="dias_de_trabalho_texto[]" value='+texto+' readonly="readonly" class="disabled form-control" />\n\
+                    <input type="hidden" name="dias_de_trabalho[]" value='+val+' readonly="readonly" class="disabled" />\n\
+                    <input type="hidden" name="hora_inicio[]" value='+hora_in+' readonly="readonly" class="disabled" />\n\
+                    <input type="hidden" name="hora_fim[]" value='+hora_fim+' readonly="readonly" class="disabled" />\n\
+                    </div>')
+                       .appendTo('#horarios')
+
+              });
+           
+            
+          
+            return false;
+        })
+        var contServ=1;
+        $(".addServ").click(function(){
+            if(contServ < 5){
+                var clone=$(this).parent().parent().clone();
+                clone.find(".addServ").removeClass("addServ").html('Remover').addClass('removeServ').addClass('btn-danger');//.appendTo($(this).parent().parent());
+                clone.find('input,textarea').val(' ');
+                clone.insertBefore($('#fim'));
+                contServ++;
+                
+            }else{
+                alert('Para Configuração inicial há um limite de 5 Serviços\n Insira mais após o cadastro inicial')
+            }
+            return false;
+            
+        })
+        $('body').delegate('.removeServ','click', function(){
+           $(this).parent().parent().remove();
+           contServ--;
+           
+           return false;
+        })
+        $("#horarios").delegate('.remove', 'click', function(){
+                var seletor = $(this).parent().parent();
+                $(seletor).remove();
+            return false;
+        })
+        $("#tipo").change(function () {
+
+            if ($(this).val() == 'F') {
+                $("#lbl_nome").parent().hide();
+                $("#lbl_cpf_cnpj").html('CPF');
+                $("#cpf_cnpj").attr('placeholder', 'CPF');
+
+            } else {
+                $("#lbl_nome").parent().show();
+                $("#lbl_nome").html('Razão Social');
+                $("#lbl_cpf_cnpj").html('CNPJ');
+                $("#cpf_cnpj").attr('placeholder', 'CNPJ');
+            }
+        })
+        $("#tipo").change();
         $(".actions a[href$='#finish']").click(function () {
             $("#configInicial").submit();
         })
