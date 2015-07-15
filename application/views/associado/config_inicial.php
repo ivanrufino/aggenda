@@ -140,16 +140,17 @@
                                     <p class="help-block">Como seus clientes poderão te encontrar.</p>
                                 </div>
                                 <div class="form-group">
+                                    <div class="col-md-6">
                                     <label>Telefone</label>
                                     <input class="form-control" name='telefone'/>
                                     <p class="help-block hide">Example block-level help text here.</p>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="col-md-6">
                                     <label>Logo</label>
                                     <input type='file' class="form-control" name='logo' />
-                                    <p class="help-block">Escolha uma imagem *.jpg ou *.png com tamanho de 280px por 100px</p>
-                                </div>
+                                    <p class="help-block small">Escolha uma imagem *.jpg ou *.png com tamanho de 280px por 100px</p>
+                                </div></div>
 
 
                             </section>
@@ -212,15 +213,15 @@
                                 <br>
                                 <a href="#" class='btn btn-default add'> Adcionar </a>
                                 </div>
-                                <div class="clearfix"></div>
+                                <div class="clearfix"><br></div>
                                 <div class="col-md-12" id='horarios' style="overflow: scroll;height: 194px;"></div>
                                 <!--</form>-->
                             </section>
                             <h2>Serviços</h2>
                             <section>
                                 <div class="servdiv col-md-12" >
-                                    Exemplo, manicure, pediatra, aluguel de salas.<br>
-                                OBS: Máximo de 5 serviços para conta free.
+                                    <p class="help-block small" > Exemplo, manicure, pediatra, aluguel de salas.<br>
+                                        OBS: Máximo de 5 serviços para conta free.</p>
                                 <!--                                <form role="form">-->
                                 
                                 <div class="form-group " style="width: 94%">
@@ -250,30 +251,31 @@
 
 
                             <section>
-                                dica: se o agendamento é para serviços, cadastre seus funcionários<br>
-                                se for para locação de espaços, cadastre esses locais, salas, quartos etc.
+                                <p class="help-block small"> Dica: se o agendamento é para serviços, cadastre seus funcionários<br>
+                                se for para locação de espaços, cadastre esses locais, salas, quartos etc.</p>
                                 <!--                                <form role="form">-->
 
                                 <div class="form-group">
-                                    <label> Endereço </label>
-                                    <input class="form-control" placeholder="rua, avenida, número"/>
+                                    <br>
+                                    <label> Nome </label>
+                                    <input class="form-control" placeholder="nome" name="nome_funcionario"/>
                                     <p class="help-block hide">Example block-level help text here.</p>
                                 </div>
                                 <div class="form-group">
-                                    <label> Cep </label>
-                                    <input class="form-control" />
+                                    <label> Descrição </label>
+                                    <input class="form-control" name="descricao" />
                                     <p class="help-block hide">Example block-level help text here.</p>
                                 </div>
-                                <div class="form-group">
-                                    <label> Cidade </label>
-                                    <input class="form-control" />
+<!--                                <div class="form-group">
+                                    <label> Foto </label>
+                                    <input class="form-control" name="foto_funcionario"/>
                                     <p class="help-block hide">Example block-level help text here.</p>
                                 </div>
                                 <div class="form-group">
                                     <label> Estado </label>
                                     <input class="form-control " />
                                     <p class="help-block hide">Example block-level help text here.</p>
-                                </div>
+                                </div>-->
 
                                 <!--</form>-->
                             </section>
