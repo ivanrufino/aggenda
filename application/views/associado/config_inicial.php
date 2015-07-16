@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-
+  <form role="form" id='configInicial' action="{base_url}admin/updateConfigInicial" method="POST">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <!--                        Vertical Wizard-->
@@ -40,11 +40,11 @@
                             <h2> Empresa </h2>
                             <section>
 
-                                <form role="form" id='configInicial' action="{base_url}admin/updateConfigInicial" method="POST">
+                              
                                     <div class="form-group">
                                         <div class="col-md-8">
                                             <label>Seu cadastro será de empresa ou pessoa física?</label>
-                                            <select class="form-control" name="TIPO" id="tipo">
+                                            <select class="form-control" name="tipo" id="tipo">
                                                 <option value="J">Empresa</option>
                                                 <option value="F">Pessoa Física</option>
                                             </select>
@@ -53,11 +53,11 @@
                                     </div>
                                     <br><br>    <br><br>    
                                     <div class="form-group">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label>Área de atuação</label>
-                                            <select class="form-control">
+                                            <select class="form-control" name="segmento" id="segmento">
                                                 <?php foreach ($segmentos as $segmento) { ?>
-                                                    <option value="<?= $segmento['CODIGO'] ?>"><?= $segmento['NOME'] ?></option>
+                                                    <option value="<?= $segmento['TIPO'] ?>"><?= $segmento['NOME'] ?></option>
                                                 <?php } ?>
 
 
@@ -65,9 +65,14 @@
                                             </select>
                                             <p class="help-block hide">Example block-level help text here.</p>
                                         </div>
-                                        <div class="col-md-6 outros" style="display: none" >
+                                        <div class="col-md-4 outros" style="display: none" >
+                                            <label>Descrição</label>
+                                            <input class="form-control" id='area' name='area' placeholder="Área de Atuação"/>
+                                            <p class="help-block hide">Example block-level help text here.</p>
+                                        </div>
+                                        <div class="col-md-4 outros" style="display: none" >
                                             <label>Segmento</label>
-                                            <select class="form-control" >
+                                            <select class="form-control" name="segmento2" id="segmento2">
                                                 <option value="1">Serviços</option>
                                                 <option value="2">Locação de salas, Quartos, etc </option>
 
@@ -75,7 +80,7 @@
                                             <p class="help-block hide">Example block-level help text here.</p>
                                         </div>
                                     </div>
-
+                                    <div class="clearfix"></div>
                                     <div class="form-group">
 
                                         <label><br>Quem será o responsável por manter a agenda</label>
@@ -94,11 +99,11 @@
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <label id="lbl_nome">Seu nome ou Razão social </label>
-                                            <input class="form-control" name='NOME' id='nome' placeholder="Razão Social"/>
+                                            <input class="form-control" name='nome' id='nome' placeholder="Razão Social"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label id='lbl_cpf_cnpj'>CNPJ/CPF</label>
-                                            <input class="form-control" nome='cpf_cnpj' id='cpf_cnpj' placeholder="CNJP ou CPF"/>
+                                            <input class="form-control" name='cpf_cnpj' id='cpf_cnpj' placeholder="CNJP ou CPF"/>
                                         </div>
                                         <p class="help-block small">Digite sua inscrição de acordo com a opção de pessoa física ou empresa.</p>
                                     </div>
@@ -162,26 +167,31 @@
                                 <div class="form-group">
                                     <div class="col-md-4">
                                         <label> Cep </label>
-                                        <input class="form-control" />
+                                        <input class="form-control" name="cep"/>
                                         <p class="help-block hide">Example block-level help text here.</p>
                                     </div>
                                     <div class="col-md-8">
                                         <label> Endereço </label>
-                                        <input class="form-control" placeholder="rua, avenida, número"/>
+                                        <input class="form-control" name="endereco" placeholder="rua, avenida, número"/>
                                         <p class="help-block hide">Example block-level help text here.</p>
                                     </div>
                                     
                                 </div>
                                 <br><br><br>
                                 <div class="form-group">
-                                    <div class="col-md-8">
-                                    <label> Cidade </label>
-                                    <input class="form-control" />
+                                    <div class="col-md-4">
+                                    <label> Bairro </label>
+                                    <input class="form-control" name="bairro" />
                                     <p class="help-block hide">Example block-level help text here.</p>
                                 </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
+                                    <label> Cidade </label>
+                                    <input class="form-control" name="cidade" />
+                                    <p class="help-block hide">Example block-level help text here.</p>
+                                </div>
+                                    <div class="col-md-3">
                                     <label> Estado </label>
-                                    <input class="form-control " />
+                                    <input class="form-control " name="estado" />
                                     <p class="help-block hide">Example block-level help text here.</p>
                                     </div>
                                 </div>
@@ -189,7 +199,7 @@
                                 <div class="col-md-5">
                                 <label>Dia/Horário de Funcionamento</label><br>
                                 
-                                <select id='DIA' multiple="multiple" class="form-control">
+                                <select id='DIA' multiple="multiple" class="form-control" >
                                     <option value="0">Todos&nbsp;os&nbsp;Dias</option>
                                     <option value="1">Domingo</option>
                                     <option value="2">Segunda-feira</option>
@@ -203,11 +213,11 @@
                                 </div>
                                 <div class="col-md-3">
                                 <label>De</label><br>
-                                <input type="time" name='hora_inicio'  id='hora_inicio'  value="08:00" class="form-control">
+                                <input type="time"   id='hora_inicio'  value="08:00" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                 <label>Até</label><br>
-                                <input type="time" name='hora_fim'  id='hora_fim'  value='18:00' class="form-control">
+                                <input type="time"   id='hora_fim'  value='18:00' class="form-control">
                                 </div>
                                 <div class="col-md-1">
                                 <br>
@@ -258,12 +268,12 @@
                                 <div class="form-group">
                                     <br>
                                     <label> Nome </label>
-                                    <input class="form-control" placeholder="nome" name="nome_funcionario"/>
+                                    <input class="form-control" placeholder="nome" name="nome_funcionario[]"/>
                                     <p class="help-block hide">Example block-level help text here.</p>
                                 </div>
                                 <div class="form-group">
                                     <label> Descrição </label>
-                                    <input class="form-control" name="descricao" />
+                                    <input class="form-control" name="descricao[]" />
                                     <p class="help-block hide">Example block-level help text here.</p>
                                 </div>
 <!--                                <div class="form-group">
@@ -311,8 +321,7 @@
                         </div>
                     </div>                    
                 </div>
-
-
+</form>
 
 
             </div>
@@ -450,6 +459,21 @@
 <script src="{base_url}assets/js/template_associado/WizardInit.js"></script>
 <script>
     $(document).ready(function () {
+          $("#area").val($("#segmento option:selected" ).text());   
+        $("#segmento").change(function(){
+            var select_text = $("#segmento option:selected" ).text();
+            
+            var select = $(this).val();
+            if(select == '0'){ //0 é o id de OUTROS
+                $("#segmento2").parent().show();
+                $("#area").val('');    
+                $("#area").parent().show();
+            }else{
+                $("#segmento2").parent().hide();
+                $("#area").val(select_text);    
+                $("#area").parent().hide();
+            }
+        })
         $(".add").click(function(){ 
             var val="" ;
             var texto="" ;
@@ -458,7 +482,7 @@
             $('#DIA :selected').each(function(i, selected){ 
                 texto =  $(selected).text()+'&nbsp;-----&nbsp;de&nbsp;'+hora_in+"&nbsp;até&nbsp;"+hora_fim;               
                 val =  $(selected).val(); 
-               $('<div class="input-group"><div class="input-group-addon  alert-info" ><a class="remove">X</a></div> <input type="text" name="dias_de_trabalho_texto[]" value='+texto+' readonly="readonly" class="disabled form-control" />\n\
+               $('<div class="input-group"><div class="input-group-addon  alert-info" ><a class="remove">X</a></div> <input type="text"  value='+texto+' readonly="readonly" class="disabled form-control" />\n\
                     <input type="hidden" name="dias_de_trabalho[]" value='+val+' readonly="readonly" class="disabled" />\n\
                     <input type="hidden" name="hora_inicio[]" value='+hora_in+' readonly="readonly" class="disabled" />\n\
                     <input type="hidden" name="hora_fim[]" value='+hora_fim+' readonly="readonly" class="disabled" />\n\

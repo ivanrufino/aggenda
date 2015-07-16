@@ -72,4 +72,39 @@ class Admin_model extends CI_Model{
             return FALSE;
         } 
     }
+    public function novaEmpresa($dados) {
+         if ($this->db->insert('empresa', $dados)){
+          return $this->db->insert_id();
+        }else{
+            return false;
+        }
+    }
+    public function novoEndereco($dados) {
+         if ($this->db->insert('endereco', $dados)){
+          return $this->db->insert_id();
+        }else{
+            return false;
+        }
+    }
+    public function novoHorario($dados) {
+         if ($this->db->insert('horario', $dados)){
+          return $this->db->insert_id();
+        }else{
+            return false;
+        }
+    }
+    public function novoServico($dados) {
+         if ($this->db->insert_batch('servico', $dados)){
+          return $this->db->insert_id();
+        }else{
+            return false;
+        }
+    }
+    public function novoFuncionario($dados) {
+         if ($this->db->insert_batch('funcionario', $dados)){
+          return $this->db->insert_id();
+        }else{
+            return false;
+        }
+    }
 }
