@@ -89,6 +89,31 @@ class Admin extends CI_Controller {
         $this->parser->mostrar('template/template_associado.php', $this->tela, $this->data);
     }
     public function updateConfigInicial() {
+         $this->form_validation->set_rules('nome', 'Razão Social', 'trim|required|is_unique[empresa.NOME]', array('is_unique' => 'Este %s já esta sendo utilizado.'));
+         
+         $this->form_validation->set_rules('nome_responsavel', 'Nome', 'trim|required');
+         $this->form_validation->set_rules('sobrenome_responsavel', 'Sobrenome', 'trim|required');
+         $this->form_validation->set_rules('url', 'URL', 'trim|required|min_length[5]|max_length[15]|alpha_dash');
+         $this->form_validation->set_rules('telefone', 'Telefone', 'trim|required');
+         if($this->input->post('segmento') == 25){
+                     $this->form_validation->set_rules('area', 'Descrição', 'trim|required');
+         }
+         if($this->input->post('tipo')=='J'){
+            $this->form_validation->set_rules('cnpj', 'CNPJ', 'trim|required|is_unique[empresa.CNPJ]', array('is_unique' => 'Este %s já esta sendo utilizado.'));
+         }else{
+             $this->form_validation->set_rules('cpf', 'CPF', 'trim|required|is_unique[empresa.CPF]', array('is_unique' => 'Este %s já esta sendo utilizado.'));
+         }
+         
+         $this->form_validation->set_rules('cep', 'CEP', 'trim|required');
+         $this->form_validation->set_rules('endereco', 'Endereço', 'trim|required');
+         $this->form_validation->set_rules('bairro', 'Bairro', 'trim|required');
+         $this->form_validation->set_rules('cidade', 'Cidade', 'trim|required');
+         $this->form_validation->set_rules('estado', 'Estado', 'trim|required');
+         
+         $this->data['step']=0; 
+        if ($this->form_validation->run() == FALSE) {
+            $this->index();
+        } else {
         $empresa = array(
                 'NOME'  =>  $this->input->post('nome'),
                 'TIPO'  =>  $this->input->post('tipo'), 
@@ -165,6 +190,7 @@ class Admin extends CI_Controller {
         echo $this->db->trans_status();
         //print_r($this->input->post());
         echo "</pre>";
+    }
     }
     public function dadosComuns() {
         $this->parser->adc_css($this->css);

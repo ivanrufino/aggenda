@@ -5,11 +5,12 @@
 <!-- END PAGE LEVEL  STYLES --> 
 <!-- PAGE LEVEL SCRIPTS -->
 <script src="{base_url}assets/plugins/jquery-steps-master/lib/jquery.cookie-1.3.1.js"></script>
-<script src="{base_url}assets/plugins/jquery-steps-master/build/jquery.steps.js"></script>   
+<script src="{base_url}assets/plugins/jquery-steps-master/build/jquery.steps.js"></script>  
+<script src="<?=base_url()?>assets/plugins/jasny/js/bootstrap-inputmask.js"></script>
 
 <!--END PAGE LEVEL SCRIPTS -->
 <!--PAGE CONTENT -->
-
+<?php //$step=0?>
 <div id="" class='col-md-10 col-md-offset-1'>
 
     <div class="inner" style="min-height:700px;">
@@ -48,7 +49,7 @@
                                                 <option value="J">Empresa</option>
                                                 <option value="F">Pessoa Física</option>
                                             </select>
-                                            <p class="help-block hide">Example block-level help text here.</p>
+                                            <p class="help-block small">&nbsp;</p>
                                         </div>
                                     </div>
                                     <br><br>    <br><br>    
@@ -57,18 +58,18 @@
                                             <label>Área de atuação</label>
                                             <select class="form-control" name="segmento" id="segmento">
                                                 <?php foreach ($segmentos as $segmento) { ?>
-                                                    <option value="<?= $segmento['TIPO'] ?>"><?= $segmento['NOME'] ?></option>
+                                                    <option value="<?= $segmento['CODIGO'] ?>" <?php echo  set_select('segmento',  $segmento['CODIGO']); ?>><?= $segmento['NOME'] ?></option>
                                                 <?php } ?>
 
 
 
                                             </select>
-                                            <p class="help-block hide">Example block-level help text here.</p>
+                                            
                                         </div>
                                         <div class="col-md-4 outros" style="display: none" >
                                             <label>Descrição</label>
                                             <input class="form-control" id='area' name='area' placeholder="Área de Atuação"/>
-                                            <p class="help-block hide">Example block-level help text here.</p>
+                                            
                                         </div>
                                         <div class="col-md-4 outros" style="display: none" >
                                             <label>Segmento</label>
@@ -77,8 +78,11 @@
                                                 <option value="2">Locação de salas, Quartos, etc </option>
 
                                             </select>
-                                            <p class="help-block hide">Example block-level help text here.</p>
+                                           
+                                            
                                         </div>
+                                        <p class="clearfix">
+                                        <?php echo form_error('area', '<p class="small  alert-danger " id="lbl_error_desc" role="alert" >', '</p>'); ?>
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="form-group">
@@ -87,48 +91,33 @@
                                         <div class="col-md-6">
 
                                             <label>Nome</label>
-                                            <input class="form-control" id='nome_responsavel' name='nome_responsavel' placeholder="nome"/>
+                                            <input class="form-control" id='nome_responsavel' name='nome_responsavel' placeholder="nome" value="<?=  set_value('nome_responsavel')?>" />
                                         </div>
                                         <div class="col-md-6">
                                             <label>Sobrenome</label>
-                                            <input class="form-control" id='sobrenome_responsavel' name='sobrenome_responsavel' placeholder="Sobrenome" />
+                                            <input class="form-control" id='sobrenome_responsavel' name='sobrenome_responsavel' placeholder="Sobrenome" value="<?=  set_value('sobrenome_responsavel')?>"/>
                                         </div>
-                                        <p class="help-block small ">&nbsp;</p>
+                                        <p class="clearfix"> 
+                                        <?php echo form_error('nome_responsavel', '<p class="small  alert-danger " role="alert" >', '</p>'); ?><br><?php echo form_error('sobrenome_responsavel', '<p class="small  alert-danger " role="alert" >', '</p>'); ?>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <label id="lbl_nome">Seu nome ou Razão social </label>
-                                            <input class="form-control" name='nome' id='nome' placeholder="Razão Social"/>
+                                            <input class="form-control" name='nome' id='nome' placeholder="Razão Social" value="<?=  set_value('nome')?>"/>
                                         </div>
                                         <div class="col-md-6">
                                             <label id='lbl_cpf_cnpj'>CNPJ/CPF</label>
-                                            <input class="form-control" name='cpf_cnpj' id='cpf_cnpj' placeholder="CNJP ou CPF"/>
+                                            <input class="form-control cpf" name='cpf'  placeholder="CPF" value="<?=  set_value('cpf')?>"  data-mask="999.999.999-99"/>
+                                            <input class="form-control cnpj " name='cnpj'  placeholder="CNPJ" value="<?=  set_value('cnpj')?>" data-mask="99.999.999/9999-99" />
                                         </div>
-                                        <p class="help-block small">Digite sua inscrição de acordo com a opção de pessoa física ou empresa.</p>
+                                        <p class="clearfix"> 
+                                        <?php echo form_error('nome', '<p class="small alert-danger " role="alert" >', ''); ?> 
+                                            <?php echo form_error('cpf', '<p class="small  alert-danger " role="alert" >', '</p>'); ?>
+                                            <?php echo form_error('cnpj', '<p class="small  alert-danger " role="alert" >', '</p>'); ?>
                                     </div>
 
-                                    <!--                                    <div class="form-group">
-                                                                            <div class="col-md-6">
-                                                                                <label>Qual sua área de atuação</label>
-                                                                                <select class="form-control">
-                                                                                    <option>Salão de Beleza</option>
-                                                                                    <option>Clinica Médica</option>
-                                                                                    <option>Outros</option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="col-md-6 hide">
-                                                                                <label>Outros</label>
-                                                                                <input class="form-control" />
-                                                                            </div>
-                                                                            <div class="clearfix"></div>
-                                                                            <p class="help-block hide">Example block-level help text here.</p>
-                                                                        </div>-->
-
-
-
-
-                                    <!--                                </form>-->
+                                    
 
                             </section>
 
@@ -139,15 +128,17 @@
                                     <label> Como será sua URL </label>
                                     <div class="input-group">
                                         <div class="input-group-addon  alert-info" >www.aggenda.com/</div>
-                                        <input type="text" class="form-control" id="url" name='url' placeholder="minha_empresa">
+                                        <input type="text" class="form-control" id="url" name='url' placeholder="minha_empresa" value="<?=  set_value('url')?>">
                                         <!--<div class="input-group-addon">.00</div>-->
                                     </div>
-                                    <p class="help-block">Como seus clientes poderão te encontrar.</p>
+                                    <p class="help-block clearfix">Como seus clientes poderão te encontrar.<br>Mínimo de 5 e máximo de 15 caracteres</p>
+                                    <?php echo form_error('url', '<p class="small alert-danger " role="alert" >', ''); ?>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-6">
                                     <label>Telefone</label>
-                                    <input class="form-control" name='telefone'/>
+                                    <input class="form-control" name='telefone' value="<?=  set_value('telefone')?>" data-mask="(99) 9999-9999*"/>
+                                    <?php echo form_error('telefone', '<p class="small alert-danger " role="alert" >', '</p>'); ?>
                                     <p class="help-block hide">Example block-level help text here.</p>
                                 </div>
 
@@ -167,13 +158,13 @@
                                 <div class="form-group">
                                     <div class="col-md-4">
                                         <label> Cep </label>
-                                        <input class="form-control" name="cep"/>
-                                        <p class="help-block hide">Example block-level help text here.</p>
+                                        <input class="form-control" name="cep" data-mask="99.999-999" value="<?=  set_value('cep')?>"/>
+                                        <?php echo form_error('cep', '<p class="small alert-danger " role="alert" >', '</p>'); ?>
                                     </div>
                                     <div class="col-md-8">
                                         <label> Endereço </label>
-                                        <input class="form-control" name="endereco" placeholder="rua, avenida, número"/>
-                                        <p class="help-block hide">Example block-level help text here.</p>
+                                        <input class="form-control" name="endereco" placeholder="rua, avenida, número" value="<?=  set_value('endereco')?>" />
+                                        <?php echo form_error('endereco', '<p class="small alert-danger " role="alert" >', '</p>'); ?>
                                     </div>
                                     
                                 </div>
@@ -181,18 +172,18 @@
                                 <div class="form-group">
                                     <div class="col-md-4">
                                     <label> Bairro </label>
-                                    <input class="form-control" name="bairro" />
-                                    <p class="help-block hide">Example block-level help text here.</p>
+                                    <input class="form-control" name="bairro" value="<?=  set_value('bairro')?>"/>
+                                    <?php echo form_error('endereco', '<p class="small alert-danger " role="alert" >', '</p>'); ?>
                                 </div>
                                     <div class="col-md-5">
                                     <label> Cidade </label>
-                                    <input class="form-control" name="cidade" />
-                                    <p class="help-block hide">Example block-level help text here.</p>
+                                    <input class="form-control" name="cidade" value="<?=  set_value('cidade')?>"/>
+                                    <?php echo form_error('endereco', '<p class="small alert-danger " role="alert" >', '</p>'); ?>
                                 </div>
                                     <div class="col-md-3">
                                     <label> Estado </label>
-                                    <input class="form-control " name="estado" />
-                                    <p class="help-block hide">Example block-level help text here.</p>
+                                    <input class="form-control " name="estado" value="<?=  set_value('estado')?>"/>
+                                    <?php echo form_error('endereco', '<p class="small alert-danger " role="alert" >', '</p>'); ?>
                                     </div>
                                 </div>
                                 <br><br><br>
@@ -288,6 +279,18 @@
                                 </div>-->
 
                                 <!--</form>-->
+                            </section>
+                            <h2>Finalizar</h2>
+                            <section>
+                                <?php if(!is_null(validation_errors('<div class="alert alert-danger">', '</div>'))){
+                                   echo validation_errors('<div class="alert alert-danger">', '</div>');
+                                   echo "Verique os erros encontrados";
+                                }else{
+                                    echo "Clique em Finalizar para gravar os dados.";
+                                }
+                                
+                                ?>
+                                
                             </section>
                             <!--                            <h2>Finalizar</h2>
                                                         <section>
@@ -459,12 +462,13 @@
 <script src="{base_url}assets/js/template_associado/WizardInit.js"></script>
 <script>
     $(document).ready(function () {
+        $("#wizardV").steps("setStep", null,<?=$step?>);
           $("#area").val($("#segmento option:selected" ).text());   
         $("#segmento").change(function(){
             var select_text = $("#segmento option:selected" ).text();
             
             var select = $(this).val();
-            if(select == '0'){ //0 é o id de OUTROS
+            if(select == '25'){ //25 é o id de OUTROS
                 $("#segmento2").parent().show();
                 $("#area").val('');    
                 $("#area").parent().show();
@@ -472,8 +476,10 @@
                 $("#segmento2").parent().hide();
                 $("#area").val(select_text);    
                 $("#area").parent().hide();
+                $("#lbl_error_desc").hide();
             }
         })
+         $("#segmento").change();
         $(".add").click(function(){ 
             var val="" ;
             var texto="" ;
@@ -521,20 +527,35 @@
                 $(seletor).remove();
             return false;
         })
+        
         $("#tipo").change(function () {
-
+            
             if ($(this).val() == 'F') {
-                $("#lbl_nome").parent().hide();
+                //$("#lbl_nome").parent().hide();
+                $("#nome").val($('#nome_responsavel').val().trim()+" "+$('#sobrenome_responsavel').val().trim());
                 $("#lbl_cpf_cnpj").html('CPF');
-                $("#cpf_cnpj").attr('placeholder', 'CPF');
+               // $(".cpf_cnpj").attr('placeholder', 'CPF').val("")
+                 $(".cpf").show();
+                 $(".cnpj").hide();
 
             } else {
+                $("#nome").val(" ")
                 $("#lbl_nome").parent().show();
                 $("#lbl_nome").html('Razão Social');
                 $("#lbl_cpf_cnpj").html('CNPJ');
-                $("#cpf_cnpj").attr('placeholder', 'CNPJ');
+              //  $(".cpf_cnpj").attr('placeholder', 'CNPJ').val("")
+                $(".cpf").hide();
+                $(".cnpj").show();
+                   
             }
-        })
+        });
+        
+            $("#nome_responsavel,#sobrenome_responsavel").keyup(function(){
+                if ($("#tipo").val() == 'F') {
+                    $("#nome").val($('#nome_responsavel').val().trim()+" "+$('#sobrenome_responsavel').val().trim());
+                }
+            })
+         
         $("#tipo").change();
         $(".actions a[href$='#finish']").click(function () {
             $("#configInicial").submit();

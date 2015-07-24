@@ -1435,7 +1435,10 @@ $.fn.steps.remove = function (index)
 
     return removeStep(this, options, state, index);
 };
-
+function _goToStep(wizard, options, state, index)
+{console.log(index)
+    return paginationClick(wizard, options, state, index);
+}
 /**
  * Sets a specific step object by index.
  *
@@ -1445,7 +1448,10 @@ $.fn.steps.remove = function (index)
  **/
 $.fn.steps.setStep = function (index, step)
 {
-    throw new Error("Not yet implemented!");
+     var options = getOptions(this),
+        state = getState(this);
+        
+    return _goToStep(this, options, state, step,index);
 };
 
 /**
