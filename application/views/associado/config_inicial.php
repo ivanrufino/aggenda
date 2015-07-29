@@ -46,8 +46,8 @@
                                         <div class="col-md-8">
                                             <label>Seu cadastro será de empresa ou pessoa física?</label>
                                             <select class="form-control" name="tipo" id="tipo">
-                                                <option value="J">Empresa</option>
-                                                <option value="F">Pessoa Física</option>
+                                                <option value="J" <?php echo  set_select('tipo',  "J"); ?>>Empresa</option>
+                                                <option value="F" <?php echo  set_select('tipo',  "F"); ?>>Pessoa Física</option>
                                             </select>
                                             <p class="help-block small">&nbsp;</p>
                                         </div>
@@ -461,6 +461,7 @@
 <!--END PAGE CONTENT -->
 <script src="{base_url}assets/js/template_associado/WizardInit.js"></script>
 <script>
+    <?php $step =5?>
     $(document).ready(function () {
         $("#wizardV").steps("setStep", null,<?=$step?>);
           $("#area").val($("#segmento option:selected" ).text());   
@@ -531,7 +532,7 @@
         $("#tipo").change(function () {
             
             if ($(this).val() == 'F') {
-                //$("#lbl_nome").parent().hide();
+                $("#lbl_nome").parent().hide();
                 $("#nome").val($('#nome_responsavel').val().trim()+" "+$('#sobrenome_responsavel').val().trim());
                 $("#lbl_cpf_cnpj").html('CPF');
                // $(".cpf_cnpj").attr('placeholder', 'CPF').val("")
@@ -549,7 +550,7 @@
                    
             }
         });
-        
+        $("#tipo").change();
             $("#nome_responsavel,#sobrenome_responsavel").keyup(function(){
                 if ($("#tipo").val() == 'F') {
                     $("#nome").val($('#nome_responsavel').val().trim()+" "+$('#sobrenome_responsavel').val().trim());

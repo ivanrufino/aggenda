@@ -110,6 +110,9 @@ class Admin extends CI_Controller {
          $this->form_validation->set_rules('cidade', 'Cidade', 'trim|required');
          $this->form_validation->set_rules('estado', 'Estado', 'trim|required');
          
+         $this->form_validation->set_rules('dias_de_trabalho[]', 'dias_de_trabalho', 'trim|required', array('required' => 'Selecione no minimo um dia da semana'));
+         
+         
          $this->data['step']=0; 
         if ($this->form_validation->run() == FALSE) {
             $this->index();

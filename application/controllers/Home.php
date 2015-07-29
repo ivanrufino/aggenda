@@ -58,10 +58,14 @@ class Home extends CI_Controller {
                 $this->db->trans_commit();
             }
 
-           redirect('login');
+           redirect('cadastro_efetuado');
         }
     }
-
+    public function cadastro_efetuado() {
+        echo "Seu cadastro foi efetuado com sucesso<br>";
+        echo "Foi enviado um email de ativação para sua conta de email.<br>";
+        echo "Siga as orientações no email e se precisar de ajudar entre em contato<br>";
+    }
     public function login() {
         $this->load->view('associado/login', $this->data);
     }

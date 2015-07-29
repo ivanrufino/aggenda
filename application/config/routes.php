@@ -53,6 +53,7 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'home/login';
+$route['cadastro_efetuado'] = 'home/cadastro_efetuado';
 $route['admin/calendario'] = 'admin/index';
 $route['tela/(:any)'] = 'home/tela/$1';
 //$route['admin/login'] = 'home/login';
