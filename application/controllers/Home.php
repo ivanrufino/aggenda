@@ -85,7 +85,17 @@ class Home extends CI_Controller {
             //$this->logado();
         }
     }
-
+    public function loginApp($login, $senha) {
+         $dados = $this->login->efetuarLogin($login, sha1($senha));
+        if($dados){
+             $this->admin->alteraAdmin($dados['CODIGO'],array('ULTIMA_ATIVIDADE'=>date('Y-m-d H:i:s' )));
+            echo json_encode($dados);
+           // echo 'success';
+        }else{
+            echo false;
+        }
+        
+    }
     public function check_status($login) {
         $status = $this->login->checkStatus($login);
 

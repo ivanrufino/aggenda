@@ -7,6 +7,7 @@ class Login_model extends CI_Model{
         $this->db->from('associado');
         $this->db->where('EMAIL', $login);
         $this->db->or_where('LOGIN', $login);
+        $this->db->where('SENHA', $senha);
         $query = $this->db->get();
         
        // echo $this->db->last_query(); die();
