@@ -26,7 +26,7 @@ class Demo extends CI_Controller {
 
         /* Dados Cliente */
         $pgCliente = array();
-        $pgCliente['client_name'] = 'Fulano de tal';
+        $pgCliente['client_name'] = 'Fulano de tals';
         $pgCliente['client_email'] = 'contato@sandbox.pagseguro.com.br';
         $pgCliente['client_ddd'] = '21';
         $pgCliente['client_phone'] = '55555555';
@@ -44,15 +44,15 @@ class Demo extends CI_Controller {
         $shipping['pais'] = 'Brasil';
 
         /* Referência (ID da Compra) */
-        $pgReference = '4';
+        $pgReference = '5';
 
         /* Gera URL da Pagamento */
         $paymentURL = $this->pagseguro->requestPayment($pgCompra, $pgCliente, $pgReference, $shipping, $pgRetorno);
-
+      
          $code= explode("=", $paymentURL)['1'];
          $dados['code']=$code;
 
-        
+      //  die($code);
         $this->load->view('pagamento',$dados);
         
     }
