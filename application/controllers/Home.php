@@ -73,6 +73,7 @@ class Home extends CI_Controller {
     public function acessar() {
         $this->form_validation->set_rules('login', 'Login', 'trim|required|callback_check_status');
         $this->form_validation->set_rules('senha', 'Senha', 'trim|required');
+        
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('associado/login', $this->data);
         } else {
@@ -102,7 +103,7 @@ class Home extends CI_Controller {
     }
     public function check_status($login) {
         $status = $this->login->checkStatus($login);
-
+        
         if ($status) {
             if ($status == "I") {
                 $this->form_validation->set_message('check_status', 'Seu cadastro ainda não foi ativado<br> Verifique o email enviado para sua conta.');

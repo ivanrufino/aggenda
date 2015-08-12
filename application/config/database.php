@@ -59,8 +59,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 
-$active_group = 'default';
+switch ($_SERVER["HTTP_HOST"]) {
+   case "localhost":
+    $active_group = 'default';
+
+       break;
+
+    default:
+           $active_group = 'online';
+        break;
+}
+
 $query_builder = TRUE;
+
 
 $db['default'] = array(
 	'dsn'	=> '',
@@ -68,6 +79,27 @@ $db['default'] = array(
 	'username' => 'root',
 	'password' => '12345',
 	'database' => 'aggenda',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+$db['online'] = array(
+	'dsn'	=> '',
+	'hostname' => 'mysql.hostinger.com.br',
+	'username' => 'u108170753_aggen',
+	'password' => 'akuma2010',
+	'database' => 'u108170753_aggen',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

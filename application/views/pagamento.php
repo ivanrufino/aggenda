@@ -18,6 +18,7 @@ and open the template in the editor.
                 code: '<?= $code; ?>'
             }, {
                 success: function (transactionCode) {
+                    alert(transactionCode);
                     console.log("success - " + transactionCode);
                 },
                 abort: function () {

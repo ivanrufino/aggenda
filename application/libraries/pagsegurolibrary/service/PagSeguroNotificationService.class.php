@@ -77,6 +77,7 @@ class PagSeguroNotificationService
                         "PagSeguroNotificationService.CheckTransaction(notificationCode=$notificationCode) - end " .
                         $transaction->toString() . ")"
                     );
+                     $transaction = PagSeguroTransactionParser::readTransaction($connection->getResponse(),true);
                     break;
 
                 case 'BAD_REQUEST':

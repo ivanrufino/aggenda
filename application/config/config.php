@@ -17,7 +17,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/aggenda';
+
+switch ($_SERVER["HTTP_HOST"]) {
+   case "localhost":
+   $config['base_url'] = 'http://localhost/aggenda';
+
+       break;
+
+    default:
+           $config['base_url'] = 'http://www.aggenda.hol.es'; 
+        break;
+}
+
 
 /*
 |--------------------------------------------------------------------------

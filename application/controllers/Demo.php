@@ -14,7 +14,7 @@ class Demo extends CI_Controller {
 
         /* Página de Retorno */
         $pgRetorno = base_url('/pagamento/callback');
-        
+      //  die($pgRetorno);
         /* Dados Compra */
         $pgCompra = array(
             array(
@@ -29,7 +29,7 @@ class Demo extends CI_Controller {
         $pgCliente['client_name'] = 'Fulano de tals';
         $pgCliente['client_email'] = 'contato@sandbox.pagseguro.com.br';
         $pgCliente['client_ddd'] = '21';
-        $pgCliente['client_phone'] = '55555555';
+        $pgCliente['client_phone'] = '12346578';
 
         /* Dados Frete */
         $shipping = array();
@@ -59,15 +59,20 @@ class Demo extends CI_Controller {
     public function teste($codigo) {
        
         $retorno = $this->pagseguro->getRetorno($codigo,'transaction');
-      //  $retorno =  xml($retorno);
+        //$retorno =  xml($retorno);
         // $retorno =(array)$retorno;
-//        $data = $retorno['PagSeguroTransactiondate'];
-//        echo $data;
+       // $data = $retorno['PagSeguroTransactiondate'];
+       // echo $data;
         echo "<pre>";
         //print_r ($retorno->grossAmount);
-        $retorno = $retorno->toString();
-        print_r($retorno);
+        //$retorno = $retorno->toString();
+        print_r($retorno);// $retorno;
+       // echo $retorno['date'];
+        
         echo "</pre>";
+    }
+    public function callback() {
+        
     }
 }
 

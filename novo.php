@@ -1,4 +1,4 @@
- <?php 
+<?php
 /**
  * CodeIgniter
  *
@@ -53,12 +53,8 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
- 
 switch($_SERVER["HTTP_HOST"]){
  case "localhost":
-     define('ENVIRONMENT', 'development');
- break;
-case "www.aggenda.hol.es":
     define('ENVIRONMENT', 'development');
  break;
  default:
@@ -292,9 +288,9 @@ switch (ENVIRONMENT)
 		$view_folder = rtrim($view_folder, '/\\').DIRECTORY_SEPARATOR;
 	}
 
-	define('VIEWPATH', $view_folder);
+	define('VIEWPATH', $view_folder); 
 
-/*
+/* 
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
  * --------------------------------------------------------------------
