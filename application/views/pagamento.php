@@ -11,8 +11,8 @@ and open the template in the editor.
         <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
     </head>
     <body>
-        <h2>Criando requisi&ccedil;&atilde;o de pagamento</h2>
-        <p>Code: <strong><?= $code; ?></strong></p>
+<!--        <h2>Criando requisi&ccedil;&atilde;o de pagamento</h2>
+        <p>Code: <strong><?= $code; ?></strong></p>-->
         <script>
             PagSeguroLightbox({
                 code: '<?= $code; ?>'

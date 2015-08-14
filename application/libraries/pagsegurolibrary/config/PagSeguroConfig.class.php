@@ -45,6 +45,7 @@ class PagSeguroConfig
         } else {
             throw new Exception("Config is undefined.");
         }
+        self::activeLog();
     }
 
     public static function init()

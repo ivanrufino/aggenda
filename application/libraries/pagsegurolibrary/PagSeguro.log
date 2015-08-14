@@ -1,0 +1,72 @@
+{2015/08/10 23:15:33} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - begin 
+{2015/08/10 23:15:35} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - end {1}9470E27A30300D12240BDF8EF7D98412 
+{2015/08/11 21:27:07} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - begin 
+{2015/08/11 21:27:09} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - end {1}AAFC19646D6DDDE114D51F837EAD453A 
+{2015/08/11 21:41:35} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - begin 
+{2015/08/11 21:41:36} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - end {1}E7296ED9C1C1AA8BB4E17FA1AD3A3E0E 
+{2015/08/11 21:58:05} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - begin 
+{2015/08/11 21:58:09} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - end {1}0A917FCD48482AE66423EFBB07D02D0E 
+{2015/08/11 21:59:44} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - begin 
+{2015/08/11 21:59:47} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - end {1}890CF6D5BABA08C6649B3FBDA06DFF08 
+{2015/08/11 22:03:13} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - begin 
+{2015/08/11 22:03:13} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - end {1}B12030548D8DB3ADD4B1BF9EF0F12B7B 
+{2015/08/11 22:04:18} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - begin 
+{2015/08/11 22:04:19} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - end {1}B2225EE4F3F38D5774610F8DEA6F3F70 
+{2015/08/11 22:12:36} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - begin 
+{2015/08/11 22:12:37} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - end {1}4B89C4F86A6AD60CC47D1F904E2D71C3 
+{2015/08/11 22:13:32} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - begin 
+{2015/08/11 22:13:34} [Info] PagSeguroPaymentService.Register(PagSeguroPaymentRequest: array (
+  'Reference' => '5',
+  'SenderEmail' => 'contato@sandbox.pagseguro.com.br',
+)) - end {1}27D7EA14F9F93F2CC42C9FA77B307230 

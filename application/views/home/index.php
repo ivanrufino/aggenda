@@ -236,7 +236,7 @@
                             <li>20 More Themes</li>
                             <li>Lifetime Support</li>
                         </ul>
-                        <button class="btn btn-primary text-uppercase">Contratar</button>
+                        <button class="btn btn-primary text-uppercase contrato" data-plano="2" >Contratar</button>
                     </div>
                 </div>
                 <div class="col-md-3 wow fadeIn" data-wow-delay="0.6s">
@@ -390,6 +390,16 @@
     }
     //quando vier um erro de email ou banco de dados fazer aparecer um modal mostrando o erro 
     ?>
+     <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+    <div class='pagamento_div'></div>
+    <script>
+    $(function(){
+      $(".contrato").bind('click',function(){
+          //alert($(this).data('plano'))
+            $(".pagamento_div").load("<?=  base_url()?>Pagamento")
+      }); 
+    });
+    </script>
 </body>
 </html>
 
