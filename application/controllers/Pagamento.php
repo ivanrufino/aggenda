@@ -73,7 +73,7 @@ class Pagamento extends CI_Controller {
         echo $retorno['code'];
     }
     public function callback() {
-        header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
+      //  header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
         $dados=array(
             'COD_CLIENTE'   =>'1',
             'COD_PRODUTO'   =>'2',

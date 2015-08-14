@@ -1,0 +1,17 @@
+body {
+  color:#828282;
+  background-color:#eee;
+}
+
+a,a:hover,.highlight {
+    color:#006633;  	
+}
+.highlight-bk,.navbar{
+    background-color:#006633;  
+}
+h3.highlight,.navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
+    border-color: #006633;
+}
+.navbar-nav > li:last-child > a,.navbar-nav > li > a{
+    border-color: #004723;
+}
