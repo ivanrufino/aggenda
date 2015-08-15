@@ -72,7 +72,7 @@ class PagSeguroTransactionParser extends PagSeguroServiceParser
      * @param $str_xml
      * @return PagSeguroTransaction
      */
-    public static function readTransaction($str_xml)
+    public static function readTransaction($str_xml,$array=false)
     {
 
         // Parser
@@ -81,6 +81,7 @@ class PagSeguroTransactionParser extends PagSeguroServiceParser
         // <transaction>
         $data = $parser->getResult('transaction');
 
+        if($array){return $data;}
         $transaction = new PagSeguroTransaction();
 
         // <transaction> <lastEventDate>
