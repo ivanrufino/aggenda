@@ -72,7 +72,7 @@ class PagSeguroTransactionParser extends PagSeguroServiceParser
      * @param $str_xml
      * @return PagSeguroTransaction
      */
-    public static function readTransaction($str_xml,$array=false)
+    public static function readTransaction($str_xml,$array=false) 
     {
 
         // Parser
